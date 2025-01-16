@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio Multi-Profesional Avanzado</title>
+    <style>
+          * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-bg: #000000;
+            --neon-blue: #00f3ff;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --glow-effect: 0 0 10px rgba(0, 243, 255, 0.5);
+            --gradient-bg: linear-gradient(45deg, rgba(0, 243, 255, 0.1), rgba(138, 43, 226, 0.1));
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: var(--primary-bg);
+            background-image:  url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ima-Rl0Ue5Ue5Ue5Ue5Ue5Ue5Ue5Ue5Ue5Ue5Ue5.png');
+            background-size: cover;
+            font-family: 'Roboto', sans-serif;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 243, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(35, 0, 68, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background: rgba(1, 13, 54, 0.377);
+            padding: 20px;
+            border-radius: 20px;
+            margin-top: 30px;
+            color: white;
+            border: 1px solid var(--neon-blue);
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            color: var(--neon-blue);
+        }
+        form {
+            display: grid;
+            gap: 15px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background: rgba(1, 13, 54, 0.377);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 1px solid var(--neon-blue);
+        }
+        button:hover {
+            background: rgba(1, 46, 54, 0.377);
+        }
+        #proyectos {
+            margin-top: 30px;
+        }
+        .proyecto {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+        .proyecto img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        .codigo {
+            background-color: #f1f1f1;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            overflow-x: auto;
+        }
+        .categorias {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .categoria {
+            background-color: #e9e9e9;
+            padding: 5px 10px;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+        .categoria.activa {
+            background: rgba(55, 0, 255, 0.377);
+            color: white;
+            border: 1px solid var(--neon-blue);
+
+        }
+        .seccion-codigo {
+            margin-top: 15px;
+            border-top: 1px solid #ddd;
+            padding-top: 15px;
+        }
+        .herramientas {
+            margin-top: 10px;
+        }
+        .herramienta {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.9em;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        #archivos {
+            margin-top: 15px;
+        }
+        .archivo {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+        }
+        .filter-group {
+            display: block;
+            margin-bottom: 8px;
+        }
+    
+        .filter-select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(0, 10, 20, 0.3);
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+        .filter-select option{
+            background-color:rgb(0, 10, 20);
+        }
+        .filter-select:hover {
+            border-color: var(--neon-blue);
+        }
+        #formularioProyecto textarea, input{
+            width: 100%;
+            padding: 10px;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(0, 10, 20, 0.3);
+            color: var(--text-primary);
+        }
+        #formularioProyecto textarea, input:hover {
+            border-color: var(--neon-blue);
+        }
+        #agregarArchivo{
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Portafolio Multi-Profesional Avanzado</h1>
+        
+        <form id="formularioProyecto">
+            <label for="nombre">Nombre del Proyecto:</label>
+            <input type="text" id="nombre" required>
+
+            <label class="filter-group" for="categoria">Categoría:</label>
+            <select id="categoria" class="filter-select">
+                <option value="desarrollo-web">Desarrollo Web</option>
+                <option value="desarrollo-movil">Desarrollo Móvil</option>
+                <option value="diseno-grafico">Diseño Gráfico</option>
+                <option value="marketing-digital">Marketing Digital</option>
+                <option value="administracion">Administración</option>
+                <option value="otro">Otro</option>
+            </select>
+
+            <label for="descripcion">Descripción del Proyecto:</label>
+            <textarea id="descripcion" rows="4" required></textarea>
+
+            <label for="herramientas">Herramientas Utilizadas (separadas por coma):</label>
+            <input type="text" id="herramientas" placeholder="Ej: HTML, CSS, JavaScript, Photoshop">
+
+            <label for="imagen">Imagen del Proyecto:</label>
+            <input type="file" id="imagen" accept="image/*">
+
+            <label for="fecha">Fecha de Finalización:</label>
+            <input type="date" id="fecha" style="color-scheme: dark; font-size: 20px;">
+
+            <div id="archivos">
+                <h3>Archivos/Secciones del Proyecto</h3>
+                <div id="contenedor-archivos"></div>
+                <button type="button" id="agregarArchivo">Agregar Archivo/Sección</button>
+            </div>
+
+            <button type="submit">Agregar Proyecto</button>
+        </form>
+
+        <div id="categorias" class="categorias">
+            <!-- Las categorías se agregarán aquí dinámicamente -->
+        </div>
+
+        <div id="proyectos">
+            <h2>Proyectos en el Portafolio</h2>
+            <!-- Los proyectos se agregarán aquí dinámicamente -->
+        </div>
+    </div>
+
+    <script>
+        let proyectos = [];
+        let categoriaActual = 'Todos';
+        let contadorArchivos = 0;
+
+        function agregarArchivoAlFormulario() {
+            contadorArchivos++;
+            const nuevoArchivo = document.createElement('div');
+            nuevoArchivo.className = 'archivo';
+            nuevoArchivo.innerHTML = `
+                <input type="text" class="nombre-archivo" placeholder="Nombre del archivo/sección" required>
+                <textarea class="codigo-archivo" rows="6" placeholder="Código o contenido"></textarea>
+            `;
+            document.getElementById('contenedor-archivos').appendChild(nuevoArchivo);
+        }
+
+        document.getElementById('agregarArchivo').addEventListener('click', agregarArchivoAlFormulario);
+
+        document.getElementById('formularioProyecto').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nombre = document.getElementById('nombre').value;
+            const categoria = document.getElementById('categoria').value;
+            const descripcion = document.getElementById('descripcion').value;
+            const herramientas = document.getElementById('herramientas').value.split(',').map(h => h.trim());
+            const fecha = document.getElementById('fecha').value;
+            const imagenInput = document.getElementById('imagen');
+            
+            const archivos = Array.from(document.querySelectorAll('.archivo')).map(archivo => ({
+                nombre: archivo.querySelector('.nombre-archivo').value,
+                codigo: archivo.querySelector('.codigo-archivo').value
+            }));
+
+            const proyecto = {
+                nombre,
+                categoria,
+                descripcion,
+                herramientas,
+                fecha,
+                imagen: imagenInput.files.length > 0 ? URL.createObjectURL(imagenInput.files[0]) : null,
+                archivos
+            };
+
+            proyectos.push(proyecto);
+            actualizarProyectos();
+            actualizarCategorias();
+            
+            this.reset();
+            document.getElementById('contenedor-archivos').innerHTML = '';
+            contadorArchivos = 0;
+        });
+
+        function actualizarProyectos() {
+            const contenedor = document.getElementById('proyectos');
+            contenedor.innerHTML = '<h2>Proyectos en el Portafolio</h2>';
+
+            proyectos.forEach((proyecto, index) => {
+                if (categoriaActual === 'Todos' || proyecto.categoria === categoriaActual) {
+                    const proyectoHTML = `
+                        <div class="proyecto">
+                            <h3>${proyecto.nombre}</h3>
+                            ${proyecto.imagen ? `<img src="${proyecto.imagen}" alt="${proyecto.nombre}">` : ''}
+                            <p><strong>Categoría:</strong> ${proyecto.categoria}</p>
+                            <p><strong>Descripción:</strong> ${proyecto.descripcion}</p>
+                            <p><strong>Fecha:</strong> ${proyecto.fecha}</p>
+                            <div class="herramientas">
+                                <strong>Herramientas:</strong> 
+                                ${proyecto.herramientas.map(h => `<span class="herramienta">${h}</span>`).join('')}
+                            </div>
+                            ${proyecto.archivos.map(archivo => `
+                                <div class="seccion-codigo">
+                                    <h4>${archivo.nombre}</h4>
+                                    <pre class="codigo">${archivo.codigo}</pre>
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                    contenedor.innerHTML += proyectoHTML;
+                }
+            });
+        }
+
+        function actualizarCategorias() {
+            const contenedorCategorias = document.getElementById('categorias');
+            const categorias = ['Todos', ...new Set(proyectos.map(p => p.categoria))];
+            
+            contenedorCategorias.innerHTML = categorias.map(categoria => 
+                `<span class="categoria ${categoria === categoriaActual ? 'activa' : ''}" onclick="cambiarCategoria('${categoria}')">${categoria}</span>`
+            ).join('');
+        }
+
+        function cambiarCategoria(categoria) {
+            categoriaActual = categoria;
+            actualizarCategorias();
+            actualizarProyectos();
+        }
+
+        // Inicializar categorías
+        actualizarCategorias();
+    </script>
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Blog Masonry</title>
+    <link rel="stylesheet" href="assets/style/blog-style.css">
+</head>
+<body>
+    <input type="checkbox" id="sidebar-toggle">
+    <div class="activate-button">
+        <label for="sidebar-toggle">≡</label>
+    </div>
+    <nav class="left-sidebar">
+        <ul class="nav-links">
+            <li><a href="perfil.html"><span class="icon">👤</span><span class="text">Perfil</span></a></li>
+            <li><a href="index.html"><span class="icon">🏠</span><span class="text">Inicio</span></a></li>
+            <li><a href="portafolio.html"><span class="icon">📂</span><span class="text">Portafolio</span></a></li>
+            <li><a href="cursos.html"><span class="icon">📚</span><span class="text">Cursos</span></a></li>
+            <li><a href="solicitud.html"><span class="icon">📝</span><span class="text">Solicitud</span></a></li>
+            <li><a href="planes.html"><span class="icon">💎</span><span class="text">Planes</span></a></li>
+            <li><a href="blog.html"><span class="icon">📰</span><span class="text">Blog</span></a></li>
+            <li><a href="nosotros.html"><span class="icon">ℹ</span><span class="text">Nosotros</span></a></li>
+            <li><a href="clasificacion.html"><span class="icon">🏆</span><span class="text">Clasificación</span></a></li>
+            <li><a href="retos1.html"><span class="icon">🎯</span><span class="text">Retos</span></a></li>
+            <li><a href="workadventure.html"><span class="icon">🎮</span><span class="text">WorkAdventure</span></a></li>
+            <li><a href="guia.html"><span class="icon">📖</span><span class="text">Guía</span></a></li>
+        </ul>
+    </nav>
+    <div class="container" style="margin-right: 50px;">
+        <h1>Noticias</h1>
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Buscar...">
+            <div class="search-icon"></div>
+        </div>
+        <div class="masonry-grid">
+            <div class="masonry-item" onclick="openModal(this)">
+                <div class="card">
+                    <div class="card-content">
+                        <img src="https://th.bing.com/th/id/R.2f2bae3425719788f4de1e0a5dc09e34?rik=7l1tH47DD6jeIg&riu=" alt="Recursos Educativos" class="card-img">
+                        <div class="card-overlay">
+                            <h2 class="card-title">Recursos Educativos</h2>
+                            <p class="card-category">Educación</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="masonry-item" onclick="openModal(this)">
+                <div class="card">
+                    <div class="card-content">
+                        <img src="https://cdn.pixabay.com/photo/2023/12/09/15/01/hd-wallpapers-8439523_960_720.jpg" alt="Arte en Papel" class="card-img">
+                        <div class="card-overlay">
+                            <h2 class="card-title">Arte en Papel</h2>
+                            <p class="card-category">DIY</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="masonry-item" onclick="openModal(this)">
+                <div class="card">
+                    <div class="card-content">
+                        <img src="https://th.bing.com/th/id/OIP.54gzEZKFscafHAqJ354bJAHaEP?rs=1&pid=ImgDetMain" alt="Arte Nocturno" class="card-img">
+                        <div class="card-overlay">
+                            <h2 class="card-title">Arte Nocturno</h2>
+                            <p class="card-category">Arte</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="masonry-item" onclick="openModal(this)">
+                <div class="card">
+                    <div class="card-content">
+                        <img src="https://res.cloudinary.com/dnw35uxqn/image/upload/v1734338266/image15_itnlgr.png" alt="Matemáticas" class="card-img">
+                        <div class="card-overlay">
+                            <h2 class="card-title">Matemáticas</h2>
+                            <p class="card-category">Educación</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="masonry-item" onclick="openModal(this)">
+                <div class="card">
+                    <div class="card-content">
+                        <img src="https://th.bing.com/th/id/R.1dbb8cc081f966ec548547f442a2ad6a?rik=bpmmRMHXN%2bQzYA&riu=http%3a%2f%2ffc09.deviantart.net%2ffs70%2ff%2f2009%2f354%2f3%2ff%2fDeadpool_V2_by_a_mini_boss.jpg&ehk=qdzPetYA%2bSPSmRctih7JJcj0brUv5n5c3T6AfN%2b%2fyoM%3d&risl=&pid=ImgRaw&r=0" alt="Ilustración Infantil" class="card-img">
+                        <div class="card-overlay">
+                            <h2 class="card-title">Ilustración Infantil</h2>
+                            <p class="card-category">Arte</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="masonry-item" onclick="openModal(this)">
+                <div class="card">
+                    <div class="card-content">
+                        <img src="https://cdn.pixabay.com/photo/2024/08/29/07/29/hd-9006064_640.jpg" alt="Paisajes" class="card-img">
+                        <div class="card-overlay">
+                            <h2 class="card-title">Paisajes</h2>
+                            <p class="card-category">Fotografía</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="imageModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <div class="modal-content">
+            <div class="modal-image">
+                <img id="modalImage" src="" alt="">
+            </div>
+            <div class="modal-details">
+                <!-- Sección 1: Título y descripción -->
+                <div class="modal-header">
+                    <h2 id="modalTitle"></h2>
+                    <p id="modalCategory"></p>
+                    <p class="modal-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+                <!-- Sección de interacción social -->
+                <div class="social-interaction">
+                    <div class="reaction-wrapper">
+                        <div class="reaction-btn">
+                            <span class="reaction-btn-text">Me gusta</span>
+                            <div class="reaction-box">
+                                <div class="reaction-item" data-reaction="like">
+                                    <img src="assets/img/emojis/1f970.png" alt="like">
+                                    <span class="reaction-text">Me gusta</span>
+                                </div>
+                                <div class="reaction-item" data-reaction="love">
+                                    <img src="assets/img/emojis/2665.png" alt="love">
+                                    <span class="reaction-text">Me encanta</span>
+                                </div>
+                                <div class="reaction-item" data-reaction="care">
+                                    <img src="assets/img/emojis/1f970" alt="care">
+                                    <span class="reaction-text">Me importa</span>
+                                </div>
+                                <div class="reaction-item" data-reaction="haha">
+                                    <img src="assets/img/emojis/1f970" alt="haha">
+                                    <span class="reaction-text">Me divierte</span>
+                                </div>
+                                <div class="reaction-item" data-reaction="wow">
+                                    <img src="assets/img/emojis/1f970" alt="wow">
+                                    <span class="reaction-text">Me asombra</span>
+                                </div>
+                                <div class="reaction-item" data-reaction="sad">
+                                    <img src="assets/img/emojis/1f970" alt="sad">
+                                    <span class="reaction-text">Me entristece</span>
+                                </div>
+                                <div class="reaction-item" data-reaction="angry">
+                                    <img src="assets/img/emojis/1f970" alt="angry">
+                                    <span class="reaction-text">Me enoja</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="interaction-btn share-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                                <polyline points="16 6 12 2 8 6"/>
+                                <line x1="12" y1="2" x2="12" y2="15"/>
+                            </svg>
+                            <span>Compartir</span>
+                        </button>
+                    </div>
+                    
+                    <div class="reaction-count">
+                        <div class="current-reactions">
+                            <span class="reaction-counter">0</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Menú de compartir -->
+                    <div class="share-menu">
+                        <a href="#" class="share-option facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                            </svg>
+                            Facebook
+                        </a>
+                        <a href="#" class="share-option twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+                            </svg>
+                            Twitter
+                        </a>
+                        <a href="#" class="share-option whatsapp">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                            WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // Manejo del modal
+function openModal(element) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalCategory = document.getElementById('modalCategory');
+    
+    const img = element.querySelector('.card-img');
+    const title = element.querySelector('.card-title');
+    const category = element.querySelector('.card-category');
+    
+    modalImg.src = img.src;
+    modalTitle.textContent = title.textContent;
+    modalCategory.textContent = category.textContent;
+    
+    // Resetear contadores y estados
+    document.querySelector('.reaction-counter').textContent = '0';
+    document.querySelector('.reaction-btn-text').textContent = 'Me gusta';
+    currentReaction = '';
+    
+    modal.style.display = "block";
+}
+
+// Cerrar modal
+document.querySelector('.close-modal').onclick = function() {
+    document.getElementById('imageModal').style.display = "none";
+    document.querySelector('.share-menu').classList.remove('active');
+    document.querySelector('.reaction-box').style.display = 'none';
+}
+
+// Manejo de reacciones estilo Facebook
+let currentReaction = '';
+    const reactionBtn = document.querySelector('.reaction-btn');
+    const reactionBox = document.querySelector('.reaction-box');
+    const reactionBtnText = document.querySelector('.reaction-btn-text');
+    const reactionCounter = document.querySelector('.reaction-counter');
+
+    let timeoutId;
+    let isReactionBoxVisible = false;
+
+    reactionBtn.addEventListener('mouseenter', () => {
+        timeoutId = setTimeout(() => {
+            reactionBox.style.display = 'flex';
+            isReactionBoxVisible = true;
+        }, 500);
+    });
+
+    reactionBtn.addEventListener('mouseleave', () => {
+        clearTimeout(timeoutId);
+        if (isReactionBoxVisible) {
+            setTimeout(() => {
+                if (!reactionBox.matches(':hover')) {
+                    reactionBox.style.display = 'none';
+                    isReactionBoxVisible = false;
+                }
+            }, 500);
+        }
+    });
+
+    reactionBox.addEventListener('mouseleave', () => {
+        setTimeout(() => {
+            if (!reactionBtn.matches(':hover')) {
+                reactionBox.style.display = 'none';
+                isReactionBoxVisible = false;
+            }
+        }, 500);
+    });
+
+    document.querySelectorAll('.reaction-item').forEach(item => {
+        item.addEventListener('click', function() {
+            const reaction = this.getAttribute('data-reaction');
+            const reactionText = this.querySelector('.reaction-text').textContent;
+            
+            if (currentReaction === reaction) {
+                // Quitar reacción
+                currentReaction = '';
+                reactionBtnText.textContent = 'Me gusta';
+                reactionCounter.textContent = parseInt(reactionCounter.textContent) - 1;
+            } else {
+                // Cambiar o agregar reacción
+                if (!currentReaction) {
+                    reactionCounter.textContent = parseInt(reactionCounter.textContent) + 1;
+                }
+                currentReaction = reaction;
+                reactionBtnText.textContent = reactionText;
+            }
+            
+            reactionBox.style.display = 'none';
+            isReactionBoxVisible = false;
+        });
+    });
+
+// Sistema de compartir mejorado
+document.querySelector('.share-btn').addEventListener('click', function(e) {
+    e.stopPropagation();
+    const shareMenu = document.querySelector('.share-menu');
+    shareMenu.classList.toggle('active');
+});
+
+// Cerrar menú de compartir al hacer clic fuera
+document.addEventListener('click', function(e) {
+    const shareMenu = document.querySelector('.share-menu');
+    const shareBtn = document.querySelector('.share-btn');
+    
+    if (!shareMenu.contains(e.target) && !shareBtn.contains(e.target)) {
+        shareMenu.classList.remove('active');
+    }
+});
+
+// Compartir en redes sociales
+document.querySelectorAll('.share-option').forEach(option => {
+    option.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const network = this.classList[1];
+        const title = encodeURIComponent(document.querySelector('#modalTitle').textContent);
+        const url = encodeURIComponent(window.location.href);
+        const img = encodeURIComponent(document.querySelector('#modalImage').src);
+        
+        let shareUrl;
+        switch(network) {
+            case 'facebook':
+                shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+                break;
+            case 'twitter':
+                shareUrl = `https://twitter.com/intent/tweet?text=${title}&url=${url}`;
+                break;
+            case 'whatsapp':
+                shareUrl = `https://api.whatsapp.com/send?text=${title}%20-%20${url}`;
+                break;
+        }
+        
+        window.open(shareUrl, '_blank', 'width=600,height=400');
+        document.querySelector('.share-menu').classList.remove('active');
+    });
+});
+    </script>
+</body>
+</html>

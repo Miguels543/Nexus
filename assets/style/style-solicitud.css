@@ -1,0 +1,230 @@
+.main-content {
+    margin-left: 100px;
+    padding: 40px;
+    width: calc(100% - 140px);
+    max-width: 1200px;
+}
+
+.solicitud-container {
+    background: rgba(0, 10, 20, 0.7);
+    border-radius: 15px;
+    padding: 30px;
+    border: none;
+    width: 130%;
+    margin: 0 auto;
+}
+
+.solicitud-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+.solicitud-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group.mensaje-group {
+    grid-column: 1 / -1;
+}
+
+.form-group textarea {
+    min-height: 150px;
+    height: 150px;
+    resize: none;
+    overflow-y: auto;
+    line-height: 1.5;
+    padding: 15px;
+    height: 350px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.form-group textarea::-webkit-scrollbar {
+    display: none;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid var(--neon-blue);
+    background: rgba(0, 10, 20, 0.7);
+    color: white;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+    border-color: var(--neon-purple);
+    outline: none;
+}
+
+.submit-btn {
+    grid-column: 1 / -1;
+    justify-self: end;
+    margin-top: 10px;
+}
+
+.instrucciones {
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+    line-height: 1.6;
+    padding: 20px;
+    background: rgba(0, 243, 255, 0.05);
+    border-radius: 10px;
+    border-left: 4px solid var(--neon-blue);
+}
+
+.instrucciones h2 {
+    color: var(--neon-blue);
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+}
+
+.instrucciones ul {
+    list-style: none;
+    padding: 0;
+}
+
+.instrucciones li {
+    margin: 10px 0;
+    padding-left: 25px;
+    position: relative;
+}
+
+.instrucciones li:before {
+    content: '→';
+    color: var(--neon-blue);
+    position: absolute;
+    left: 0;
+}
+
+.ejemplo-solicitud {
+    background: rgba(0, 10, 20, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 243, 255, 0.3);
+    margin-top: 20px;
+}
+
+.ejemplo-solicitud h3 {
+    color: var(--neon-blue);
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.ejemplo-card {
+    background: rgba(0, 243, 255, 0.05);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.ejemplo-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+}
+
+.ejemplo-badge {
+    background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.8em;
+    color: white;
+}
+
+.form-group label {
+    color: var(--neon-blue);
+    font-size: 1.1em;
+    text-shadow: 0 0 5px rgba(0, 243, 255, 0.3);
+}
+
+.submit-btn {
+    background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: flex-end;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+}
+@media screen and (max-width: 490px){
+
+    .main-content{
+        width: 80%;
+        height: 100%;
+        margin-left: 200px;
+    }
+    .activate-button {
+        margin-top: 40px;
+        margin-left: -340px;
+    }
+    .main-content h1{
+        margin-top: -16px;
+        margin-left: 32px;
+    }
+    .instrucciones{
+        width: 100%;
+        margin-left: -20px;
+    }
+    #form-row-as {
+        position: relative;
+        width: 113%;
+        margin-top: 120vh; /* Mueve el grupo de formulario hacia arriba */
+    }
+    #form-row-men {
+        position: relative;
+        width: 112%;
+    }
+    .form-row {
+        width: 250px;
+        position: relative;
+        top: 120vh; /* Mantiene la posición del form-row sin cambios */
+    }
+    .form-row input{
+        width: 100px;
+    }
+    .submit-btn{
+        position: relative;
+        width: 105%;
+        left: 18px;
+    }
+    .ejemplo-solicitud{
+        margin-top: 0;
+        left: -310px;
+        width: 298px;
+        position: relative;
+        height: 110vh;
+    }
+
+}

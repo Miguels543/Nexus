@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Solicitud - Portal de Aprendizaje</title>
+    <link rel="stylesheet" href="assets/style/style-index.css">
+    <link rel="stylesheet" href="assets/style/style-solicitud.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <input type="checkbox" id="sidebar-toggle">
+    <div class="activate-button">
+        <label for="sidebar-toggle">≡</label>
+    </div>
+    <!-- Nav izquierdo (igual que en index.html) -->
+    <nav class="left-sidebar">
+        <ul class="nav-links">
+            <li><a href="#"><span class="icon">👤</span><span class="text">Perfil</span></a></li>
+            <li><a href="index.html"><span class="icon">🏠</span><span class="text">Inicio</span></a></li>
+            <li><a href="portafolio.html"><span class="icon">📂</span><span class="text">Portafolio</span></a></li>
+            <li><a href="cursos.html"><span class="icon">📚</span><span class="text">Cursos</span></a></li>
+            <li><a href="solicitud.html"><span class="icon">📝</span><span class="text">Solicitud</span></a></li>
+            <li><a href="planes.html"><span class="icon">💎</span><span class="text">Planes</span></a></li>
+            <li><a href="blog.html"><span class="icon">📰</span><span class="text">Blog</span></a></li>
+            <li><a href="nosotros.html"><span class="icon">ℹ</span><span class="text">Nosotros</span></a></li>
+            <li><a href="clasificacion.html"><span class="icon">🏆</span><span class="text">Clasificación</span></a></li>
+            <li><a href="retos1.html"><span class="icon">🎯</span><span class="text">Retos</span></a></li>
+            <li><a href="workadventure.html"><span class="icon">🎮</span><span class="text">WorkAdventure</span></a></li>
+            <li><a href="guia.html"><span class="icon">📖</span><span class="text">Guía</span></a></li>
+        </ul>
+    </nav>
+
+    <!-- Contenido principal -->
+    <div class="main-content">
+        <div class="solicitud-container">
+            <h1>Formulario de Solicitud</h1>
+        
+            <div class="instrucciones">
+                <h2>Recomendaciones:</h2>
+                <p>Por favor, complete el siguiente formulario con la información detallada de su solicitud. Cuanto más específico sea, mejor podremos atender sus necesidades.</p>
+                <ul>
+                    <li>Describa el propósito principal de su solicitud</li>
+                    <li>Incluya cualquier requisito específico o preferencia</li>
+                    <li>Mencione plazos o fechas importantes si aplican</li>
+                    <li>Agregue información de contacto adicional si es necesario</li>
+                </ul>
+            </div>
+
+            <div class="solicitud-grid">
+                <form class="solicitud-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nombre">Nombre completo</label>
+                            <input type="text" id="nombre" name="nombre" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Correo electrónico</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    <div id="form-row-as">
+                        <div class="form-group">
+                            <label for="asunto">Asunto</label>
+                            <input type="text" id="asunto" name="asunto" required>
+                        </div>
+                    </div>
+                    <div id="form-row-men">
+                        <div class="form-group mensaje-group">
+                            <label for="mensaje">Mensaje detallado</label>
+                            <textarea 
+                                id="mensaje" 
+                                name="mensaje" 
+                                required
+                            ></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Enviar Solicitud</button>
+                </form>
+
+                <div class="ejemplo-solicitud">
+                    <h3>Ejemplo de Solicitud</h3>
+                    <div class="ejemplo-card">
+                        <div class="ejemplo-header">
+                            <span class="ejemplo-badge">Solicitud de Proyecto</span>
+                            <span style="color: var(--text-secondary)">Hace 2 días</span>
+                        </div>
+                        <p style="color: white; margin-bottom: 15px;">
+                            <strong style="color: var(--neon-blue)">Asunto:</strong> Desarrollo de Sitio Web E-commerce
+                        </p>
+                        <p style="color: white; margin-bottom: 15px;">
+                            <strong style="color: var(--neon-blue)">Objetivo de la Web:</strong> Crear una plataforma de comercio electrónico para aumentar las ventas y alcance de mi negocio de artesanías a nivel nacional.
+                        </p>
+                       <div style="background: rgb(0, 0, 0); padding-left: 20px; border-radius: 8px; margin-bottom: 15px; box-shadow: 0 0 10px rgba(0, 243, 255, 0.3); border: 1px solid rgba(0, 243, 255, 0.3);">
+                        <h4 style="color: var(--text-secondary); margin-bottom: 15px;">
+                            <strong style="color: var(--neon-blue)">Funciones Requeridas:</strong>
+                        </h4>
+                        <ul style="color: var(--text-secondary); margin: 15px 0; padding-left: 20px;">
+                            <li>Catálogo de productos con filtros</li>
+                            <li>Sistema de carrito de compras</li>
+                            <li>Integración con pasarela de pagos</li>
+                            <li>Panel de administración</li>
+                        </ul>
+                    </div>
+                        <p style="color: white; margin-bottom: 15px;">
+                            <strong style="color: var(--neon-blue)">Plazo:</strong> 2 meses para el desarrollo completo
+                        </p>
+                        <p style="color: white; margin-bottom: 15px;">
+                            <strong style="color: var(--neon-blue)">Presupuesto:</strong> $3000-5000
+                        </p>
+                        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(0, 243, 255, 0.2);">
+                            <span style="color: var(--neon-blue)">Estado:</span>
+                            <span style="color: #00ff00">✓ Aprobado</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+    document.getElementById('mensaje').addEventListener('input', function() {
+        this.style.height = 'auto';
+        this.style.height = (this.scrollHeight) + 'px';
+    });
+
+    window.addEventListener('load', function() {
+        const textarea = document.getElementById('mensaje');
+        textarea.style.height = (textarea.scrollHeight) + 'px';
+    });
+    </script>
+</body>
+</html>

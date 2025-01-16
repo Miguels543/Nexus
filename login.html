@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Login y Register - MagtimusPro</title>
+    <script>
+        // Guardar el título original
+        let originalTitle = document.title;
+        
+        // Cuando el usuario sale de la página
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                document.title = "¡Estás a un solo paso! 😢";
+            } else {
+                document.title = originalTitle;
+            }
+        });
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="assets/style/style-login.css">
+    <script src="assets/js/js-login.js" defer></script>
+</head>
+<body>
+    <div id="particles-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none;">
+        <canvas id="particles-canvas"></canvas>
+    </div>
+    <nav class="left-sidebar" style="position: absolute; z-index: 100000;">
+        <ul class="nav-links" style="list-style: none; margin-left: -390px; margin-top: -270px; font-size: 30px;">
+            <li><a href="index.html"><span class="icon">🏠</span></a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="contenedor__todo" id="contenedor__todo">
+            <div class="caja__trasera">
+                <div class="caja__trasera-login">
+                    <h3 style="color: var(--neon-blue); width: 150%;">¿Ya tienes una cuenta?</h3>
+                    <p style="width: 280px; font-size: 18px; position: absolute;">Inicia sesión para disfrutar de una experiencia completa y acceder a funciones exclusivas en la página.</p>
+                    <button id="btn__iniciar-sesion" style="margin-top: 120px; width: 150%;">¿Ya tienes una cuenta?</button>
+                </div>
+                <div class="caja__trasera-register" style="margin-left: 200px;">
+                    <h3 style="color: var(--neon-blue); ">¿Aún no tienes una cuenta?</h3>
+                    <p>Regístrate para que puedas iniciar sesión y disfrutar de todas las funcionalidades de la página.</p>
+                    <button id="btn__registrarse-vendedor">Regístrarse: Vendedor</button>
+                    <button id="btn__registrarse-cliente">Regístrarse: Cliente</button>
+                    <button id="btn__registrarse-empresa">Regístrarse: Empresa</button>
+                </div>
+            </div>
+
+            <div class="contenedor__login-register">
+                <form action="" class="formulario__login" style="margin-top: -150px;">
+                    <h2>Iniciar Sesión</h2>
+                    <input type="text" placeholder="@Usuario" >
+                    <input type="password" placeholder="Contraseña">
+                    <button>Entrar</button>
+                    <p id="olvidar-contraseña">Olvidé la contraseña</p>
+                </form>
+
+                <form action="" class="formulario__register-vendedor" style="height: 600px; margin-top: -150px;">
+                    <h2 style="margin-top: -40px; margin-bottom: -20px;">Regístrarse como Vendedor</h2>
+                    <input type="text" placeholder="Nombre completo" required>
+                    <input type="email" placeholder="Correo Electrónico" required>
+                    
+                    <input type="text" placeholder="@Usuario" required pattern="^@.*">
+                    <input type="password" placeholder="Contraseña" required>
+                    <select id="codigo-pais">
+                        <option value="+51">+51</option>
+                        <option value="+58">+58</option>
+                        <option value="+593">+593</option>
+                        <option value="+57">+57</option>
+                        <option value="+1">+1</option>
+                    </select>
+                    <input type="text" placeholder="Número Celular" id="numero_celular" required pattern="\d{10}" maxlength="10" >
+                    <!-- Lista desplegable para país -->
+                    <select id="pais_vendedor">
+                        <option value="">Selecciona un país</option>
+                        <option value="peru">Perú</option>
+                        <option value="estados_unidos">Estados Unidos</option>
+                        <option value="venezuela">Venezuela</option>
+                        <option value="colombia">Colombia</option>
+                        <option value="ecuador">Ecuador</option>
+                    </select>
+
+                    <!-- Lista desplegable para estado -->
+                    <select id="estado_vendedor">
+                        <option value="">Selecciona un estado</option>
+                        <!-- Los estados se llenarán dinámicamente -->
+                    </select>
+                    <button>Regístrarse</button>
+                </form>
+
+                <form action="" class="formulario__register-cliente" style="height: 426px; margin-top: -150px;">
+                    <h2 style="margin-top: -40px; margin-bottom: -20px;">Regístrarse como Cliente</h2>
+                    <input type="text" placeholder="Nombre completo">
+                    <input type="text" placeholder="Correo Electrónico">
+                    <input type="text" placeholder="@Usuario">
+                    <input type="password" placeholder="Contraseña">
+                    <button>Regístrarse</button>
+                </form>
+
+                <form action="" class="formulario__register-empresa" style="height: 600px; margin-top: -150px;">
+                    <h2 style="margin-top: -40px; margin-bottom: -20px;">Regístrarse como Empresa</h2>
+                    <input type="text" placeholder="Nombre de la Empresa">
+                    <input type="text" placeholder="Correo Electrónico">
+                    <input type="text" placeholder="@Usuario">
+                    <input type="password" placeholder="Contraseña">
+                    <input type="text" placeholder="Sector">
+                    <!-- Lista desplegable para país -->
+                    <select id="pais_empresa">
+                        <option value="">Selecciona un país</option>
+                        <option value="peru">Perú</option>
+                        <option value="estados_unidos">Estados Unidos</option>
+                        <option value="venezuela">Venezuela</option>
+                        <option value="colombia">Colombia</option>
+                        <option value="ecuador">Ecuador</option>
+                    </select>
+
+                    <!-- Lista desplegable para estado -->
+                    <select id="estado_empresa">
+                        <option value="">Selecciona un estado</option>
+                        <!-- Los estados se llenarán dinámicamente -->
+                    </select>
+                    
+                    <button style="top: -40px;">Regístrarse</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal para recuperar contraseña -->
+    <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); justify-content:center; align-items:center; z-index: 100000;">
+        <div style="background: rgba(0, 23, 46, 0.8); padding:20px; border-radius:10px; text-align:center; border: 1px solid var(--neon-blue);">
+            <h2 style="color: var(--neon-blue); margin-bottom: 20px;">Recuperar Contraseña</h2>
+            <input type="email" placeholder="Ingresa tu correo" id="correo-recuperar" required
+            style="border-radius: 10px; font-size: 20px; width: 100%; border: 1px solid var(--neon-blue); padding: 10px;">
+            <div class="boton-modal">
+                <button id="enviar-correo">Enviar</button>
+                <button id="cerrar-modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

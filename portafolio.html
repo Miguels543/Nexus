@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Portafolio de Proyectos</title>
+    <link rel="stylesheet" href="assets/style/style-index.css">
+    <link rel="stylesheet" href="assets/style/portafolio.css">
+</head>
+<body>
+    <input type="checkbox" id="sidebar-toggle">
+    <div class="activate-button">
+        <label for="sidebar-toggle">≡</label>
+    </div>
+    <nav class="left-sidebar">
+        <ul class="nav-links">
+            <li><a href="perfil.html"><span class="icon">👤</span><span class="text">Perfil</span></a></li>
+            <li><a href="index.html"><span class="icon">🏠</span><span class="text">Inicio</span></a></li>
+            <li><a href="portafolio.html"><span class="icon">📂</span><span class="text">Portafolio</span></a></li>
+            <li><a href="cursos.html"><span class="icon">📚</span><span class="text">Cursos</span></a></li>
+            <li><a href="solicitud.html"><span class="icon">📝</span><span class="text">Solicitud</span></a></li>
+            <li><a href="planes.html"><span class="icon">💎</span><span class="text">Planes</span></a></li>
+            <li><a href="blog.html"><span class="icon">📰</span><span class="text">Blog</span></a></li>
+            <li><a href="nosotros.html"><span class="icon">ℹ</span><span class="text">Nosotros</span></a></li>
+            <li><a href="clasificacion.html"><span class="icon">🏆</span><span class="text">Clasificación</span></a></li>
+            <li><a href="retos1.html"><span class="icon">🎯</span><span class="text">Retos</span></a></li>
+            <li><a href="workadventure.html"><span class="icon">🎮</span><span class="text">WorkAdventure</span></a></li>
+            <li><a href="guia.html"><span class="icon">📖</span><span class="text">Guía</span></a></li>
+        </ul>
+    </nav>
+
+    <div class="right-top" style="z-index: 10000!important; position: absolute;">
+        <h1>Iniciar sesión</h1>
+        <a href="login.html" class="modal-trigger">
+            <img style="filter: drop-shadow(1px 0px 10px cyan);" src="https://res.cloudinary.com/dnw35uxqn/image/upload/v1734309919/avatar_1_vzruog_srba94.png" alt="user">
+        </a>
+        
+        <div class="modal">
+            <div class="modal-content">
+                <div class="modal-item">
+                    <span id="title">👤 Usuario:</span>
+                    <span>JohnDoe123</span>
+                </div>
+                <div class="modal-item">
+                    <span id="title">🏆 Posición en la liga:</span>
+                    <span>#5</span>
+                </div>
+                <div class="modal-item">
+                    <span id="title">📅 Eventos asistidos:</span>
+                    <span>12</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="main-content">
+        <header class="header">
+            <h1>Mis Proyectos</h1>
+        </header>
+        <div class="search-filter">
+            <button class="nexus-btn">
+                <img src="https://res.cloudinary.com/dnw35uxqn/image/upload/v1732912589/icon-ojo_gezrqs.png" alt="Ver" class="ojito ojito-static">
+                <img src="https://res.cloudinary.com/dnw35uxqn/image/upload/v1732912588/icon-ojo_xzwq5z.gif" alt="Ver" class="ojito ojito-gif">
+                Ver proyectos Nexus
+            </button>
+            <div class="search-container">
+                <input type="search" id="search-input" class="search-input" placeholder="Buscar proyectos...">
+                <svg fill="none" viewBox="0 0 24 24" class="w-5 h-5 search-icon"></svg>
+            </div>
+            <select id="category-select" class="category-select">
+                <option value="todos">Todos</option>
+                <option value="desarrollo web">Desarrollo Web</option>
+                <option value="aplicaciones de escritorio">Aplicaciones de Escritorio</option>
+                <option value="aplicaciones móviles">Aplicaciones Móviles</option>
+                <option value="inteligencia artificial">Inteligencia Artificial</option>
+                <option value="diseño ui/ux">Diseño UI/UX</option>
+            </select>
+        </div>
+
+        <div class="projects-grid" id="projects-grid">
+            <div class="portfolio-item" id="portfolio-item">
+                <img src="https://res.cloudinary.com/dnw35uxqn/image/upload/v1734338486/desarrollo_de_un_videojuego_1_aasldd.jpg" alt="Sube tu proyecto" class="portfolio-image">
+                <div class="portfolio-overlay">
+                    <img src="https://res.cloudinary.com/dnw35uxqn/image/upload/v1734320014/image14_v3yow7_1_lfpx8q.png" alt="Sube tu proyecto" class="upload-project-icon" style="transform: translateY(-25px);">
+                    <p class="create-portfolio-text" style="width: 100%;">Crea tu propio portafolio en nuestra web</p>
+                    <a href="agg_portafolio.html" class="upload-project-link" style="padding: 15px 0; cursor: pointer;">
+                        <span style="transform: translateY(-5px); display: inline-block; font-size: 25px;">Subir <br> Proyecto</span>
+                    </a>
+                    <span id="project-name" class="file-name-display" style="display: none;">Ningún archivo seleccionado</span>
+                </div>
+            </div>
+            <!-- Project Cards will be dynamically added here -->
+        </div>
+    </main>
+
+    <script>
+        const projects = [
+            {
+                id: 1,
+                title: "Proyecto 1",
+                image: "https://res.cloudinary.com/dnw35uxqn/image/upload/v1734338486/desarrollo_de_un_videojuego_1_aasldd.jpg",
+                category: "Desarrollo Web",
+                description: "Descripción del proyecto"
+            },
+            {
+                id: 2,
+                title: "Proyecto 2",
+                image: "https://res.cloudinary.com/dnw35uxqn/image/upload/v1734338486/desarrollo_de_un_videojuego_1_aasldd.jpg",
+                category: "Aplicaciones Móviles",
+                description: "Descripción del proyecto"
+            },
+            {
+                id: 3,
+                title: "Proyecto 3",
+                image: "https://res.cloudinary.com/dnw35uxqn/image/upload/v1734338486/desarrollo_de_un_videojuego_1_aasldd.jpg",
+                category: "Inteligencia Artificial",
+                description: "Descripción del proyecto"
+            },
+            {
+                id: 4,
+                title: "Proyecto 4",
+                image: "https://res.cloudinary.com/dnw35uxqn/image/upload/v1734320013/Sin_t%C3%ADtulo22_nqq3hq_1_rkncgz.png",
+                category: "Diseño UI/UX",
+                description: "Descripción del proyecto"
+            },
+            {
+                id: 5,
+                title: "Proyecto 5",
+                image: "https://res.cloudinary.com/dnw35uxqn/image/upload/v1734320013/Sin_t%C3%ADtulo22_nqq3hq_1_rkncgz.png",
+                category: "Aplicaciones de Escritorio",
+                description: "Descripción del proyecto"
+            },
+        ];
+
+        class ProjectManager {
+            constructor(gridElement, searchInput, categorySelect) {
+                this.gridElement = gridElement;
+                this.searchInput = searchInput;
+                this.categorySelect = categorySelect;
+                this.init();
+            }
+
+            init() {
+                this.renderProjects(projects);
+                this.setupEventListeners();
+            }
+
+            createProjectCard(project) {
+                const card = document.createElement('div');
+                card.className = 'project-card';
+                card.innerHTML = `
+                    <img src="${project.image}" alt="${project.title}" loading="lazy">
+                    <div class="project-overlay">
+                        <h3 class="project-title">${project.title}</h3>
+                        <p>${project.category}</p>
+                    </div>
+                `;
+                return card;
+            }
+
+            renderProjects(projectsToRender) {
+                const portfolioItem = this.gridElement.querySelector('.portfolio-item');
+                this.gridElement.innerHTML = '';
+                if (portfolioItem) {
+                    this.gridElement.appendChild(portfolioItem);
+                }
+
+                projectsToRender.forEach(project => {
+                    this.gridElement.appendChild(this.createProjectCard(project));
+                });
+            }
+
+            filterProjects() {
+                const searchTerm = this.searchInput.value.toLowerCase();
+                const selectedCategory = this.categorySelect.value.toLowerCase();
+
+                const filteredProjects = projects.filter(project => {
+                    const normalizedCategory = this.normalizeText(project.category);
+                    const normalizedSelected = this.normalizeText(selectedCategory);
+                    
+                    return (selectedCategory === 'todos' || normalizedCategory === normalizedSelected) &&
+                        project.title.toLowerCase().includes(searchTerm);
+                });
+
+                this.renderProjects(filteredProjects);
+            }
+
+            normalizeText(text) {
+                return text.toLowerCase()
+                    .normalize("NFD")
+                    .replace(/[\u0300-\u036f]/g, "");
+            }
+
+            setupEventListeners() {
+                this.searchInput.addEventListener('input', () => this.filterProjects());
+                this.categorySelect.addEventListener('change', () => this.filterProjects());
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const projectManager = new ProjectManager(
+                document.getElementById('projects-grid'),
+                document.getElementById('search-input'),
+                document.getElementById('category-select')
+            );
+        });
+    </script>
+</body>
+</html>

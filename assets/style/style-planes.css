@@ -1,0 +1,595 @@
+:root {
+    --primary-bg: #000000;
+    --neon-blue: #00f3ff;
+    --neon-purple: #8A2BE2;
+    --text-primary: #ffffff;
+    --text-secondary: #b3b3b3;
+    --glow-effect: 0 0 10px rgba(0, 243, 255, 0.5);
+    --gradient-bg: linear-gradient(45deg, rgba(0, 243, 255, 0.1), rgba(138, 43, 226, 0.1));
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: var(--primary-bg);
+    color: var(--text-primary);
+    font-family: 'Roboto', sans-serif;
+    overflow-x: hidden;
+}
+body::before {
+    display: none;
+}
+body::after {
+    display: none;
+}
+
+.pricing-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    width: 80%;
+    margin: right 100px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.main-title {
+    text-align: center;
+    font-size: 2.5em;
+    margin-top: 70px;
+    margin-bottom: 50px;
+}
+
+.plan-section {
+    background: rgba(0, 10, 20, 0.8);
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 60px;
+    position: relative;
+    border: 1px solid var(--neon-blue);
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.plan-section:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+}
+
+
+.feature-card {
+    background: rgba(0, 10, 20, 0.5);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    border: 1px solid rgba(0, 243, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    background: rgba(0, 10, 20, 0.7);
+    border-color: var(--neon-blue);
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    background: linear-gradient(45deg, var(--neon-purple), var(--neon-blue));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.feature-card h3 {
+    color: var(--neon-blue);
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+.feature-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.select-plan-btn {
+    background: linear-gradient(45deg, var(--neon-purple), var(--neon-blue));
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 30px;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.select-plan-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
+}
+
+.price-container {
+    text-align: center;
+    margin: 30px 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.current-price {
+    font-size: 3.5em;
+    font-weight: bold;
+    color: var(--neon-blue);
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+}
+
+.original-price {
+    font-size: 1.5em;
+    color: var(--text-secondary);
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+.price-period {
+    font-size: 1.2em;
+    color: var(--text-secondary);
+}
+
+.discount-badge {
+    position: absolute;
+    top: -15px;
+    right: 370px;
+    background: linear-gradient(45deg, var(--neon-purple), #ff3366);
+    color: white;
+    padding: 5px 15px;
+    font-size: 0.9em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    height: 25px;
+    animation: floatBadge 3s ease-in-out infinite;
+    z-index: 2;
+}
+
+.discount-badge::before {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-top: 17.5px solid transparent;
+    border-bottom: 17.5px solid transparent;
+    border-right: 10px solid var(--neon-purple);
+}
+
+.discount-badge::after {
+    content: '';
+    position: absolute;
+    left: -2px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    background: var(--text-primary);
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0, 243, 255, 0.3);
+}
+
+@keyframes floatBadge {
+    0%, 100% {
+        transform: translateY(0) rotate(-20deg);
+    }
+    50% {
+        transform: translateY(-5px) rotate(0deg);
+    }
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.feature-card {
+    background: rgba(0, 10, 20, 0.5);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+
+.feature-card img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+}
+
+.feature-card h3 {
+    color: var(--neon-blue);
+    margin-bottom: 10px;
+}
+
+.select-plan-btn {
+    display: block;
+    width: 200px;
+    margin: 0 auto;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+    color: white;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.select-plan-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 243, 255, 0.3);
+}
+
+/* Estilos específicos para el plan personalizado */
+
+.custom-features-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.feature-category {
+    background: rgba(0, 10, 20, 0.5);
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.feature-checkbox {
+    background: #f8f9fa;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.feature-checkbox:hover {
+    background: #e9ecef;
+    transform: translateY(-2px);
+}
+
+.custom-plan-total {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.get-quote-btn {
+    background: linear-gradient(45deg, var(--neon-purple), var(--neon-blue));
+    padding: 15px 30px;
+    border: none;
+    border-radius: 25px;
+    color: white;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.get-quote-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
+}
+
+/* Animaciones adicionales */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.plan-section {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.plan-section:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.plan-section:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.custom-personalizado-section {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Efectos para el plan más popular */
+.pro-plan {
+    scale: 1.05;
+    z-index: 2;
+}
+
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Plan personalizado más amigable */
+.custom-features-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.feature-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.feature-checkbox {
+    background: #f8f9fa;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.feature-checkbox:hover {
+    background: #e9ecef;
+    transform: translateY(-2px);
+}
+
+/* Nuevo estilo para el banner promocional */
+.promo-banner {
+    background: linear-gradient(45deg, var(--neon-purple), var(--neon-blue));
+    color: white;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+    animation: pulse 2s infinite;
+    box-shadow: var(--glow-effect);
+}
+
+/* Espaciado entre secciones */
+.plan-section {
+    margin-bottom: 60px;
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(0, 10, 20, 0.3);
+}
+
+/* Estilo mejorado para los bonos */
+.plan-bonuses {
+    background: rgba(138, 43, 226, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 30px 0;
+    border: 1px solid var(--neon-purple);
+}
+
+.plan-bonuses h4 {
+    color: var(--neon-blue);
+    margin-bottom: 15px;
+}
+
+.plan-bonuses ul {
+    list-style: none;
+    padding: 0;
+}
+
+.plan-bonuses li {
+    margin: 10px 0;
+    padding-left: 25px;
+    position: relative;
+}
+
+.plan-bonuses li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--neon-purple);
+}
+
+/* Estilo destacado para el plan personalizado */
+.custom-personalizado-section {
+    background: linear-gradient(135deg, rgba(0, 243, 255, 0.1), rgba(138, 43, 226, 0.2));
+    margin-top: 80px;
+    padding: 50px;
+    border-radius: 30px;
+    border: 2px solid var(--neon-blue);
+    box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+}
+
+.custom-personalizado-section h2 {
+    font-size: 2.5em;
+    text-align: center;
+    color: var(--neon-blue);
+    margin-bottom: 30px;
+    text-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+}
+
+.custom-plan-desc {
+    text-align: center;
+    font-size: 1.2em;
+    margin-bottom: 40px;
+    color: var(--text-primary);
+}
+
+/* Estilos para los presets */
+.custom-plan-presets {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.preset-btn {
+    background: rgba(0, 243, 255, 0.1);
+    border: 1px solid var(--neon-blue);
+    border-radius: 15px;
+    padding: 15px 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 200px;
+}
+
+.preset-btn:hover {
+    background: rgba(138, 43, 226, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 243, 255, 0.2);
+}
+
+.preset-btn.active {
+    background: linear-gradient(45deg, rgba(0, 243, 255, 0.2), rgba(138, 43, 226, 0.2));
+    border: 2px solid var(--neon-purple);
+}
+
+.preset-name {
+    font-size: 1.2em;
+    color: var(--neon-blue);
+    margin-bottom: 5px;
+}
+
+.preset-price {
+    font-size: 0.9em;
+    color: var(--text-secondary);
+}
+
+/* Mejora de los checkboxes de características */
+.feature-options {
+    display: grid;
+    gap: 15px;
+}
+
+.feature-checkbox {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: rgba(0, 10, 20, 0.5);
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 243, 255, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.feature-checkbox:hover {
+    background: rgba(0, 243, 255, 0.1);
+    border-color: var(--neon-blue);
+}
+
+.feature-checkbox input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+}
+
+.feature-checkbox .checkmark {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--neon-blue);
+    border-radius: 6px;
+    margin-right: 15px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.feature-checkbox input[type="checkbox"]:checked + .checkmark {
+    background: var(--neon-blue);
+}
+
+.feature-checkbox input[type="checkbox"]:checked + .checkmark::after {
+    content: '✓';
+    position: absolute;
+    color: black;
+    font-size: 14px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.feature-description {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out, opacity 0.2s ease-out, margin-top 0.2s ease-out, padding 0.2s ease-out;
+    opacity: 0;
+    margin-top: 0;
+    color: var(--text-secondary);
+    font-size: 0.9em;
+    padding: 0;
+}
+
+.feature-description.active {
+    max-height: 200px;
+    opacity: 1;
+    margin-top: 15px;
+    padding: 10px;
+    background: rgba(0, 10, 20, 0.3);
+    border-radius: 8px;
+    border-left: 2px solid var(--neon-blue);
+} 
+
+@media screen and (max-width: 490px){
+    .plan-section{
+        margin-bottom: 100px;
+    }
+    .plan-content h2{
+        font-size: 28px;
+    }
+    .discount-badge{
+        position: absolute;
+        width: 50px;
+        z-index: 1000px;
+        display: block;
+        left: 180px;
+        top: -20px;
+        font-size: 25px;
+    }
+    .feature-card{
+        margin-top: -60px;
+    }
+    .custom-personalizado-section{
+        margin-top: -50px;
+    }
+    .custom-personalizado-section h2{
+        margin-top: -20px;
+    }
+    .custom-plan-desc{
+        width: 100%;
+        margin-left: -20px;
+    }
+    .custom-plan-presets {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    .custom-features-container{
+        margin-left: -40px;
+    }
+    .feature-category{
+        border: 1px solid var(--neon-blue);
+    }
+    .feature-category h3{
+        font-size: 23px;
+        margin-top: -10px;
+    }
+}

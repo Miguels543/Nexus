@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nueva Página</title>
+    <link rel="stylesheet" href="assets/style/style-index.css">
+    <link rel="stylesheet" href="assets/style/style-nuevoreto.css">
+</head>
+<body>
+
+    <!-- Navegación izquierda -->
+    <nav class="left-sidebar">
+        <ul class="nav-links">
+            <li><a href="perfil.html"><span class="icon">👤</span><span class="text">Perfil</span></a></li>
+            <li><a href="index.html"><span class="icon">🏠</span><span class="text">Inicio</span></a></li>
+            <li><a href="portafolio.html"><span class="icon">📂</span><span class="text">Portafolio</span></a></li>
+            <li><a href="cursos.html"><span class="icon">📚</span><span class="text">Cursos</span></a></li>
+            <li><a href="solicitud.html"><span class="icon">📝</span><span class="text">Solicitud</span></a></li>
+            <li><a href="planes.html"><span class="icon">💎</span><span class="text">Planes</span></a></li>
+            <li><a href="blog.html"><span class="icon">📰</span><span class="text">Blog</span></a></li>
+            <li><a href="nosotros.html"><span class="icon">ℹ️</span><span class="text">Nosotros</span></a></li>
+            <li><a href="clasificacion.html"><span class="icon">🏆</span><span class="text">Clasificación</span></a></li>
+            <li><a href="retos1.html"><span class="icon">🎯</span><span class="text">Retos</span></a></li>
+            <li><a href="workadventure.html"><span class="icon">🎮</span><span class="text">WorkAdventure</span></a></li>
+            <li><a href="guia.html"><span class="icon">📖</span><span class="text">Guía</span></a></li>
+        </ul>
+    </nav>
+    <!-- Contenido principal -->
+    <div class="main-content">
+        <div class="retos-container">
+            <h1>Contenido de la Nueva Página</h1>
+            
+            <!-- Buscador y filtros -->
+            <div class="search-filter-container">
+                <div class="search-box">
+                    <input type="text" id="searchRetos" placeholder="Buscar..." class="search-input">
+                    <span class="search-icon"></span>
+                </div>
+                
+                <div class="filters">
+                    <div class="filter-group">
+                        <label for="categoria">Categoría:</label>
+                        <select id="categoria" class="filter-select">
+                            <option value="todos">Todas las categorías</option>
+                            <option value="e-commerce">E-commerce</option>
+                            <option value="restaurantes">Restaurantes</option>
+                            <option value="blogs">Blogs</option>
+                            <option value="portafolio">Portafolio</option>
+                            <option value="noticias">Noticias</option>
+                            <option value="educacion">Educación</option>
+                            <!-- ... más opciones ... -->
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="disponibilidad">Disponibilidad:</label>
+                        <select id="disponibilidad" class="filter-select">
+                            <option value="todos">Todos</option>
+                            <option value="disponible">Disponibles</option>
+                            <option value="en-cola">En cola</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="price-filter-container">
+                <label for="priceRange"></label>
+                <div class="price-slider-wrapper">
+                    <input type="range" 
+                           id="priceRange" 
+                           min="0" 
+                           max="100000" 
+                           value="50000" 
+                           class="price-slider">
+                    <div class="price-tooltip">
+                        <span class="tooltip-text">$50,000</span>
+                        <div class="tooltip-arrow"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Agregar este contenedor para las tarjetas de retos -->
+            <div class="retos-grid">
+                <!-- Aquí se agregarán dinámicamente las tarjetas de retos -->
+            </div>
+        </div>
+    </div>
+    <!-- Formulario lateral derecho -->
+    <div class="form-container">
+        <h2>Nuevo Reto</h2>
+        <form class="reto-form">
+            <div class="form-group">
+                <label for="titulo">Título</label>
+                <input type="text" id="titulo" name="titulo" required style="width: 270px;">
+            </div>
+
+            <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <textarea id="descripcion" name="descripcion" required style="width: 270px;"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="publicoObjetivo">Público Objetivo</label>
+                <input type="text" id="publicoObjetivo" name="publicoObjetivo" required style="width: 270px;">
+            </div>
+
+            <div class="form-group">
+                <label>Funcionalidades</label>
+                <div class="tag-input-container">
+                    <input type="text" id="funcionalidad" placeholder="Agregar funcionalidad">
+                    <button type="button" onclick="agregarFuncionalidad()" style="
+                    background: none; 
+                    border: 1px solid var(--neon-blue);
+                    border-radius: 50%; 
+                    color: var(--neon-blue);
+                    width: 35px;
+                    font-size: 25px;
+                    font-weight: bold;
+                    transition: all 0.3s ease;
+                    cursor: pointer;
+                    ">+</button>
+                  
+                </div>
+                <div id="funcionalidades-lista" class="tags-container"></div>
+            </div>
+
+            <div class="form-group">
+                <label>Rango de Precio S/</label>
+                <div class="form-prices">
+                    <div class="half">
+                        <input type="number" id="precioMin" placeholder="Mínimo" required style="width: 120px;" min="0" onkeydown="return event.keyCode !== 38 && event.keyCode !== 40">
+                    </div>
+                    <div class="half">
+                        <input type="number" id="precioMax" placeholder="Máximo" required style="width: 120px;" min="0" onkeydown="return event.keyCode !== 38 && event.keyCode !== 40">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="categoriaForm">Categoría</label>
+                <select id="categoriaForm" name="categoria" required>
+                    <option value="">Seleccionar categoría</option>
+                    <option value="e-commerce">E-commerce</option>
+                    <option value="restaurantes">Restaurantes</option>
+                    <option value="educacion">Educación</option>
+                    <option value="salud">Salud</option>
+                    <option value="otros">Otros</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Misiones</label>
+                <div class="mission-input-container">
+                    <input type="text" id="misionNombre" placeholder="Nombre de la misión">
+                    <input type="number" id="misionPrecio" placeholder="Precio">
+                    <button type="button" onclick="agregarMision()"
+                    style="
+                    background: none; 
+                    border: 1px solid var(--neon-blue);
+                    border-radius: 50%; 
+                    color: var(--neon-blue);
+                    width: 35px;
+                    font-size: 25px;
+                    font-weight: bold;
+                    transition: all 0.3s ease;
+                    cursor: pointer;
+                    ">+</button>
+                </div>
+                <div id="misiones-lista" class="missions-container"></div>
+                <div class="total-misiones">
+                    Total: $<span id="totalMisiones">0</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="enlace">Enlace</label>
+                <input type="url" id="enlace" name="enlace" placeholder="https://" required style="width: 270px;">
+            </div>
+
+            <div class="form-group">
+                <label for="comision">Comisión (%)</label>
+                <input type="number" id="comision" name="comision" min="0" max="100" required style="width: 270px;">
+            </div>
+
+            <div class="form-group">
+                <label>Imágenes</label>
+                <div class="image-upload-container" onclick="document.getElementById('imageUpload').click()">
+                    Subir Imagen
+                    <div class="image-preview-container" id="imagePreviewContainer"></div>
+                    <input type="file" id="imageUpload" accept="image/*" multiple style="display: none;">
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit">Guardar Reto</button>
+        </form>
+    </div>
+
+    <style>
+        
+    </style>
+
+    <script>
+        let totalMisiones = 0;
+
+        function agregarFuncionalidad() {
+            const input = document.getElementById('funcionalidad');
+            const contenedor = document.getElementById('funcionalidades-lista');
+            
+            if (input.value.trim()) {
+                const tag = document.createElement('div');
+                tag.className = 'tag';
+                tag.innerHTML = `
+                    ${input.value}
+                    <span class="tag-remove" onclick="this.parentElement.remove()">×</span>
+                `;
+                contenedor.appendChild(tag);
+                input.value = '';
+            }
+        }
+
+        function agregarMision() {
+            const nombre = document.getElementById('misionNombre');
+            const precio = document.getElementById('misionPrecio');
+            const contenedor = document.getElementById('misiones-lista');
+            
+            if (nombre.value.trim() && precio.value) {
+                const precioNum = parseFloat(precio.value);
+                totalMisiones += precioNum;
+                
+                const mision = document.createElement('div');
+                mision.className = 'mission';
+                mision.innerHTML = `
+                    ${nombre.value} - $${precio.value}
+                    <span class="mission-remove" onclick="eliminarMision(this.parentElement, ${precioNum})">×</span>
+                `;
+                contenedor.appendChild(mision);
+                document.getElementById('totalMisiones').textContent = totalMisiones;
+                
+                nombre.value = '';
+                precio.value = '';
+            }
+        }
+
+        function eliminarMision(elemento, precio) {
+            totalMisiones -= precio;
+            document.getElementById('totalMisiones').textContent = totalMisiones;
+            elemento.remove();
+        }
+
+        // Agregar este código para manejar las imágenes
+        let uploadedImages = [];
+
+        document.getElementById('imageUpload').addEventListener('change', function(e) {
+            const files = Array.from(e.target.files);
+            
+            files.forEach(file => {
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        const imageUrl = e.target.result;
+                        uploadedImages.push(imageUrl);
+                        updateImagePreviews();
+                    };
+                    
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+
+        function updateImagePreviews() {
+            const container = document.getElementById('imagePreviewContainer');
+            container.innerHTML = uploadedImages.map((url, index) => `
+                <div class="image-preview">
+                    <img src="${url}" alt="Preview">
+                    <button class="remove-image" onclick="removeImage(${index}, event)">×</button>
+                </div>
+            `).join('');
+        }
+
+        function removeImage(index, event) {
+            event.stopPropagation(); // Evita que el click se propague al contenedor
+            uploadedImages.splice(index, 1);
+            updateImagePreviews();
+        }
+
+        // Agregar esta función para manejar el envío del formulario
+        document.querySelector('.reto-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Obtener los valores del formulario
+            const titulo = document.getElementById('titulo').value;
+            const descripcion = document.getElementById('descripcion').value;
+            const publicoObjetivo = document.getElementById('publicoObjetivo').value;
+            const categoria = document.getElementById('categoriaForm').value;
+            const precioMin = document.getElementById('precioMin').value;
+            const precioMax = document.getElementById('precioMax').value;
+            const enlace = document.getElementById('enlace').value;
+            const comision = document.getElementById('comision').value;
+
+            // Obtener las funcionalidades
+            const funcionalidades = Array.from(document.getElementById('funcionalidades-lista').children)
+                .map(tag => tag.textContent.replace('×', '').trim());
+
+            // Obtener las misiones
+            const misiones = Array.from(document.getElementById('misiones-lista').children)
+                .map(mission => mission.textContent.replace('×', '').trim());
+
+            // Crear una copia de las imágenes para este reto específico
+            const retoImages = [...uploadedImages];
+
+            // Crear la tarjeta de reto
+            const retoCard = document.createElement('div');
+            retoCard.className = 'reto-card';
+            retoCard.dataset.images = JSON.stringify(retoImages);
+            
+            // Vista previa en la tarjeta
+            retoCard.innerHTML = `
+                <h3>${titulo}</h3>
+                <div class="categoria">${categoria}</div>
+                <p class="descripcion">${truncarTexto(descripcion, 79)}</p>
+                <div class="precios-info">
+                    <div class="precio">Precio: $${precioMin} - $${precioMax}</div>
+                    <div class="comision">Comisión: ${comision}%</div>
+                </div>
+                <div class="reto-buttons">
+                    <button class="btn-detalles" onclick="mostrarDetalles(this)">Ver Detalles</button>
+                    <button class="btn-vender" onclick="confirmarVenta(this)">Vender</button>
+                </div>
+
+                <!-- Datos completos ocultos para el modal -->
+                <div class="datos-completos" style="display: none;">
+                    <h3>${titulo}</h3>
+                    <p><strong>Descripción:</strong> ${descripcion}</p>
+                    <p><strong>Público Objetivo:</strong> ${publicoObjetivo}</p>
+                    <p><strong>Categoría:</strong> ${categoria}</p>
+                    <div class="precio">
+                        <strong></strong> $${precioMin} - $${precioMax}
+                    </div>
+                    <div class="funcionalidades">
+                        <ul>
+                            ${funcionalidades.map(f => `<li>${f}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div class="misiones">
+                        <ul>
+                            ${misiones.map(m => `<li>${m}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <p><a href="${enlace}" target="_blank">${enlace}</a></p>
+                    <p><strong>Comisión:</strong> ${comision}%</p>
+                    <p><strong>Total Misiones:</strong> $${totalMisiones}</p>
+                </div>
+            `;
+
+            // Agregar la tarjeta al grid de retos
+            document.querySelector('.retos-grid').prepend(retoCard);
+
+            // Limpiar el formulario y las imágenes
+            this.reset();
+            document.getElementById('funcionalidades-lista').innerHTML = '';
+            document.getElementById('misiones-lista').innerHTML = '';
+            document.getElementById('imagePreviewContainer').innerHTML = '';
+            uploadedImages = []; // Limpiamos el array de imágenes
+            totalMisiones = 0;
+            document.getElementById('totalMisiones').textContent = '0';
+        });
+
+        // Funciones para manejar los modales
+        function mostrarDetalles(btn) {
+            const retoCard = btn.closest('.reto-card');
+            const datosCompletos = retoCard.querySelector('.datos-completos');
+            const retoImages = JSON.parse(retoCard.dataset.images || '[]'); // Obtener las imágenes del reto
+
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Detalles del Reto</h2>
+                    <div class="modal-grid">
+                        <div class="modal-left">
+                            <div class="modal-info-container">
+                                <div class="modal-images">
+                                    <div class="contenedor-imagen">
+                                        <img src="${retoImages[0] || 'assets/images/placeholder.jpg'}" alt="Preview">
+                                        <div class="eye-icon" onclick="toggleDescripcion(this)">👁️</div>
+                                        <div class="descripcion-overlay">
+                                            <p>${datosCompletos.querySelector('p:nth-child(2)').textContent}</p>
+                                        </div>
+                                        <div class="controles-imagen">
+                                            <button class="flecha-izq">◀</button>
+                                            <button class="flecha-der">▶</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-info">
+                                    <div class="precio-info">
+                                        <p>${datosCompletos.querySelector('.precio').textContent}</p>
+                                    </div>
+                                    <div class="comision-info">
+                                        <p>${datosCompletos.querySelector('p:nth-last-child(2)').textContent}</p>
+                                    </div>
+                                    <div class="publico-info">
+                                        <p>${datosCompletos.querySelector('p:nth-child(3)').textContent.replace('<strong>Público Objetivo:</strong>', '')}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-misiones" style="display: none; border: 1px solid rgba(0, 243, 255, 0.2); border-radius: 10px; padding: 10px; background: rgba(0, 10, 20, 0.3);">
+                                <h4 style="font-size: 26px; margin-top: -15px;">Misiones</h4>
+                                ${datosCompletos.querySelector('.misiones').innerHTML}
+                                <p class="total-misiones">${datosCompletos.querySelector('p:last-child').textContent}</p>
+                            </div>
+                        </div>
+                        <div class="modal-right">
+                            <div class="funcionalidades">
+                                <h4>Funcionalidades</h4>
+                                <div class="funcionalidades-lista">
+                                    ${datosCompletos.querySelector('.funcionalidades').innerHTML}
+                                </div>
+                            </div>
+                            <div class="enlaces">
+                                <h4>Enlace:</h4>
+                                ${datosCompletos.querySelector('p:nth-last-child(3)').innerHTML}
+                            </div>
+                            <div class="modal-buttons">
+                                <button class="btn-misiones">Misiones</button>
+                                <button class="btn-vender" onclick="confirmarVentaModal(this, '${datosCompletos.querySelector('h3').textContent}')">Vender</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(modal);
+
+            // Variables para el carrusel usando las imágenes específicas del reto
+            let currentImageIndex = 0;
+            const imagen = modal.querySelector('.contenedor-imagen img');
+            const flechaIzq = modal.querySelector('.flecha-izq');
+            const flechaDer = modal.querySelector('.flecha-der');
+
+            // Solo mostrar flechas si hay más de una imagen
+            if (retoImages.length <= 1) {
+                flechaIzq.style.display = 'none';
+                flechaDer.style.display = 'none';
+            }
+
+            // Event listeners para las flechas
+            flechaIzq.addEventListener('click', () => {
+                currentImageIndex = (currentImageIndex - 1 + retoImages.length) % retoImages.length;
+                imagen.src = retoImages[currentImageIndex];
+            });
+
+            flechaDer.addEventListener('click', () => {
+                currentImageIndex = (currentImageIndex + 1) % retoImages.length;
+                imagen.src = retoImages[currentImageIndex];
+            });
+
+            // Eventos
+            modal.querySelector('.close').onclick = () => modal.remove();
+            modal.onclick = (e) => {
+                if (e.target === modal) modal.remove();
+            };
+
+            // Nuevo manejador para el botón de misiones
+            modal.querySelector('.btn-misiones').onclick = function() {
+                const modalLeft = modal.querySelector('.modal-left');
+                const infoContainer = modalLeft.querySelector('.modal-info-container');
+                const misionesContainer = modalLeft.querySelector('.modal-misiones');
+                
+                if (misionesContainer.style.display === 'none') {
+                    infoContainer.style.display = 'none';
+                    misionesContainer.style.display = 'flex';
+                    misionesContainer.classList.add('active');
+                    this.textContent = 'Información';
+                } else {
+                    infoContainer.style.display = 'block';
+                    misionesContainer.classList.remove('active');
+                    misionesContainer.style.display = 'none';
+                    this.textContent = 'Misiones';
+                }
+            };
+        }
+
+        // Nueva función para manejar la venta desde el modal
+        function confirmarVentaModal(btn, titulo) {
+            // Primero cerramos el modal de detalles
+            btn.closest('.modal').remove();
+            
+            // Creamos el modal de confirmación
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Confirmar Reserva</h2>
+                    <div class="modal-body">
+                        <p>¿Estás seguro que deseas reservar esta página?</p>
+                        <h3>${titulo}</h3>
+                        <div class="modal-buttons">
+                            <button class="btn-confirmar" onclick="realizarReserva(this)">Confirmar</button>
+                            <button class="btn-cancelar" onclick="this.closest('.modal').remove()">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+
+            modal.querySelector('.close').onclick = () => modal.remove();
+            modal.onclick = (e) => {
+                if (e.target === modal) modal.remove();
+            };
+        }
+
+        function realizarReserva(btn) {
+            // Aquí puedes agregar la lógica para procesar la reserva
+            alert('¡Reserva realizada con éxito!');
+            btn.closest('.modal').remove();
+        }
+
+        // Agregar esta nueva función para manejar el toggle de la descripción
+        function toggleDescripcion(eyeIcon) {
+            const descripcionOverlay = eyeIcon.nextElementSibling;
+            const isVisible = descripcionOverlay.style.display === 'flex';
+            
+            descripcionOverlay.style.display = isVisible ? 'none' : 'flex';
+            eyeIcon.innerHTML = isVisible ? '👁️' : '😴';
+        }
+
+        function truncarTexto(texto, longitud) {
+            return texto.length > longitud ? texto.substring(0, longitud) + '...' : texto;
+        }
+
+        // Agregar estas nuevas funciones para el buscador y filtros
+        function filtrarRetos() {
+            const searchTerm = document.getElementById('searchRetos').value.toLowerCase();
+            const categoriaSeleccionada = document.getElementById('categoria').value;
+            const disponibilidadSeleccionada = document.getElementById('disponibilidad').value;
+            const precioMaximo = parseInt(document.getElementById('priceRange').value);
+            
+            const retos = document.querySelectorAll('.reto-card');
+            
+            retos.forEach(reto => {
+                const titulo = reto.querySelector('h3').textContent.toLowerCase();
+                const categoria = reto.querySelector('.categoria').textContent.toLowerCase();
+                const precios = reto.querySelector('.precio').textContent;
+                const precioMax = parseInt(precios.match(/\$(\d+)/g)[1].replace('$', ''));
+                
+                // Aplicar filtros
+                const cumpleBusqueda = titulo.includes(searchTerm);
+                const cumpleCategoria = categoriaSeleccionada === 'todos' || categoria === categoriaSeleccionada.toLowerCase();
+                const cumplePrecio = precioMax <= precioMaximo;
+                const cumpleDisponibilidad = disponibilidadSeleccionada === 'todos' || 
+                                           (disponibilidadSeleccionada === 'disponible' && !reto.classList.contains('vendido'));
+
+                // Mostrar u ocultar según los filtros
+                if (cumpleBusqueda && cumpleCategoria && cumplePrecio && cumpleDisponibilidad) {
+                    reto.style.display = 'block';
+                } else {
+                    reto.style.display = 'none';
+                }
+            });
+        }
+
+        // Actualizar el tooltip del precio
+        function actualizarTooltipPrecio() {
+            const slider = document.getElementById('priceRange');
+            const tooltip = document.querySelector('.price-tooltip');
+            const tooltipText = tooltip.querySelector('.tooltip-text');
+            
+            // Actualizar el texto del precio
+            tooltipText.textContent = `$${slider.value}`;
+            
+            // Calcular la posición del tooltip
+            const sliderWidth = slider.offsetWidth;
+            const sliderValue = slider.value;
+            const min = slider.min;
+            const max = slider.max;
+            const percentage = ((sliderValue - min) / (max - min)) * 100;
+            const tooltipPosition = (percentage * sliderWidth) / 100;
+            
+            // Aplicar la posición con transform
+            tooltip.style.opacity = '1';
+            tooltip.style.transform = `translateX(${tooltipPosition}px) scale(1)`;
+        }
+
+        // Modificar los event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            const priceSlider = document.getElementById('priceRange');
+            const tooltip = document.querySelector('.price-tooltip');
+            
+            // Evento para actualización continua durante el arrastre
+            priceSlider.addEventListener('input', actualizarTooltipPrecio);
+            
+            // Mostrar tooltip al pasar el mouse
+            priceSlider.addEventListener('mouseover', () => {
+                actualizarTooltipPrecio();
+            });
+            
+            // Ocultar tooltip
+            priceSlider.addEventListener('mouseout', () => {
+                tooltip.style.opacity = '0';
+                tooltip.style.transform = 'translateX(-50%) scale(0)';
+            });
+            
+            // Actualizar posición durante el scroll
+            window.addEventListener('scroll', () => {
+                if (tooltip.style.opacity === '1') {
+                    actualizarTooltipPrecio();
+                }
+            });
+        });
+
+        // Modificar la función de venta para marcar los retos como vendidos
+        function confirmarVenta(btn) {
+            const retoCard = btn.closest('.reto-card');
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Confirmar Reserva</h2>
+                    <div class="modal-body">
+                        <p>¿Estás seguro que deseas reservar esta página?</p>
+                        <h3>${retoCard.querySelector('h3').textContent}</h3>
+                        <div class="modal-buttons">
+                            <button class="btn-confirmar" onclick="realizarReserva(this)">Confirmar</button>
+                            <button class="btn-cancelar" onclick="this.closest('.modal').remove()">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+
+            modal.querySelector('.close').onclick = () => modal.remove();
+            modal.onclick = (e) => {
+                if (e.target === modal) modal.remove();
+            };
+        }
+
+        function realizarReserva(btn) {
+            const modal = btn.closest('.modal');
+            const titulo = modal.querySelector('h3').textContent;
+            const retoCard = Array.from(document.querySelectorAll('.reto-card'))
+                .find(card => card.querySelector('h3').textContent === titulo);
+            
+            retoCard.classList.add('vendido');
+            modal.remove();
+            filtrarRetos(); // Reaplica los filtros después de la venta
+            alert('¡Reserva realizada con éxito!');
+        }
+    </script>
+
+</body>
+</html>

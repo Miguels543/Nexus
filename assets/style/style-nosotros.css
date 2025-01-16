@@ -1,0 +1,644 @@
+:root {
+    --primary-bg: #000000; /* Color de fondo */
+    --neon-blue: #00f3ff;
+    --neon-purple: #8A2BE2;
+    --text-primary: #ffffff;
+    --text-secondary: #b3b3b3;
+    --glow-effect: 0 0 10px rgba(0, 243, 255, 0.5);
+    --gradient-bg: linear-gradient(45deg, rgba(0, 243, 255, 0.1), rgba(138, 43, 226, 0.1));
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: var(--primary-bg);
+    background-image: url(ima.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: var(--text-primary);
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(0, 243, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(35, 0, 68, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.left-sidebar {
+    width: 50px;
+    height: calc(550px - 40px);
+    background: rgba(0, 10, 20, 0);
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 0;
+    z-index: 100;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    transition: width 0.3s ease;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 243, 255, 0.2);
+}
+
+.left-sidebar:hover {
+    width: 200px;
+}
+
+.left-sidebar::-webkit-scrollbar {
+    display: none;
+}
+
+.nav-links {
+    margin-top: -20px;
+    list-style: none;
+    width: 100%;
+    padding: 0;
+}
+
+.nav-links a {
+    color: var(--text-primary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 45px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    padding: 0 15px;
+    margin-bottom: -0px;
+    position: relative;
+}
+
+.nav-links .icon {
+    font-size: 25px;
+    min-width: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-links .text {
+    margin-left: 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.left-sidebar:hover .nav-links .text {
+    opacity: 1;
+}
+
+.nav-links a:hover {
+    background: linear-gradient(90deg, rgba(0, 243, 255, 0.1), transparent);
+    text-shadow: 0 0 5px var(--neon-blue);
+}
+
+.nav-links a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 0;
+    background: var(--neon-blue);
+    transition: height 0.3s ease;
+}
+
+.nav-links a:hover::before {
+    height: 80%;
+}
+
+.main-container {
+    margin-left: 0px; /* Ajustar según el ancho de tu sidebar */
+    padding: 2rem;
+    padding-left: 100px;
+    background-color: #010011c4;
+}
+
+.hero-section {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/Imagen/image15.png');
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    margin-bottom: 4rem;
+    border-radius: 15px;
+    animation: fadeInDown 1.2s ease-out;
+    border: 2px solid rgba(0, 243, 255, 0.2);
+
+}
+
+.hero-section h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+.hero-section .hero-text {
+    font-size: 1.8rem;
+    font-weight: bolder;
+
+    color: rgb(255, 255, 255);
+    text-shadow: 0 0 10px rgb(0, 255, 221);
+    letter-spacing: 2px;
+    animation: fadeInUp 1.2s ease-out 0.5s backwards,
+              glowText 2s ease-in-out infinite alternate;
+    margin-top: 1rem;
+    padding: 10px 20px;
+    border-radius:100px;
+    background: rgba(255, 0, 0, 0.007);
+    backdrop-filter: blur(5px);
+}
+
+.mission-vision-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 4rem;
+    
+}
+
+.card {
+    background: rgba(2, 17, 85, 0.253);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeIn 1s ease-out;
+    border: 2px solid rgba(0, 243, 255, 0.2);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 243, 255, 0.2);
+}
+
+.card-image {
+    height: 250px;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 2rem;
+}
+
+.card-content p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+.values-section {
+    margin-bottom: 4rem;
+}
+
+.values-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    
+}
+
+.value-item {
+    background: rgba(2, 17, 85, 0.253);
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border: 1px solid rgb(3, 242, 255);
+}
+
+.value-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.history-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.timeline-item {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+    background: rgba(2, 17, 85, 0.253);
+    padding: 1rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+    height: 100px;
+    margin-bottom: 1.5rem;
+}
+
+.timeline-image {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.timeline-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    mask-image: linear-gradient(to right, black 70%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black 70%, transparent 100%);
+}
+
+.timeline-content {
+    margin-left: 300px;
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 20px;
+    
+}
+
+.timeline-content h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    padding-top: 15px;
+    
+}
+
+.timeline-content p {
+    margin: 5px 0 0 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+    .mission-vision-section {
+        grid-template-columns: 1fr;
+    }
+
+    .values-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .timeline-item {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: 100px;
+    }
+    
+    .timeline-image {
+        position: relative;
+        width: 100%;
+        height: 100px;
+    }
+    
+    .timeline-content {
+        margin-left: 0;
+        padding: 1rem;
+    }
+}
+
+/* Estilos para la sección de Historia */
+.history-section {
+    margin-bottom: 4rem;
+    background: rgba(2, 17, 85, 0.253);
+    border-radius: 15px;
+    padding: 2rem;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/Imagen/historia-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    border: 2px solid rgba(0, 243, 255, 0.2);
+}
+
+.history-content {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+/* Estilos para la sección de Equipo */
+.team-section {
+    margin-bottom: 4rem;
+    background: rgba(2, 17, 85, 0.253);
+    border-radius: 15px;
+    padding: 2rem;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/Imagen/team-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.team-content {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+/* Estilos para la sección de Metodología */
+.methodology-section {
+    margin-bottom: 4rem;
+    padding: 2rem;
+}
+
+.methodology-steps {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.step {
+    border: 1px solid rgb(3, 242, 255);
+    background: rgba(2, 17, 85, 0.253);
+    padding: 2rem;
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/Imagen/methodology-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.step:hover {
+    transform: translateY(-5px);
+}
+
+.step h3 {
+    color: var(--neon-blue);
+    margin-bottom: 1rem;
+    text-shadow: 0 0 5px rgba(0, 243, 255, 0.5);
+}
+
+/* Estilos para la sección de Compromiso */
+.commitment-section {
+    margin-bottom: 4rem;
+    background: rgba(2, 17, 85, 0.253);
+    border: 2px solid rgba(0, 243, 255, 0.2);
+    border-radius: 15px;
+    padding: 2rem;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/Imagen/commitment-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.commitment-content {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+/* Estilos para la sección de Objetivos Futuros */
+.future-goals {
+    margin-bottom: 4rem;
+    background: rgba(2, 17, 85, 0.253);
+    border-radius: 15px;
+    padding: 2rem;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/Imagen/future-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    border: 2px solid rgba(0, 243, 255, 0.2);
+}
+
+.goals-content {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+#sidebar-toggle{
+    display: none;
+}
+.activate-button{
+    display: none;
+}
+
+/* Efectos hover generales */
+.history-section:hover,
+.team-section:hover,
+.commitment-section:hover,
+.future-goals:hover {
+    transform: scale(1.01);
+    transition: transform 0.3s ease;
+}
+
+/* Títulos de sección */
+.history-section h2,
+.team-section h2,
+.methodology-section h2,
+.commitment-section h2,
+.future-goals h2 {
+    color: var(--neon-blue);
+    text-align: center;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+}
+
+/* Clases para las animaciones */
+.animate-section {
+    opacity: 0;
+    transition: all 1s ease;
+}
+
+.slide-left {
+    transform: translateX(-100px);
+}
+
+.slide-right {
+    transform: translateX(100px);
+}
+
+.slide-up {
+    transform: translateY(100px);
+}
+
+.fade-in-rotate {
+    transform: rotate(-10deg);
+    transform-origin: center;
+}
+
+.animate-active {
+    opacity: 1;
+    transform: translate(0) rotate(0);
+}
+
+/* Efectos adicionales para las secciones */
+.history-section {
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.team-section {
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.methodology-steps {
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.commitment-section {
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.future-goals {
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Efectos hover mejorados */
+.history-section:hover,
+.team-section:hover,
+.commitment-section:hover,
+.future-goals:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+}
+
+/* Nuevas animaciones keyframes */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue);
+    }
+    to {
+        text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue), 0 0 30px var(--neon-blue);
+    }
+}
+/* Estilos responsivos para las nuevas secciones */
+@media (max-width: 490px) {
+    .methodology-steps {
+        grid-template-columns: 1fr;
+    }
+    
+    .history-content,
+    .team-content,
+    .commitment-content,
+    .goals-content {
+        padding: 1rem;
+    }
+    .main-container{
+        width: 100%;
+        margin-left: -70px;
+        margin-top: -10px;
+    }
+    .hero-section{
+        width: 110%;
+        margin-left: -20px;
+    }
+
+    .values-container{
+        width: 100%;
+        display: flex; flex-direction: column;
+    }
+    .values-item{
+        width: 10px;            
+
+    }
+    /* Estilos del botón */
+    .activate-button {
+        display: block;
+        position: absolute;
+        font-size: 40px;
+        color: var(--neon-blue);
+        margin-top: 36px;
+        margin-left: -310px;
+        z-index: 100;
+        background: none;
+        border: 1px solid var(--neon-blue);
+        border-radius: 15px;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+    }
+    .activate-button label{
+        position: absolute;
+        margin-top: -8px;
+        margin-left: 8px;
+    }
+    #sidebar-toggle {
+        display: none;
+    }
+    .site-info{
+        border: 1px solid rgba(1, 153, 255, 0.438);
+    }
+    /* Estilos del sidebar */
+    .left-sidebar {
+        position: fixed;
+        left: -300px;
+        top: 80px;
+        transition: left 0.3s ease-in-out;   
+    }
+
+    /* Cuando el checkbox está marcado, muestra el sidebar */
+    #sidebar-toggle:checked ~ .left-sidebar {
+        left: 20px;
+    }
+    .slide-right{
+        min-height: 160px;
+    }
+}

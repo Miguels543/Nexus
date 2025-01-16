@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - Nexus</title>
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary-bg: #000000;
+            --neon-blue: #00f3ff;
+            --neon-purple: #8A2BE2;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --glow-effect: 0 0 10px rgba(0, 243, 255, 0.5);
+            --gradient-bg: linear-gradient(45deg, rgba(0, 243, 255, 0.1), rgba(138, 43, 226, 0.1));
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: var(--primary-bg);
+            background-image: url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ima-Rl0Ue5Ue5Ue5Ue5Ue5Ue5Ue5Ue5Ue5Ue5Ue5.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: var(--text-primary);
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .left-sidebar {
+            width: 260px;
+            height: 588px;
+            background: rgba(0, 10, 20, 0.9);
+            position: fixed;
+            left: 20px;
+            top: 10px;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 0;
+            z-index: 100;
+            border: 2px solid var(--neon-blue);
+            border-radius: 15px;
+            box-shadow: 0 0 20px var(--neon-blue);
+            backdrop-filter: blur(10px);
+            margin-top: -8px;
+        }
+
+        .nav-links {
+            list-style: none;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-links li {
+            margin-bottom: 5px;
+        }
+
+        .nav-links a {
+            margin-top: -10px;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 12px 25px;
+            transition: all 150ms ease;
+            font-size: 15px;
+        }
+
+        .nav-links .icon {
+            font-size: 20px;
+            margin-right: 15px;
+            min-width: 25px;
+            text-align: center;
+        }
+
+        .nav-links a:hover {
+            background: linear-gradient(90deg, rgba(0, 243, 255, 0.1), transparent);
+            text-shadow: 0 0 5px var(--neon-blue);
+            border-left: 3px solid var(--neon-blue);
+        }
+
+        .main-content {
+            margin-left: 300px;
+            padding: 20px;
+            width: calc(100% - 300px);
+        }
+
+        .search-container {
+            background: rgba(0, 10, 20, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            position: relative;
+        }
+
+        .search-input {
+            width: calc(100% - 50px);
+            padding: 12px 40px 12px 15px;
+            font-size: 16px;
+            background: rgba(0, 10, 20, 0.5);
+            color: var(--text-primary);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            border-radius: 8px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+            border-color: var(--neon-blue);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--neon-blue);
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .widget {
+            background: rgba(0, 10, 20, 0.7);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .widget:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 243, 255, 0.2);
+        }
+
+        .widget h3 {
+            color: var(--neon-blue);
+            margin: 0 0 15px 0;
+            font-size: 18px;
+        }
+
+        .metric {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .chart-container {
+            background: rgba(0, 10, 20, 0.7);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 243, 255, 0.1);
+        }
+
+        .data-table th {
+            color: var(--neon-blue);
+            font-weight: 500;
+        }
+
+        .data-table tr:hover {
+            background: rgba(0, 243, 255, 0.05);
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 10, 20, 0.9);
+            border: 1px solid var(--neon-blue);
+            border-radius: 8px;
+            padding: 15px;
+            color: var(--text-primary);
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+            z-index: 1000;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .left-sidebar {
+                width: 60px;
+                left: 10px;
+            }
+
+            .nav-links .text {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 60px;
+                width: calc(100% - 60px);
+            }
+        }
+
+        #calendar {
+            background: rgba(0, 10, 20, 0.7);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .fc-theme-standard td, .fc-theme-standard th {
+            border-color: rgba(0, 243, 255, 0.1);
+        }
+
+        .fc-theme-standard .fc-scrollgrid {
+            border-color: rgba(0, 243, 255, 0.1);
+        }
+
+        .fc .fc-button-primary {
+            background-color: rgba(0, 10, 20, 0.9);
+            border-color: var(--neon-blue);
+        }
+
+        .fc .fc-button-primary:not(:disabled):active,
+        .fc .fc-button-primary:not(:disabled).fc-button-active {
+            background-color: var(--neon-blue);
+            color: #000000;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .fc-daygrid-day-number, .fc-col-header-cell-cushion {
+            color: var(--text-primary);
+        }
+
+        /* Cambiar el color de los botones al pasar el mouse a rojo */
+        .fc .fc-button-primary:hover {
+            color: #000000;
+            font-weight: bold;
+            background-color: rgba(0, 255, 213, 0.972); /* Comentario: Cambié el color de los botones al pasar el mouse a rojo */
+        }
+
+        /* Estilo para las descripciones de los eventos */
+        .event-description {
+            height: 100%; /* Comentario: Altura de la descripción */
+            width: 400px; /* Comentario: Ancho de la descripción */
+            border: 1px solid var(--neon-blue);
+            border-radius: 20px;
+            padding: 10px;
+            overflow: hidden; /* Eliminar el scroll */
+        }
+        
+        /* Estilo para los botones */
+        .swal2-confirm, .swal2-cancel {
+            width: 150px; /* Ancho fijo para los botones */
+            margin: 5px 0;
+            margin-left: 10px;
+        }
+
+        
+
+        .swal2-confirm:hover, .swal2-cancel:hover {
+            background-color: rgb(3, 0, 77);
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Nuevos estilos para la fecha y hora */
+        .event-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 14.5px;
+            padding: 8px;
+            border: 1px solid var(--neon-blue);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+        }
+
+        .event-date, .event-time {
+            font-size: 14px;
+            color: var(--neon-blue);
+            padding: 5px 10px;
+            border-radius: 5px;
+            background: rgba(0, 10, 20, 0.5);
+        }
+        
+        /* Ajuste de los estilos para el layout */
+        .event-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .event-content {
+            flex: 1;
+        }
+
+        .event-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* Estilos adicionales para la tabla comparativa */
+        .data-table th {
+            background: rgba(0, 243, 255, 0.1);
+            padding: 12px;
+            text-align: left;
+        }
+
+        .data-table tr:nth-child(even) {
+            background: rgba(0, 10, 20, 0.3);
+        }
+
+        .data-table td {
+            padding: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="left-sidebar">
+        <ul class="nav-links">
+            <li><a href="#"><span class="icon">👥</span><span class="text">Gestión de Usuarios</span></a></li>
+            <li><a href="#"><span class="icon">📚</span><span class="text">Cursos</span></a></li>
+            <li><a href="#"><span class="icon">👨‍🏫</span><span class="text">Profesores/Equipo</span></a></li>
+            <li><a href="#"><span class="icon">💰</span><span class="text">Ventas y Planes</span></a></li>
+            <li><a href="#"><span class="icon">📂</span><span class="text">Gestión de Portafolio</span></a></li>
+            <li><a href="#"><span class="icon">🤝</span><span class="text">Engagement</span></a></li>
+            <li><a href="#"><span class="icon">📢</span><span class="text">Marketing y Comunicación</span></a></li>
+            <li><a href="#"><span class="icon">⚙️</span><span class="text">Técnico</span></a></li>
+            <li><a href="#"><span class="icon">🏆</span><span class="text">Logros y Gamificación</span></a></li>
+            <li><a href="#"><span class="icon">📊</span><span class="text">Análisis Financiero</span></a></li>
+            <li><a href="#"><span class="icon">📅</span><span class="text">Eventos</span></a></li>
+            <li><a href="#"><span class="icon">🤝</span><span class="text">Socios</span></a></li>
+            <li><a href="#"><span class="icon">📈</span><span class="text">Reportes y Análisis</span></a></li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Buscar en el panel de administración...">
+            <span class="search-icon">🔍</span>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="widget">
+                <h3>Usuarios Registrados</h3>
+                <div class="metric">1,234</div>
+                <p>+15% vs mes anterior</p>
+            </div>
+            <div class="widget">
+                <h3>Ingresos del Mes</h3>
+                <div class="metric">$45,678</div>
+                <p>+8% vs mes anterior</p>
+            </div>
+            <a href="#" class="widget" style="text-align: center; text-decoration: none;">
+                <h3 style="color: var(--neon-blue); font-family: 'Roboto', sans-serif; font-weight: 300; text-shadow: var(--glow-effect);">Sitios Web Vendidos</h3>
+                <div class="metric" style="color: white; text-shadow: var(--glow-effect); font-size: 48px;">- 85 -</div>
+            </a>
+        </div>
+
+        <div class="chart-container">
+            <h3>Rendimiento General</h3>
+            <!-- Aquí iría el gráfico -->
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Métrica</th>
+                        <th>Detalles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Nuevos Usuarios Mes Actual</td>
+                        <td>543</td>
+                    </tr>
+                    <tr>
+                        <td>País con Mayor Contratación</td>
+                        <td>Estados Unidos</td>
+                    </tr>
+                    <tr>
+                        <td>Principales Servicios Contratados</td>
+                        <td>Sitios Web, Marketing Digital</td>
+                    </tr>
+                    <tr>
+                        <td>Tasa de Retención</td>
+                        <td>85%</td>
+                    </tr>
+                    <tr>
+                        <td>Región con Mayor Crecimiento</td>
+                        <td>América Latina</td>
+                    </tr>
+                    <tr>
+                        <td>Edad Promedio de Nuevos Usuarios</td>
+                        <td>28 años</td>
+                    </tr>
+                    <tr>
+                        <td>Horas Pico de Actividad</td>
+                        <td>18:00 - 21:00 (hora local)</td>
+                    </tr>
+                    <tr>
+                        <td>Reseñas Promedio</td>
+                        <td>4.5/5</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="calendar"></div>
+
+        <!-- Agregar el contenedor del gráfico -->
+        <div class="chart-container" style="position: relative; height:400px; margin-top: 20px;">
+            <canvas id="salesChart"></canvas>
+        </div>
+    </div>
+
+    <div class="notification">
+        Notificación de ejemplo
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                editable: true,
+                droppable: true,
+                locale: 'es', // Cambiar el idioma a español
+                buttonText: {
+                    today: 'Hoy',
+                    month: 'Mes',
+                    week: 'Semana',
+                    day: 'Día'
+                },
+                events: [
+                    {
+                        id: '1',
+                        title: 'Lanzamiento de Producto',
+                        start: '2024-10-15',
+                        description: 'Lanzamiento del nuevo producto XYZ',
+                        completed: false,
+                        color: '#4299e1'
+                    },
+                    {
+                        id: '2',
+                        title: 'Reuninón de Equipo',
+                        start: '2024-10-20',
+                        description: 'Reunión mensual de equipo para discutir el progreso del proyecto',
+                        completed: true,
+                        color: '#48bb78'
+                    }
+                ],
+                eventClick: function(info) {
+                    mostrarDetallesEvento(info.event);
+                },
+                dateClick: function(info) {
+                    agregarNuevoEvento(info.dateStr);
+                }
+            });
+            calendar.render();
+
+            function mostrarDetallesEvento(evento) {
+                // Asegurarse de obtener la fecha más reciente del evento
+                const fechaEvento = new Date(evento.start);
+                const formatoFecha = fechaEvento.toLocaleDateString('es-ES', { 
+                    day: '2-digit', 
+                    month: '2-digit', 
+                    year: 'numeric' 
+                });
+                const formatoHora = fechaEvento.toLocaleTimeString('es-ES', { 
+                    hour: '2-digit', 
+                    minute: '2-digit',
+                    hour12: false // Usar formato 24 horas
+                });
+
+                Swal.fire({
+                    title: evento.title,
+                    html: `
+                        <div class="event-container">
+                            <div class="event-content">
+                                <div class="event-header">
+                                    <span class="event-date">${formatoFecha}</span>
+                                    <span class="event-time">${formatoHora}</span>
+                                </div>
+                                <div class="event-description">
+                                    ${evento.extendedProps.description}
+                                </div>
+                            </div>
+                            <div class="event-buttons">
+                                <button id="editBtn" class="swal2-confirm swal2-styled">Editar</button>
+                                <button id="completeBtn" class="swal2-confirm swal2-styled">
+                                    ${evento.extendedProps.completed ? 'Marcar como Incompleto' : 'Marcar como Completo'}
+                                </button>
+                            </div>
+                        </div>
+                    `,
+                    showCloseButton: true,
+                    showConfirmButton: false,
+                    customClass: {
+                        popup: 'swal2-background'
+                    }
+                });
+
+                document.getElementById('editBtn').addEventListener('click', function() {
+                    editarEvento(evento);
+                });
+
+                document.getElementById('completeBtn').addEventListener('click', function() {
+                    cambiarEstadoEvento(evento);
+                });
+            }
+
+            function editarEvento(evento) {
+                const fechaEvento = new Date(evento.start);
+                const formatoFecha = fechaEvento.toISOString().split('T')[0];
+                // El problema estaba aquí - Se necesitaba formatear la hora correctamente
+                const formatoHora = fechaEvento.toTimeString().slice(0,5); // Comentario: Se corrigió el formato de hora para que funcione correctamente
+
+                Swal.fire({
+                    title: 'Editar Evento',
+                    html: `
+                        <div style="margin-bottom: 15px;">
+                            <input type="date" id="eventDate" class="swal2-input" style="width: 245px; border-radius: 10px;" value="${formatoFecha}">
+                            <input type="time" id="eventTime" class="swal2-input" style="width: 245px; border-radius: 10px;" value="${formatoHora}">
+                        </div>
+                        <input id="eventTitle" class="swal2-input" style="width: 500px; border-radius: 10px;" placeholder="Título del Evento" value="${evento.title}">
+                        <textarea id="eventDescription" class="swal2-textarea event-description" placeholder="Descripción del Evento" style="width: 500px; border-radius: 10px;">${evento.extendedProps.description}</textarea>
+                    `,
+                    showCancelButton: true,
+                    confirmButtonText: 'Guardar',
+                    cancelButtonText: 'Cancelar',
+                    customClass: {
+                        popup: 'swal2-background'
+                    },
+                    preConfirm: () => {
+                        const title = document.getElementById('eventTitle').value;
+                        const description = document.getElementById('eventDescription').value;
+                        const date = document.getElementById('eventDate').value;
+                        const time = document.getElementById('eventTime').value;
+                        
+                        if (!title || !description || !date || !time) {
+                            Swal.showValidationMessage('Por favor, complete todos los campos');
+                            return false;
+                        }
+                        
+                        return {
+                            title,
+                            description,
+                            date,
+                            time
+                        };
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        const { title, description, date, time } = result.value;
+                        // Crear una nueva fecha combinando fecha y hora
+                        const nuevaFecha = new Date(`${date}T${time}`);
+                        
+                        // Actualizar el evento con la nueva fecha y hora
+                        evento.setStart(nuevaFecha);
+                        evento.setProp('title', title);
+                        evento.setExtendedProp('description', description);
+                        
+                        // Forzar la actualización del calendario
+                        calendar.updateEvent(evento);
+                        calendar.render();
+                        
+                        // Mostrar inmediatamente los detalles actualizados
+                        mostrarDetallesEvento(evento);
+                    }
+                });
+            }
+
+            function cambiarEstadoEvento(evento) {
+                const completed = !evento.extendedProps.completed;
+                evento.setExtendedProp('completed', completed);
+                evento.setProp('color', completed ? '#48bb78' : '#4299e1');
+                calendar.render();
+                Swal.close();
+            }
+
+            function agregarNuevoEvento(fecha) {
+                const horaActual = new Date().toTimeString().slice(0,5);
+                
+                Swal.fire({
+                    title: 'Agregar Nuevo Evento',
+                    html: `
+                        <div style="margin-bottom: 15px;">
+                            <input type="date" id="newEventDate" class="swal2-input" style="width: 245px; border-radius: 10px;" value="${fecha}">
+                            <input type="time" id="newEventTime" class="swal2-input" style="width: 245px; border-radius: 10px;" value="${horaActual}">
+                        </div>
+                        <input id="newEventTitle" class="swal2-input" style="width: 500px; border-radius: 10px;" placeholder="Título del Evento">
+                        <textarea id="newEventDescription" class="swal2-textarea event-description" placeholder="Descripción del Evento" style="width: 500px;"></textarea>
+                    `,
+                    showCancelButton: true,
+                    confirmButtonText: 'Agregar',
+                    customClass: {
+                        popup: 'swal2-background'
+                    },
+                    preConfirm: () => {
+                        const title = document.getElementById('newEventTitle').value;
+                        const description = document.getElementById('newEventDescription').value;
+                        if (!title || !description) {
+                            Swal.showValidationMessage('Por favor, complete todos los campos');
+                        }
+                        return { title, description };
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        const newDate = document.getElementById('newEventDate').value;
+                        const newTime = document.getElementById('newEventTime').value;
+                        calendar.addEvent({
+                            title: result.value.title,
+                            start: `${newDate}T${newTime}`,
+                            description: result.value.description,
+                            completed: false,
+                            color: '#4299e1'
+                        });
+                    }
+                });
+
+                // Ajustar el alto del textarea automáticamente y eliminar el scroll
+                const newEventDescription = document.getElementById('newEventDescription');
+                newEventDescription.addEventListener('input', function() {
+                    this.style.height = 'auto';
+                    this.style.height = (this.scrollHeight) + 'px';
+                    this.style.overflow = 'hidden';
+                });
+            }
+
+            // Función para moverse a una fecha específica
+            function moverAFechaEspecifica() {
+                Swal.fire({
+                    title: 'Mover a Fecha Específica',
+                    html: `
+                        <input id="inputFecha" class="swal2-input" placeholder="DD/MM/YYYY">
+                    `,
+                    showCancelButton: true,
+                    confirmButtonText: 'Mover',
+                    customClass: {
+                        popup: 'swal2-background'
+                    },
+                    preConfirm: () => {
+                        const fecha = document.getElementById('inputFecha').value;
+                        if (!fecha) {
+                            Swal.showValidationMessage('Por favor, ingrese una fecha');
+                        }
+                        return fecha;
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        const [day, month, year] = result.value.split('/');
+                        const formattedDate = `${year}-${month}-${day}`;
+                        calendar.gotoDate(formattedDate);
+                        marcarDia(formattedDate);
+                    }
+                });
+            }
+
+            // Función para marcar un día específico
+            function marcarDia(fecha) {
+                const event = {
+                    id: 'highlight',
+                    start: fecha,
+                    display: 'background',
+                    backgroundColor: 'rgba(255, 0, 0, 0.3)'
+                };
+                calendar.addEvent(event);
+                setTimeout(() => {
+                    const highlightEvent = calendar.getEventById('highlight');
+                    if (highlightEvent) {
+                        highlightEvent.remove();
+                    }
+                }, 3000); // Eliminar el resaltado después de 3 segundos
+            }
+
+            // Agregar botón para mover a fecha específica
+            var toolbar = document.querySelector('.fc-toolbar-chunk:first-child');
+            var botonMoverFecha = document.createElement('button');
+            botonMoverFecha.innerText = 'Mover a Fecha';
+            botonMoverFecha.classList.add('fc-button', 'fc-button-primary');
+            botonMoverFecha.style.color = 'white';
+            botonMoverFecha.addEventListener('click', moverAFechaEspecifica);
+            botonMoverFecha.addEventListener('mouseover', function() {
+                botonMoverFecha.style.color = 'black';
+            });
+            botonMoverFecha.addEventListener('mouseout', function() {
+                botonMoverFecha.style.color = 'white';
+            });
+            toolbar.appendChild(botonMoverFecha);
+
+            // Datos de ventas para dos meses
+            const salesData = {
+                
+                'Mes Anterior': {
+                    'Juan Pérez': [
+                        { type: 'E-commerce', quantity: 3, price: 1200 },
+                        { type: 'Landing Page', quantity: 2, price: 500 }
+                    ],
+                    'María González': [
+                        { type: 'Corporativa', quantity: 3, price: 2000 },
+                        { type: 'Blog', quantity: 1, price: 800 }
+                    ],
+                    'Pedro Ramírez': [
+                        { type: 'Portfolio', quantity: 4, price: 1000 },
+                        { type: 'E-commerce', quantity: 2, price: 1200 }
+                    ],
+                    'Ana López': [
+                        { type: 'Landing Page', quantity: 6, price: 500 },
+                        { type: 'Corporativa', quantity: 1, price: 2000 }
+                    ],
+                    'Carlos Sánchez': [
+                        { type: 'Blog', quantity: 3, price: 800 },
+                        { type: 'Portfolio', quantity: 2, price: 1000 }
+                    ],
+                    'Laura Torres': [
+                        { type: 'E-commerce', quantity: 2, price: 1200 },
+                        { type: 'Corporativa', quantity: 2, price: 2000 }
+                    ],
+                    'Diego Martínez': [
+                        { type: 'E-commerce', quantity: 3, price: 1200 },
+                        { type: 'Landing Page', quantity: 3, price: 500 }
+                    ],
+                    'Sofia Ruiz': [
+                        { type: 'Corporativa', quantity: 2, price: 2000 },
+                        { type: 'Portfolio', quantity: 3, price: 1000 }
+                    ]
+                },
+                'Mes Actual': {
+                    'Juan Pérez': [
+                        { type: 'E-commerce', quantity: 5, price: 1200 },
+                        { type: 'Landing Page', quantity: 3, price: 500 }
+                    ],
+                    'María González': [
+                        { type: 'Corporativa', quantity: 4, price: 2000 },
+                        { type: 'Blog', quantity: 2, price: 800 }
+                    ],
+                    'Pedro Ramírez': [
+                        { type: 'Portfolio', quantity: 6, price: 1000 },
+                        { type: 'E-commerce', quantity: 3, price: 1200 }
+                    ],
+                    'Ana López': [
+                        { type: 'Landing Page', quantity: 8, price: 500 },
+                        { type: 'Corporativa', quantity: 2, price: 2000 }
+                    ],
+                    'Carlos Sánchez': [
+                        { type: 'Blog', quantity: 4, price: 800 },
+                        { type: 'Portfolio', quantity: 3, price: 1000 }
+                    ],
+                    'Laura Torres': [
+                        { type: 'E-commerce', quantity: 3, price: 1200 },
+                        { type: 'Corporativa', quantity: 3, price: 2000 }
+                    ],
+                    'Diego Martínez': [
+                        { type: 'E-commerce', quantity: 4, price: 1200 },
+                        { type: 'Landing Page', quantity: 5, price: 500 }
+                    ],
+                    'Sofia Ruiz': [
+                        { type: 'Corporativa', quantity: 3, price: 2000 },
+                        { type: 'Portfolio', quantity: 4, price: 1000 }
+                    ]
+                },
+            };
+
+            // Función para calcular totales
+            function calculateTotals(monthData) {
+                return Object.entries(monthData).map(([name, sales]) => {
+                    const total = sales.reduce((sum, sale) => sum + (sale.quantity * sale.price), 0);
+                    return { name, total, sales };
+                }).sort((a, b) => a.total - b.total);
+            }
+
+            // Calcular totales para ambos meses
+            const previousMonthTotals = calculateTotals(salesData['Mes Anterior']);
+
+            const currentMonthTotals = calculateTotals(salesData['Mes Actual']);
+
+            // Crear el gráfico comparativo
+            const ctx = document.getElementById('salesChart').getContext('2d');
+            const salesChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: previousMonthTotals.map(item => item.name),
+                    datasets: [
+                        {
+                            label: 'Mes Anterior',
+                            data: previousMonthTotals.map(item => item.total),
+                            backgroundColor: 'rgba(138, 43, 226, 0.7)',
+                            borderColor: 'rgba(138, 43, 226, 1)',
+                            borderWidth: 1,
+                            order: 1
+                        },
+                        {
+                            label: 'Mes Actual',
+                            data: currentMonthTotals.map(item => item.total),
+                            backgroundColor: 'rgba(0, 243, 255, 0.7)',
+                            borderColor: 'rgba(0, 243, 255, 1)',
+                            borderWidth: 1,
+                            order: 2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            stacked: false,
+                            reverse: false
+                        },
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: '#ffffff',
+                                callback: function(value) {
+                                    return '$' + value.toLocaleString();
+                                }
+                            }
+                        },
+                    },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#ffffff'
+                            },
+                            reverse: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const monthData = context.dataset.label === 'Mes Actual' ? 
+                                        salesData['Mes Actual'] : salesData['Mes Anterior'];
+                                    const vendedor = monthData[context.label];
+                                    const total = context.raw;
+                                    
+                                    const lines = [`${context.dataset.label}: $${total.toLocaleString()}`];
+                                    vendedor.forEach(sale => {
+                                        lines.push(`${sale.type}: ${sale.quantity} × $${sale.price} = $${(sale.quantity * sale.price).toLocaleString()}`);
+                                    });
+                                    
+                                    return lines;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Crear tabla comparativa
+            const tableBody = document.getElementById('salesDetailsBody');
+            tableBody.innerHTML = ''; // Limpiar tabla existente
+
+            // Agregar encabezado
+            const headerRow = document.createElement('tr');
+            headerRow.innerHTML = `
+                <th>Vendedor</th>
+                <th>Mes Anterior</th>
+                <th>Mes Actual</th>
+                <th>Tipo de Web</th>
+                <th>Cantidad Anterior</th>
+                <th>Cantidad Actual</th>
+                <th>Precio Unit.</th>
+                <th>Total Anterior</th>
+                <th>Total Actual</th>
+                <th>Diferencia</th>
+            `;
+            tableBody.appendChild(headerRow);
+
+            // Llenar tabla con datos comparativos
+            previousMonthTotals.forEach(({name}) => {
+                const previousSales = salesData['Mes Anterior'][name];
+                const currentSales = salesData['Mes Actual'][name];
+                
+                const previousTotal = previousSales.reduce((sum, sale) => sum + (sale.quantity * sale.price), 0);
+                const currentTotal = currentSales.reduce((sum, sale) => sum + (sale.quantity * sale.price), 0);
+                const difference = currentTotal - previousTotal;
+                const percentChange = ((difference / previousTotal) * 100).toFixed(1);
+
+                // Combinar ventas de ambos meses
+                const allProducts = [...new Set([
+                    ...previousSales.map(s => s.type),
+                    ...currentSales.map(s => s.type)
+                ])];
+
+                allProducts.forEach(productType => {
+                    const prevSale = previousSales.find(s => s.type === productType) || { quantity: 0, price: 0 };
+                    const currSale = currentSales.find(s => s.type === productType) || { quantity: 0, price: 0 };
+
+                    // Agregar fila de mes anterior
+                    const previousRow = document.createElement('tr');
+                    previousRow.innerHTML = `
+                        <td>${name}</td>
+                        <td>Anterior</td>
+                        <td>${productType}</td>
+                        <td>${prevSale.quantity}</td>
+                        <td>${currSale.quantity}</td>
+                        <td>$${prevSale.price.toLocaleString()}</td>
+                        <td>$${currSale.price.toLocaleString()}</td>
+                        <td>$${(prevSale.quantity * prevSale.price).toLocaleString()}</td>
+                        <td>$${(currSale.quantity * currSale.price).toLocaleString()}</td>
+                        <td rowspan="${allProducts.length}" style="color: ${difference > 0 ? '#00ff00' : '#ff0000'}">
+                            ${difference > 0 ? '+' : ''}$${difference.toLocaleString()} (${difference > 0 ? '+' : ''}${percentChange}%)
+                        </td>
+                    `;
+                    tableBody.appendChild(previousRow);
+                });
+
+                // Agregar separador
+                const separatorRow = document.createElement('tr');
+                separatorRow.innerHTML = '<td colspan="10" style="border-bottom: 2px solid var(--neon-blue);"></td>';
+                tableBody.appendChild(separatorRow);
+            });
+        });
+
+        // Estilo personalizado para SweetAlert2
+        const swalStyle = document.createElement('style');
+        swalStyle.innerHTML = `
+            .swal2-background {
+                width: 50%;
+                background: rgba(0, 10, 20, 0.7);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(0, 243, 255, 0.2);
+                border-radius: 10px;
+                color: var(--text-primary);
+                justify-content: center;
+            }
+        `;
+        document.head.appendChild(swalStyle);
+    </script>
+    
+</body>
+</html>

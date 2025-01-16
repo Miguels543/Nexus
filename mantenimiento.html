@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso No Disponible</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #00d5fa, #002a78);
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        .container {
+            text-align: center;
+            padding: 2rem;
+            background-color: rgba(25, 25, 35, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 121, 121, 0.2);
+            border: 1px solid #ff7979;
+        }
+
+        h1 {
+            color: #ff7979;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(255, 121, 121, 0.3);
+        }
+
+        .robots {
+            margin: 2rem 0;
+        }
+
+        .robot {
+            font-size: 4rem;
+            animation: shake 2s infinite;
+            display: inline-block;
+            margin: 0 1rem;
+            filter: drop-shadow(0 0 5px rgba(255, 121, 121, 0.3));
+            user-select: none;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+
+        .message {
+            color: #e0e0e0;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: rgba(255, 121, 121, 0.1);
+            border: 2px solid #ff7979;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 1.5rem;
+        }
+
+        .back-button:hover {
+            background-color: rgba(255, 121, 121, 0.2);
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 121, 121, 0.3);
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <a href="/" class="back-button">
+        <i class="fas fa-home"></i>
+    </a>
+    <div class="container">
+        <h1>Este curso no está disponible</h1>
+        <div class="robots">
+            <span class="robot">🤖</span>
+            <span class="robot" style="animation-delay: 0.5s">⚙️</span>
+            <span class="robot" style="animation-delay: 1s">🔧</span>
+        </div>
+        <p class="message">
+            Estamos preparando todo para ofrecerte este curso pronto.<br>
+            ¡Mantente atento a las novedades!
+        </p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,227 @@
+body::after {
+    display: none;
+}
+.ranking-container {
+    background: rgba(0, 10, 20, 0.8);
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 1000px;
+    border: 1px solid rgba(0, 243, 255, 0.2);
+}
+
+.ranking-container h1 {
+    color: var(--neon-blue);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+}
+
+.ranking-filters {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.filter-btn {
+    background: rgba(0, 243, 255, 0.1);
+    border: 1px solid var(--neon-blue);
+    color: var(--text-primary);
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--neon-blue);
+    color: var(--primary-bg);
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+}
+
+.ranking-table {
+    background: rgba(0, 10, 20, 0.5);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table-header {
+    display: grid;
+    grid-template-columns: 100px 1fr 150px 100px;
+    padding: 1rem;
+    background: rgba(0, 243, 255, 0.1);
+    font-weight: bold;
+    color: var(--neon-blue);
+}
+
+.ranking-row {
+    display: grid;
+    grid-template-columns: 100px 1fr 150px 100px;
+    padding: 1rem;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 243, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.ranking-row:hover {
+    background: rgba(0, 243, 255, 0.05);
+    transform: translateX(10px);
+}
+
+.position {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: bold;
+}
+
+.medal {
+    width: 24px;
+    height: 24px;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--neon-blue);
+}
+
+.points {
+    color: var(--neon-blue);
+    font-weight: bold;
+}
+
+.level {
+    text-align: center;
+    background: rgba(0, 243, 255, 0.1);
+    padding: 0.25rem 0.5rem;
+    border-radius: 15px;
+}
+
+.top-3 {
+    background: rgba(0, 243, 255, 0.05);
+}
+
+.top-3:nth-child(1) {
+    background: linear-gradient(90deg, rgba(255, 215, 0, 0.1), transparent);
+}
+
+.top-3:nth-child(2) {
+    background: linear-gradient(90deg, rgba(192, 192, 192, 0.1), transparent);
+}
+
+.top-3:nth-child(3) {
+    background: linear-gradient(90deg, rgba(205, 127, 50, 0.1), transparent);
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 5px rgba(0, 243, 255, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(0, 243, 255, 0.8); }
+    100% { box-shadow: 0 0 5px rgba(0, 243, 255, 0.5); }
+}
+
+.top-3 .user-avatar {
+    animation: glow 2s infinite;
+}
+
+.stats-section {
+    padding: 1rem;
+}
+
+.stat-card {
+    background: rgba(0, 10, 20, 0.7);
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 243, 255, 0.2);
+    border-color: rgba(0, 243, 255, 0.3);
+}
+
+.stat-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+}
+
+.stat-info h4 {
+    color: var(--neon-blue);
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+}
+
+.stat-value {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.counter {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-primary);
+}
+
+.trend {
+    font-size: 0.9rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 15px;
+}
+
+.trend.positive {
+    color: #00ff00;
+    background: rgba(0, 255, 0, 0.1);
+}
+
+.trend.negative {
+    color: #ff0000;
+    background: rgba(255, 0, 0, 0.1);
+}
+
+.stat-progress {
+    width: 100%;
+    height: 4px;
+    background: rgba(0, 243, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 0.5rem;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--neon-blue), #0066ff);
+    border-radius: 2px;
+    transition: width 1s ease;
+}
+
+/* Animación para los contadores */
+@keyframes countUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.counter {
+    animation: countUp 1s ease-out;
+}

@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nueva Página</title>
+    <link rel="stylesheet" href="assets/style/style-index.css">
+</head>
+<body>
+    <style>
+        body::after{
+            display: none;
+        }
+        .price-filter-container {
+            width: 100%;
+            padding: 15px 0;
+            margin-bottom: 20px;
+        }
+    
+        .price-filter-container label {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+        }
+    
+        .price-slider-wrapper {
+            position: relative;
+            padding: 10px 0;
+        }
+    
+        .price-slider {
+            width: 100%;
+            height: 4px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: rgba(0, 243, 255, 0.1);
+            border-radius: 2px;
+            outline: none;
+        }
+    
+        .price-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--neon-blue);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+    
+        .price-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.7);
+        }
+    
+        .price-tooltip {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            padding: 5px 10px;
+            background: rgba(0, 10, 20, 0.9);
+            border: 1px solid var(--neon-blue);
+            border-radius: 5px;
+            color: var(--text-primary);
+            font-size: 14px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+    
+        .price-tooltip .tooltip-arrow {
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid var(--neon-blue);
+        }
+    
+        .price-slider:hover + .price-tooltip,
+        .price-slider:active + .price-tooltip {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+        }
+        .search-filter-container {
+            margin-bottom: 30px;
+            padding: 20px;
+            
+            background: rgba(4, 134, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 243, 255, 0.1);
+        }
+    
+        .search-box {
+            width: 94%;
+            position: relative;
+            margin-bottom: 20px;
+        }
+    
+        .search-input {
+            width: 100%;
+            padding: 12px 40px 12px 15px;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(0, 10, 20, 0.3);
+            color: var(--text-primary);
+            font-size: 16px;
+        }
+    
+        .search-icon {
+            position: absolute;
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    
+        .filters {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+    
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+    
+        .filter-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+    
+        .filter-select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(0, 10, 20, 0.3);
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+    
+        .filter-select:hover {
+            border-color: var(--neon-blue);
+        }
+        .reto-card {
+            background: rgba(0, 10, 20, 0.3);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+    
+        .reto-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--neon-blue);
+            box-shadow: var(--glow-effect);
+        }
+    
+        .reto-titulo {
+            color: var(--neon-blue);
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+    
+        .reto-descripcion {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+    
+        .reto-detalles {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+    
+        .reto-precios {
+            display: flex;
+            gap: 20px;
+        }
+    
+        .precio-item {
+            background: rgba(0, 243, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 8px;
+            color: var(--text-primary);
+        }
+    
+        .reto-botones {
+            display: flex;
+            gap: 10px;
+        }
+    
+        .btn {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+    
+        .btn-detalles {
+            background: rgba(0, 243, 255, 0.2);
+            color: var(--neon-blue);
+        }
+    
+        .btn-vender {
+            background: var(--neon-blue);
+            color: var(--primary-bg);
+        }
+    
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: var(--glow-effect);
+        }
+        .modal-link {
+            color: var(--neon-blue);
+            text-decoration: none;
+            position: relative;
+            transition: all 0.3s ease;
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 4px;
+            height: 40px;
+    
+        }
+    
+        .modal-link:hover {
+            transform: translateY(-3px);
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid rgba(0, 243, 255, 0.2);        
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+            animation: linkGlow 1.5s infinite;
+            color: white;
+            font-size: 20pzx;
+        }
+    
+        @keyframes linkGlow {
+            0% {
+                box-shadow: 0 0 5px rgba(0, 243, 255, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+            }
+            100% {
+                box-shadow: 0 0 5px rgba(0, 243, 255, 0.3);
+            }
+        }
+        
+
+        .modal-css {
+            display: none;
+            position: fixed;
+            z-index: 0!;
+            top: 0;
+            width: 200%;
+            height: 200%;
+            padding-left: 100px;
+            margin-left: -100px;
+            background-color: rgba(0, 0, 0, 0.9); /* Aumentar la opacidad del fondo */
+            backdrop-filter: none; /* Eliminar el desenfoque para un fondo opaco */
+        }
+        
+        .modal-contenido-css {
+            background: rgba(0, 10, 20, 0.95);
+            border: 1px solid var(--neon-blue);
+            border-radius: 15px;
+            margin: 15% auto;
+            padding: 30px;
+            width: 90%;
+            height: 85%;
+            max-width: 800px;
+            height: 43%;
+            position: relative;
+            margin-left: 100px;
+            margin-top: 20px;
+        }
+        
+        .cerrar-modal-css {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .cerrar-modal-css:hover {
+            color: red;
+        }
+
+        #modal-toggle {
+            display: none;
+        }
+        #modal-toggle:checked + .modal-css {
+            display: block;
+        }
+        .left-sidebar,
+        .right-sidebar {
+            z-index: 10000; /* Un z-index bajo para que el modal esté por encima */
+        }
+        @media screen and (max-width: 490px){
+            .precio-item{
+                position: relative;
+                width: 120px;
+                max-width: 200%;
+            }
+            .btn-detalles{
+                position: absolute;
+                margin-top: 10px;
+                margin-left: -300px;
+            }
+            .btn-vender{
+                position: absolute;
+                margin-top: 10px;
+                margin-left: -130px;
+            }
+            .reto-card{
+                max-height: 200%;
+                height: 450px;
+            }
+            #btn-cola{
+                margin-left: -140px;
+            }
+        }
+    </style>
+    
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            margin-left: -360px;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            padding-left: 100px;
+            padding-top: 20px;
+            background-color: rgba(0,0,0,0.85);
+            backdrop-filter: blur(5px);
+        }
+    
+        .modal-contenido {
+            background: rgba(0, 10, 20, 0.95);
+            border: 1px solid var(--neon-blue);
+            border-radius: 15px;
+            margin: 15% auto;
+            padding: 30px;
+            width: 90%;
+            max-width: 800px;
+            margin-top: -0px;
+            position: relative;
+            color: var(--text-primary);
+            height: auto;
+            min-height: 550px;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+        }
+    
+        .cerrar-modal {
+            color: var(--neon-blue);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    
+        .cerrar-modal:hover {
+            color: red;
+        }
+    
+        .modal-galeria {
+            margin-top: -10px;
+            float: left;
+            width: 45%;
+            position: relative;
+            height: calc(100% - 60px);
+        }
+    
+        .contenedor-imagen {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+    
+        .contenedor-imagen img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            background: rgba(0, 10, 20, 0.3);
+        }
+    
+        .contenedor-imagen:hover .controles-imagen {
+            opacity: 1;
+        }
+    
+        .controles-imagen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            background: rgba(0, 0, 0, 0.3);
+        }
+    
+        .flecha-izq, .flecha-der {
+            background: transparent;
+            border: none;
+            color: var(--neon-blue);
+            padding: 10px 15px;
+            cursor: pointer;
+            z-index: 2;
+            font-size: 24px;
+            transition: all 0.3s ease;
+        }
+    
+        .flecha-izq:hover, .flecha-der:hover {
+            transform: scale(1.2);
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+    
+        .flecha-izq::before {
+            content: '◄';
+        }
+    
+        .flecha-der::before {
+            content: '►';
+        }
+    
+        .btn-ojo {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 10, 20, 0.7);
+            border: 1px solid var(--neon-blue);
+            color: var(--neon-blue);
+            padding: 8px 16px;
+            cursor: pointer;
+            z-index: 2;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+    
+        .btn-ojo:hover {
+            background: rgba(0, 243, 255, 0.2);
+            transform: translateX(-50%) scale(1.1);
+        }
+    
+        .descripcion-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 90%;
+            height: 100%;
+            background: rgba(0, 10, 20, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+            color: var(--text-primary);
+            font-size: 1.1em;
+            line-height: 1.6;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+    
+        .descripcion-overlay.visible {
+            opacity: 1;
+        }
+    
+        .info-precio {
+            position: relative;
+            width: 350px;
+        }
+    
+        .precio-principal {
+            position: relative;
+            font-size: 24px;
+            color: var(--neon-blue);
+            margin-bottom: 10px;
+        }
+    
+        .comision-animada {
+            margin-top: -35px;
+            margin-left: 230px;
+            position: absolute;
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            animation: bounceText 1s ease-in-out infinite;
+            transform-origin: center;
+        }
+    
+        @keyframes bounceText {
+            0% {
+                transform: scale(1) rotate(0deg);
+            }
+            25% {
+                transform: scale(1.2) rotate(-5deg);
+            }
+            50% {
+                transform: scale(1) rotate(0deg);
+            }
+            75% {
+                transform: scale(1.2) rotate(5deg);
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+            }
+        }
+    
+        .publico-objetivo {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-top: -5px;
+        }
+    
+        .lista-funciones {
+            float: right;
+            width: 45%;
+            padding-left: 5%;
+            margin-top: 0;
+            height: calc(100% - 60px);
+            display: flex;
+            flex-direction: column;
+        }
+    
+        .lista-funciones h3 {
+            margin-bottom: 15px;
+        }
+    
+        .lista-funciones ul {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding-right: 15px;
+            margin: 0;
+        }
+    
+        .lista-funciones ul li {
+            margin-bottom: 12px;
+            padding: 10px;
+            background: rgba(0, 243, 255, 0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(0, 243, 255, 0.1);
+        }
+    
+        .botones-accion {
+            position: absolute;
+            top: 500px;
+            right: 110px;
+            display: flex;
+            gap: 10px;
+        }
+    
+        .btn-misiones, .btn-vender {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+    
+        .btn-misiones {
+            background: rgba(0, 243, 255, 0.2);
+            color: var(--neon-blue);
+        }
+    
+        .btn-vender {
+            background: var(--neon-blue);
+            color: var(--primary-bg);
+        }
+    
+        .btn-misiones:hover, .btn-vender:hover {
+            transform: scale(1.05);
+            box-shadow: var(--glow-effect);
+        }
+        /* Estilos para botones de retos */
+        .reto-botones {
+            display: flex;
+            gap: 10px;
+        }
+    
+        .btn {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+    
+        .btn-detalles {
+            background: rgba(0, 243, 255, 0.2);
+            color: var(--neon-blue);
+        }
+    
+        .btn-vender-reto {
+            background: var(--neon-blue);
+            color: var(--primary-bg);
+        }
+    
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: var(--glow-effect);
+        }
+    
+        /* Estilos para botones del modal */
+        .modal-botones {
+            position: absolute;
+            top: 560px;
+            right: 100px;
+            display: flex;
+            gap: 10px;
+            
+        }
+    
+        .btn-modal {
+            font-size: 20px;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+    
+        .btn-misiones {
+            background: rgba(0, 243, 255, 0.2);
+            color: var(--neon-blue);
+        }
+    
+        .btn-vender-modal {
+            background: var(--neon-blue);
+            color: var(--primary-bg);
+        }
+    
+        .btn-modal:hover {
+            transform: scale(1.05);
+            box-shadow: var(--glow-effect);
+        }
+        /* Estilo para los select */
+        select {
+            appearance: none;
+            background: rgba(0, 10, 20, 0.3);
+            border: 1px solid var(--neon-blue);
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+            padding: 8px 12px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        select:hover {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        select:focus {
+            outline: none;
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 15px var(--neon-blue);
+        }
+
+        /* Estilo para las opciones del select */
+        select option {
+            background-color: rgba(0, 10, 20, 0.9);
+            color: white;
+            padding: 10px;
+        }
+
+        select option:hover {
+            background-color: var(--neon-blue);
+            color: black;
+        }
+    </style>
+    <!-- Navegación izquierda -->
+    <nav class="left-sidebar">
+        <ul class="nav-links">
+            <li><a href="#"><span class="icon">👤</span><span class="text">Perfil</span></a></li>
+            <li><a href="index.html"><span class="icon">🏠</span><span class="text">Inicio</span></a></li>
+            <li><a href="portafolio.html"><span class="icon">📂</span><span class="text">Portafolio</span></a></li>
+            <li><a href="cursos.html"><span class="icon">📚</span><span class="text">Cursos</span></a></li>
+            <li><a href="solicitud.html"><span class="icon">📝</span><span class="text">Solicitud</span></a></li>
+            <li><a href="planes.html"><span class="icon">💎</span><span class="text">Planes</span></a></li>
+            <li><a href="blog.html"><span class="icon">📰</span><span class="text">Blog</span></a></li>
+            <li><a href="nosotros.html"><span class="icon">ℹ</span><span class="text">Nosotros</span></a></li>
+            <li><a href="clasificacion.html"><span class="icon">🏆</span><span class="text">Clasificación</span></a></li>
+            <li><a href="retos1.html"><span class="icon">🎯</span><span class="text">Retos</span></a></li>
+            <li><a href="workadventure.html"><span class="icon">🎮</span><span class="text">WorkAdventure</span></a></li>
+            <li><a href="guia.html"><span class="icon">📖</span><span class="text">Guía</span></a></li>
+        </ul>
+    </nav>
+
+    <!-- Contenido principal -->
+    <div class="main-content">
+        <div class="retos-container">
+            <h1>Contenido de la Nueva Página</h1>
+            
+            <!-- Buscador y filtros -->
+            <div class="search-filter-container">
+                <div class="search-box">
+                    <input type="text" id="searchRetos" placeholder="Buscar..." class="search-input">
+                    <span class="search-icon"></span>
+                </div>
+                
+                <div class="filters">
+                    <div class="filter-group">
+                        <label for="categoria">Categoría:</label>
+                        <select id="categoria" class="filter-select">
+                            <option value="todos">Todas las categorías</option>
+                            <option value="e-commerce">E-commerce</option>
+                            <option value="restaurantes">Restaurantes</option>
+                            <option value="blogs">Blogs</option>
+                            <option value="portafolio">Portafolio</option>
+                            <option value="noticias">Noticias</option>
+                            <option value="educacion">Educación</option>
+                            <option value="entretenimiento">Entretenimiento</option>
+                            <option value="corporativas">Corporativas</option>
+                            <option value="inmobiliarias">Inmobiliarias</option>
+                            <option value="viajes">Viajes y turismo</option>
+                            <option value="salud">Salud y bienestar</option>
+                            <option value="tecnologia">Tecnología</option>
+                            <option value="finanzas">Servicios financieros</option>
+                            <option value="ong">ONG y sin fines de lucro</option>
+                            <option value="moda">Moda y belleza</option>
+                            <option value="eventos">Eventos y conferencias</option>
+                            <option value="deportes">Deportes y fitness</option>
+                            <option value="fotografia">Fotografía</option>
+                            <option value="musica">Música y bandas</option>
+                            <option value="foros">Foros y comunidades</option>
+                        </select>
+                    </div>  
+
+                    <div class="filter-group">
+                        <label for="disponibilidad">Disponibilidad:</label>
+                        <select id="disponibilidad" class="filter-select">
+                            <option value="todos">Todos</option>
+                            <option value="disponible">Disponibles</option>
+                            <option value="en-cola">En cola</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="price-filter-container">
+                <label for="priceRange">Rango de Precio:</label>
+                <div class="price-slider-wrapper">
+                    <input type="range" 
+                           id="priceRange" 
+                           min="0" 
+                           max="100000" 
+                           value="50000" 
+                           class="price-slider">
+                    <div class="price-tooltip">
+                        <span class="tooltip-text">S/50,000</span>
+                        <div class="tooltip-arrow"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Agregar este contenedor para las tarjetas de retos -->
+            <div class="retos-grid">
+               
+                <div class="reto-card" data-categoria="restaurantes" data-estado="disponible">
+                    <h2 class="reto-titulo">Página Web para Restaurante Italiano</h2>
+                    <p class="reto-descripcion">
+                        Diseño moderno y elegante para restaurante italiano de alta cocina. Incluye menú interactivo, sistema de reservas, galería de platillos y sección de eventos especiales. Optimizado para móviles y con integración de redes sociales.
+                    </p>
+                    <div class="reto-detalles">
+                        <div class="reto-precios">
+                            <div class="precio-item">Precio: S/1,500-S/2,000</div>
+                            <div class="precio-item">Comisión: 20%</div>
+                        </div>
+                        <div class="reto-botones">
+                            <button class="btn btn-detalles" onclick="mostrarDetalles('restaurante')">Ver Detalles</button>
+                            <button class="btn btn-vender" onclick="mostrarModalConfirmacion('restaurante', 'disponible')">Vender</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="reto-card" data-categoria="e-commerce" data-estado="en-cola">
+                    <h2 class="reto-titulo">E-commerce de Productos Artesanales</h2>
+                    <p class="reto-descripcion">
+                        Tienda en línea completa para artesanos locales. Incluye catálogo de productos, carrito de compras, pasarela de pagos, sistema de gestión de inventario y panel de administración intuitivo.
+                    </p>
+                    <div class="reto-detalles">
+                        <div class="reto-precios">
+                            <div class="precio-item">Precio: S/2,800-S/3,500</div>
+                            <div class="precio-item">Comisión: 25%</div>
+                        </div>
+                        <div class="reto-botones">
+                            <button class="btn btn-detalles" onclick="mostrarDetalles('ecommerce')">Ver Detalles</button>
+                            <button class="btn btn-vender" id="btn-cola"  onclick="mostrarModalConfirmacion('ecommerce', 'en-cola')">Unirse a la cola</button>
+                        </div>
+                    </div>
+                    
+                </div>
+               
+                <div id="modalDetalles" class="modal-css">
+                    <div class="modal-contenido-css">
+                        <span class="cerrar-modal-css" onclick="cerrarModal()">×</span>
+                        <h2 id="modalTitulo">Título del Modal</h2>
+                        <div id="modalInfo">
+                            <!-- Aquí va el contenido dinámico del modal -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Barra lateral derecha -->
+    <aside class="right-sidebar">
+        <div class="profile-section">
+            <h3>Perfil de Usuario</h3>
+            <div class="stat-item">
+                <span>Usuario:</span>
+                <span>JohnDoe</span>
+            </div>
+            <div class="stat-item">
+                <span>Nivel:</span>
+                <span>42</span>
+            </div>
+            <div class="stat-item">
+                <span>Experiencia:</span>
+                <span>4,250 / 5,000</span>
+            </div>
+        </div>
+
+        <div class="stats-section">
+            <h3>Estadísticas</h3>
+            <div class="stat-item">
+                <span>Cursos Completados:</span>
+                <span>15</span>
+            </div>
+            <div class="stat-item">
+                <span>Retos Cumplidos:</span>
+                <span>28</span>
+            </div>
+            <div class="stat-item">
+                <span>Puesto en la Liga:</span>
+                <span>12</span>
+            </div>
+        </div>
+    </aside>
+
+<style>
+.modal-confirmacion {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.752);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.confirmacion-contenido {
+    background: rgba(0, 12, 24, 0.95);
+    border: 1px solid var(--neon-blue);
+    box-shadow: 0 0 15px var(--neon-blue);
+    border-radius: 10px;
+    padding: 30px;
+    max-width: 600px;
+    width: 90%;
+    color: white;
+}
+.contenido-confirmado {
+    background: rgba(0, 12, 24, 0.95);
+    border: 1px solid var(--neon-blue);
+    box-shadow: 0 0 15px var(--neon-blue);
+    border-radius: 10px;
+    padding: 30px;
+    max-width: 600px;
+    width: 90%;
+    height: 90%;
+    color: white;
+}
+.text-center {
+    text-align: center;
+    background: linear-gradient(45deg, #00ffcc, #00ccff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    text-shadow: 0 0 10px rgba(0,255,204,0.5);
+    margin-bottom: 30px;
+    color: rgb(255, 255, 255);
+    font-size: 1.8em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        filter: drop-shadow(0 0 2px #000000);
+    }
+    to {
+        filter: drop-shadow(0 0 8px #00ccff);
+    }
+}
+
+.mensaje-cola {
+    background: rgba(0,30,60,0.5);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.mensaje-principal {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    color: var(--neon-blue);
+    height: 100%;
+}
+
+.mensaje-secundario {
+    margin-bottom: 10px;
+}
+
+.seccion-importante {
+    background: rgba(0,30,60,0.5);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+.seccion-importante h3 {
+    text-align: center;
+    justify-content: center;
+    font-size: 1.5em;
+    margin-top: -10px;
+}
+.seccion-importante ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+.seccion-importante li {
+    padding: 5px 0;
+    margin: 5px 0;
+    border-bottom: 1px solid rgba(255,107,107,0.2);
+}
+
+.seccion-advertencia {
+    background: linear-gradient(135deg, rgba(255,0,0,0.05), rgba(255,0,0,0.08));
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ff6b6b;
+    font-size: 15px;
+}
+.seccion-advertencia h3 {
+    text-align: center;
+    justify-content: center;
+    font-size: 1.5em;
+    margin-top: -10px;
+}
+.seccion-advertencia ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+.seccion-advertencia li {
+    padding: 5px 0;
+    margin: 5px 0;
+    border-bottom: 1px solid rgba(255,107,107,0.2);
+}
+.confirmacion-botones {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.btn-confirmar {
+    padding: 15px 35px;
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.4s ease;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(0, 198, 255, 0.3);
+}
+
+.btn-confirmar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 198, 255, 0.4);
+    background: linear-gradient(45deg, #0072ff, #00c6ff);
+}
+
+.btn-cancelar {
+    padding: 13px 30px;
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(255, 65, 108, 0.3);
+}
+
+.btn-cancelar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 65, 108, 0.4);
+    background: linear-gradient(45deg, #ff4b2b, #ff416c);
+}
+
+</style>
+    
+    <script>
+        // Función para mostrar el modal de confirmación
+        function mostrarModalConfirmacion(tipo, estado) {
+            const confirmacionHTML = `
+                <div id="modalConfirmacion" class="modal-confirmacion">
+                    <div class="confirmacion-contenido">
+                        <h2 class="text-center">
+                            ${estado === 'en-cola' ? 'Unirse a la Cola' : 'Reservar Sitio Web'}
+                        </h2>
+                        <p class="text-center">
+                            ${estado === 'en-cola' 
+                                ? '¿Estás seguro que deseas unirte a la cola para este proyecto?' 
+                                : '¿Deseas tomar este proyecto?'}
+                        </p>
+                        <div class="confirmacion-botones">
+                            <button class="btn-confirmar">Confirmar</button>
+                            <button class="btn-cancelar">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.insertAdjacentHTML('beforeend', confirmacionHTML);
+            
+            const modalConfirmacion = document.getElementById('modalConfirmacion');
+            const btnConfirmar = modalConfirmacion.querySelector('.btn-confirmar');
+            const btnCancelar = modalConfirmacion.querySelector('.btn-cancelar');
+            
+            btnConfirmar.addEventListener('click', () => {
+                modalConfirmacion.remove();
+                mostrarConfirmacionFinal(tipo, estado);
+            });
+            
+            btnCancelar.addEventListener('click', () => {
+                modalConfirmacion.remove();
+            });
+        }
+
+        // Función para mostrar la confirmación final
+        function mostrarConfirmacionFinal(tipo, estado) {
+            const confirmacionFinalHTML = `
+                <div id="modalConfirmacionFinal" class="modal-confirmacion">
+                    <div class="contenido-confirmado">
+                        <h2 class="text-center">
+                            <span class="emoji-title">🎉</span> 
+                            ¡Reserva Exitosa! 
+                            <span class="emoji-title">🎉</span>
+                        </h2>
+
+                        ${estado === 'en-cola' 
+                            ? `
+                            <div class="mensaje-cola">
+                                <p class="mensaje-principal">
+                                    ✨ ¡Te has unido exitosamente a la cola de espera! 
+                                </p>
+                                <div class="seccion-importante">
+                                    <h3>🌟 Tu Posición Asegurada</h3>
+                                    <ul>
+                                        <li>📱 Te notificaremos inmediatamente cuando sea tu turno</li>
+                                        <li>⚡ Acceso prioritario cuando el proyecto esté disponible</li>
+                                        <li>🎯 Oportunidad de preparar una propuesta única</li>
+                                        <li>💫 Posibilidad de destacar entre otros vendedores</li>
+                                    </ul>
+                                </div>
+                                <p class="mensaje-secundario warning" style="background: linear-gradient(135deg, rgba(255,165,0,0.1), rgba(255,0,0,0.1)); padding: 10px; border-radius: 8px; border: 2px solid #ffa500; box-shadow: 0 0 10px rgba(255,165,0,0.3); color: #ffa500;">
+                                    <span style="display: flex; align-items: flex-start;">
+                                        <span style="margin-right: 5px;">⏰</span>
+                                        <span>
+                                            <strong style="text-shadow: 0 0 5px rgba(255,165,0,0.5);">Importante</strong>: 
+                                            <span style="display: inline-block; margin-left: 0; font-size: 16px;">Tienes 24 horas para confirmar tu turno o perderás la oportunidad.</span>
+                                        </span>
+                                    </span>
+                                </p>
+                            </div>
+                            `
+                            : `
+                            <div class="mensaje-reserva">
+                                <div class="seccion-importante">
+                                    <h3>🚨 INFORMACIÓN IMPORTANTE 🚨</h3>
+                                    <ul>
+                                        <li>✅ Has reservado el sitio web exitosamente</li>
+                                        <li>⏰ Tienes 6 DÍAS para completar la venta</li>
+                                        <li>💬 Mantén comunicación activa con el cliente</li>
+                                    </ul>
+                                </div>
+
+                                <div class="seccion-advertencia">
+                                    <h3>⚠️ ADVERTENCIA ⚠️</h3>
+                                    <ul>
+                                        <li>⏰ Si no confirmas la venta en 6 días:</li>
+                                        <li>🔄 El sitio web volverá a estar disponible</li>
+                                        <li>❌ Se registrará como venta NO COMPLETADA</li>
+                                        <li>⭐ Afectará tu reputación como vendedor</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            `
+                        }
+                        
+                        <div class="confirmacion-botones">
+                            <button class="btn-confirmar" style="margin-top: -10px;">¡Entendido! 👍</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.insertAdjacentHTML('beforeend', confirmacionFinalHTML);
+            
+            const modalConfirmacionFinal = document.getElementById('modalConfirmacionFinal');
+            const btnEntendido = modalConfirmacionFinal.querySelector('.btn-confirmar');
+            
+            btnEntendido.addEventListener('click', () => {
+                modalConfirmacionFinal.remove();
+            });
+        }
+
+        function mostrarDetalles(tipo) {
+                const modal = document.getElementById('modalDetalles');
+                const titulo = document.getElementById('modalTitulo');
+                const info = document.getElementById('modalInfo');
+
+                const detalles = {
+                    'restaurante': {
+                        titulo: 'Detalles del Proyecto - Restaurante Italiano',
+                        imagenes: [
+                            'Imagen/image1.png',
+                            'Imagen/image2.png',
+                            'Imagen/image3.png'
+                        ],
+                        descripcionGeneral: 'Sitio web elegante y moderno para restaurante italiano de alta cocina, con diseño responsivo y experiencia de usuario optimizada.',
+                        precio: '$1,500-$2,000',
+                        comision: '20%',
+                        publicoObjetivo: 'Público objetivo: Ideal para restaurantes de alta cocina que buscan una presencia digital sofisticada y funcional.',
+                        funciones: [
+                            'Diseño responsivo y adaptable',
+                            'Sistema de reservas en línea',
+                            'Menú digital interactivo', 
+                            'Galería de imágenes',
+                            'Integración con redes sociales'
+                        ],
+                        misiones: [
+                            {
+                                icono: '📱',
+                                texto: 'Compartir en 3 grupos de Facebook',
+                                precio: 150
+                            },
+                            {
+                                icono: '💼',
+                                texto: 'Crear 2 publicaciones en LinkedIn',
+                                precio: 200
+                            },
+                            {
+                                icono: '⭐',
+                                texto: 'Conseguir 5 reseñas positivas',
+                                precio: 300
+                            }
+                        ],
+                        tecnologias: 'HTML5, CSS3, JavaScript, PHP',
+                        tiempoEntrega: '3 semanas',
+                        enlace: 'https://ejemplo-restaurante.com'
+                    },
+                    'ecommerce': {
+                        titulo: 'Detalles del Proyecto - E-commerce Artesanal',
+                        imagenes: [
+                            'Imagen/image1.png',
+                            'Imagen/image2.png',
+                            'Imagen/image3.png'
+                        ],
+                        descripcionGeneral: 'Plataforma completa de comercio electrónico para artesanos, con todas las funcionalidades necesarias para vender productos en línea.',
+                        precio: '$2,800-$3,500',
+                        comision: '25%',
+                        publicoObjetivo: 'Público objetivo: Perfecto para artesanos y pequeños negocios que quieren vender sus productos en línea.',
+                        funciones: [
+                            'Catálogo de productos',
+                            'Sistema de carrito de compras',
+                            'Panel de administración',
+                            'Gestión de inventario',
+                            'Pasarela de pagos'
+                        ],
+                        misiones: [
+                            {
+                                icono: '🛍️',
+                                texto: 'Conseguir 3 vendedores artesanales',
+                                precio: 250
+                            },
+                            {
+                                icono: '📢',
+                                texto: 'Crear contenido para redes sociales',
+                                precio: 180
+                            },
+                            {
+                                icono: '📧',
+                                texto: 'Obtener 10 suscriptores al newsletter',
+                                precio: 220
+                            }
+                        ],
+                        tecnologias: 'React, Node.js, MongoDB',
+                        tiempoEntrega: '6 semanas',
+                        enlace: 'https://ejemplo-ecommerce.com'
+                    }
+                };
+
+                let currentImageIndex = 0;
+                let descripcionVisible = false;
+
+                const modalHTML = `
+                    <div class="modal-botones">
+                        <button class="btn-modal btn-misiones">Misiones</button>
+                        <button class="btn-modal btn-vender-modal">Vender</button>
+                    </div>
+                    <div class="modal-galeria">
+                        <div class="contenedor-imagen">
+                            <img src="https://res.cloudinary.com/dnw35uxqn/image/upload/v1734421896/clipboard-image-1734421812_olhxlv.png" alt="Vista previa">
+                            <div class="controles-imagen">
+                                <button class="flecha-izq"></button>
+                                <button class="flecha-der"></button>
+                                <button class="btn-ojo" data-estado="cerrado">👁️</button>
+                            </div>
+                            <div class="descripcion-overlay" style="display: none">
+                                <p>${detalles[tipo].descripcionGeneral}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="precios-container">
+                            <div class="precio-principal">${detalles[tipo].precio}</div>
+                            <div class="comision-animada">Comisión: ${detalles[tipo].comision}</div>
+                        </div>
+                        <p class="publico-objetivo">${detalles[tipo].publicoObjetivo}</p>
+                    </div>
+                    <div class="lista-funciones">
+                        <h3>Funcionalidades:</h3>
+                        <ul>
+                            ${detalles[tipo].funciones.map(f => `<li>${f}</li>`).join('')}
+                        </ul>
+                        <h3>Enlace:</h3>
+                        <a href="${detalles[tipo].enlace}" target="_blank" class="modal-link">${detalles[tipo].enlace}</a>
+                    </div>
+                `;
+                
+
+                info.innerHTML = modalHTML;
+                titulo.innerHTML = detalles[tipo].titulo;
+                modal.style.display = "block";
+
+                // Event listeners
+                const btnOjo = info.querySelector('.btn-ojo');
+                btnOjo.addEventListener('click', () => {
+                    const descripcion = info.querySelector('.descripcion-overlay');
+                    descripcionVisible = !descripcionVisible;
+                    if (descripcionVisible) {
+                        descripcion.style.display = 'flex';
+                        setTimeout(() => {
+                            descripcion.classList.add('visible');
+                        }, 10);
+                    } else {
+                        descripcion.classList.remove('visible');
+                        setTimeout(() => {
+                            descripcion.style.display = 'none';
+                        }, 300);
+                    }
+                    btnOjo.textContent = descripcionVisible ? '😴' : '👁️';
+                });
+
+                const flechaIzq = info.querySelector('.flecha-izq');
+                const flechaDer = info.querySelector('.flecha-der');
+                const imagen = info.querySelector('.contenedor-imagen img');
+
+                flechaIzq.addEventListener('click', () => {
+                    currentImageIndex = (currentImageIndex - 1 + detalles[tipo].imagenes.length) % detalles[tipo].imagenes.length;
+                    imagen.src = detalles[tipo].imagenes[currentImageIndex];
+                });
+
+                flechaDer.addEventListener('click', () => {
+                    currentImageIndex = (currentImageIndex + 1) % detalles[tipo].imagenes.length;
+                    imagen.src = detalles[tipo].imagenes[currentImageIndex];
+                });
+
+                const btnVender = info.querySelector('.btn-vender-modal');
+                const estado = document.querySelector(`[data-categoria="${tipo === 'restaurante' ? 'restaurantes' : 'e-commerce'}"]`).dataset.estado;
+                
+                btnVender.addEventListener('click', () => {
+                    modal.style.display = "none";
+                    mostrarModalConfirmacion(tipo, estado);
+                });
+
+                const btnMisiones = info.querySelector('.btn-misiones');
+                let mostrandoMisiones = false;
+
+                btnMisiones.addEventListener('click', () => {
+                    const modalGaleria = info.querySelector('.modal-galeria');
+                    
+                    if (!mostrandoMisiones) {
+                        const totalMisiones = detalles[tipo].misiones.reduce((total, mision) => total + mision.precio, 0);
+                        
+                        modalGaleria.innerHTML = `
+                            <div class="misiones-container">
+                                <h3>Misiones Secundarias</h3>
+                                <div class="misiones-lista">
+                                    ${detalles[tipo].misiones.map(mision => `
+                                        <div class="mision-item">
+                                            <div class="mision-contenido">
+                                                <span class="mision-icono">${mision.icono}</span>
+                                                <span class="mision-texto">${mision.texto}</span>
+                                            </div>
+                                            <span class="mision-precio">S/. ${mision.precio}</span>
+                                        </div>
+                                    `).join('')}
+                                </ul>
+                                <div class="misiones-total">
+                                    <span>Total por misiones:</span>
+                                    <span class="total-precio">S/. ${totalMisiones}</span>
+                                </div>
+                            </div>
+                        `;
+                        btnMisiones.textContent = 'Imágenes';
+                        mostrandoMisiones = true;
+                    } else {
+                        // Volver a la vista de imágenes
+                        modalGaleria.innerHTML = `
+                            <div class="contenedor-imagen">
+                                <img src="${detalles[tipo].imagenes[currentImageIndex]}" alt="Vista previa">
+                                <div class="controles-imagen">
+                                    <button class="flecha-izq"></button>
+                                    <button class="flecha-der"></button>
+                                    <button class="btn-ojo" data-estado="cerrado">👁️</button>
+                                </div>
+                                <div class="descripcion-overlay" style="display: none">
+                                    <p>${detalles[tipo].descripcionGeneral}</p>
+                                </div>
+                            </div>
+                            
+                            <div class="precios-container">
+                                <div class="precio-principal">${detalles[tipo].precio}</div>
+                                <div class="comision-animada">Comisión: ${detalles[tipo].comision}</div>
+                            </div>
+                            <p class="publico-objetivo">${detalles[tipo].publicoObjetivo}</p>
+                        `;
+                        btnMisiones.textContent = 'Misiones';
+                        mostrandoMisiones = false;
+                        reinstalarEventListenersGaleria();
+                    }
+                });
+            }
+            function cerrarModal() {
+    const modal = document.getElementById('modalDetalles');
+    modal.style.display = "none";
+}
+        // Función principal de filtrado
+        function filtrarRetos() {
+            const searchTerm = document.getElementById('searchRetos').value.toLowerCase();
+            const categoriaSeleccionada = document.getElementById('categoria').value;
+            const disponibilidadSeleccionada = document.getElementById('disponibilidad').value;
+            const precioMaximo = parseInt(document.getElementById('priceRange').value);
+            
+            const retos = document.querySelectorAll('.reto-card');
+            
+            retos.forEach(reto => {
+                const titulo = reto.querySelector('.reto-titulo').textContent.toLowerCase();
+                const descripcion = reto.querySelector('.reto-descripcion').textContent.toLowerCase();
+                const categoria = reto.dataset.categoria;
+                const estado = reto.dataset.estado;
+                
+                // Extraer precio mínimo del texto
+                const preciosTexto = reto.querySelector('.reto-precios').textContent;
+                const precios = preciosTexto.match(/S\/([0-9,]+)/g);
+                // Ahora tomamos el primer precio (el mínimo) del rango
+                const precioMin = precios ? parseInt(precios[0].replace(/S\/|,/g, '')) : 0;                
+                // Lógica de búsqueda
+                const cumpleBusqueda = searchTerm === '' || 
+                                    titulo.includes(searchTerm) || 
+                                    descripcion.includes(searchTerm);
+                
+                // Lógica de categoría
+                const cumpleCategoria = categoriaSeleccionada === 'todos' || 
+                                    categoria === categoriaSeleccionada;
+                
+                // Lógica de precio - ahora comparando con el precio mínimo
+                const cumplePrecio = precioMaximo >= precioMin;
+                
+                // Lógica de disponibilidad
+                const cumpleDisponibilidad = disponibilidadSeleccionada === 'todos' || 
+                                        estado === disponibilidadSeleccionada;
+
+                // Aplicar filtros con animación
+                if (cumpleBusqueda && cumpleCategoria && cumplePrecio && cumpleDisponibilidad) {
+                    reto.style.opacity = '1';
+                    reto.style.display = 'block';
+                } else {
+                    reto.style.opacity = '0';
+                    setTimeout(() => {
+                        reto.style.display = 'none';
+                    }, 300);
+                }
+            });
+        }
+
+        // Agregar event listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('searchRetos');
+            const categoriaSelect = document.getElementById('categoria');
+            const disponibilidadSelect = document.getElementById('disponibilidad');
+            const priceRange = document.getElementById('priceRange');
+            
+            searchInput.addEventListener('input', filtrarRetos);
+            categoriaSelect.addEventListener('change', filtrarRetos);
+            disponibilidadSelect.addEventListener('change', filtrarRetos);
+            priceRange.addEventListener('input', () => {
+                actualizarTooltipPrecio();
+                filtrarRetos();
+        });
+            
+        function actualizarTooltipPrecio() {
+    const slider = document.getElementById('priceRange');
+    const tooltip = document.querySelector('.price-tooltip');
+    const tooltipText = tooltip.querySelector('.tooltip-text');
+    
+    // Actualizar el texto del precio
+    tooltipText.textContent = `S/${parseInt(slider.value).toLocaleString()}`;
+    
+    // Calcular la posición del tooltip
+    const sliderWidth = slider.offsetWidth;
+    const sliderValue = slider.value;
+    const min = slider.min;
+    const max = slider.max;
+    const percentage = ((sliderValue - min) / (max - min)) * 100;
+    const tooltipPosition = (percentage * sliderWidth) / 100 - 402;
+    
+    // Actualizar la posición del tooltip, sin hacer visible el tooltip
+    tooltip.style.transform = `translateX(${tooltipPosition}px) translateY(0) scale(1)`;
+}
+
+// Modificar los event listeners
+document.addEventListener('DOMContentLoaded', function() {
+    const priceSlider = document.getElementById('priceRange');
+    const tooltip = document.querySelector('.price-tooltip');
+    
+    // Evento para actualización continua durante el arrastre
+    priceSlider.addEventListener('input', actualizarTooltipPrecio);
+    
+    // Mostrar tooltip al pasar el mouse
+    priceSlider.addEventListener('mouseover', () => {
+        tooltip.style.opacity = '1';
+        tooltip.style.transform = `translateY(0) scale(1)`;
+        tooltip.style.transition = 'all 0.3s ease-out';
+        actualizarTooltipPrecio();
+    });
+    
+    // Ocultar tooltip con animación hacia abajo al salir el mouse
+    priceSlider.addEventListener('mouseout', () => {
+        tooltip.style.opacity = '0';
+        tooltip.style.transform = `translateY(20px) scale(0.8)`;
+        tooltip.style.transition = 'all 0.3s ease-out';
+    });
+    
+    // Actualizar posición durante el scroll, solo si el tooltip está visible
+    window.addEventListener('scroll', () => {
+        if (tooltip.style.opacity === '1') {
+            actualizarTooltipPrecio();
+        }
+    });
+});
+
+         });
+    </script>
+
+</body>
+</html>

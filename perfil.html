@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="">
+    <title>Perfil de Usuario</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+    --primary-bg: #000000;
+    --neon-blue: #00f3ff;
+    --text-primary: #ffffff;
+    --text-secondary: #b3b3b3;
+    --glow-effect: 0 0 10px rgba(0, 243, 255, 0.5);
+    --gradient-bg: linear-gradient(45deg, rgba(0, 243, 255, 0.1), rgba(138, 43, 226, 0.1));
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: var(--primary-bg);
+    background-image:  url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ima-Rl0Ue5Ue5Ue5Ue5Ue5Ue5Ue5Ue5Ue5Ue5Ue5.png');
+    background-size: cover;
+    font-family: 'Roboto', sans-serif;
+}
+
+.left-sidebar {
+    width: 50px;
+    height: calc(590px - 40px);
+    background: rgba(0, 10, 20, 0);
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 0;
+    z-index: 100;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    transition: width 0.3s ease;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 243, 255, 0.2);
+}
+
+.left-sidebar:hover {
+    width: 200px;
+}
+
+.left-sidebar::-webkit-scrollbar {
+    display: none;
+}
+
+.nav-links {
+    margin-top: -20px;
+    list-style: none;
+    width: 100%;
+    padding: 0;
+}
+
+.nav-links a {
+    color: var(--text-primary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 45px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    padding: 0 15px;
+    margin-bottom: -0px;
+    position: relative;
+}
+
+.nav-links .icon {
+    font-size: 25px;
+    min-width: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-links .text {
+    margin-left: 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.left-sidebar:hover .nav-links .text {
+    opacity: 1;
+}
+
+.nav-links a:hover {
+    background: linear-gradient(90deg, rgba(0, 243, 255, 0.1), transparent);
+    text-shadow: 0 0 5px var(--neon-blue);
+}
+
+.nav-links a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 0;
+    background: var(--neon-blue);
+    transition: height 0.3s ease;
+}
+
+.nav-links a:hover::before {
+    height: 80%;
+}
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 20px;
+            color: white;
+        }
+
+        .profile-header {
+            background: linear-gradient(45deg, #000346, #00fff2);
+            border-radius: 15px 15px 0 0;
+            height: 200px;
+            position: relative;
+        }
+
+        .profile-card {
+            background: #000229be;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid var(--neon-blue);
+
+        }
+
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid var(--neon-blue);
+            position: absolute;
+            bottom: -75px;
+            left: 50px;
+            background-color: #e0e0e0;
+        }
+
+        .user-info {
+            margin-top: 90px;
+            padding: 20px 50px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background:#010e4771;
+            padding: 1rem;
+            border: 1px solid var(--neon-blue);
+            color: white;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--neon-blue);
+        }
+
+        .section {
+            background: #000229be;
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid var(--neon-blue);
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+        }
+
+        .courses-grid, .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .course-card, .project-card {
+            background: #00285065;
+            border-radius: 10px;
+            border: 1px solid var(--neon-blue);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .course-card:hover, .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            background: #e0e0e0;
+        }
+
+        .card-content {
+            padding: 1rem;
+            
+        }
+
+        .card-content h3 {
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            margin: 0.5rem 0;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: var(--neon-blue);
+            border-radius: 5px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            background: var(--neon-blue);
+            color: rgb(0, 0, 0);
+            font-size: 0.85rem;
+            margin: 0.25rem;
+        }
+
+        .completion-date {
+            color: #cecece;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .profile-photo {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .user-info {
+                text-align: center;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="left-sidebar">
+        <ul class="nav-links">
+            <li><a href="perfil.html"><span class="icon">👤</span><span class="text">Perfil</span></a></li>
+            <li><a href="index.html"><span class="icon">🏠</span><span class="text">Inicio</span></a></li>
+            <li><a href="portafolio.html"><span class="icon">📂</span><span class="text">Portafolio</span></a></li>
+            <li><a href="cursos.html"><span class="icon">📚</span><span class="text">Cursos</span></a></li>
+            <li><a href="solicitud.html"><span class="icon">📝</span><span class="text">Solicitud</span></a></li>
+            <li><a href="planes.html"><span class="icon">💎</span><span class="text">Planes</span></a></li>
+            <li><a href="blog.html"><span class="icon">📰</span><span class="text">Blog</span></a></li>
+            <li><a href="nosotros.html"><span class="icon">ℹ</span><span class="text">Nosotros</span></a></li>
+            <li><a href="clasificacion.html"><span class="icon">🏆</span><span class="text">Clasificación</span></a></li>
+            <li><a href="retos1.html"><span class="icon">🎯</span><span class="text">Retos</span></a></li>
+            <li><a href="workadventure.html"><span class="icon">🎮</span><span class="text">WorkAdventure</span></a></li>
+            <li><a href="guia.html"><span class="icon">📖</span><span class="text">Guía</span></a></li>
+        </ul>
+        <hr>
+    </nav>
+
+    <div class="container">
+        <div class="profile-card">
+            <div class="profile-header">
+                <img src="https://res.cloudinary.com/dnw35uxqn/image/upload/v1734421896/clipboard-image-1734421812_olhxlv.png" alt="Foto de perfil" class="profile-photo">
+            </div>
+            <div class="user-info">
+                <h1>John Doe</h1>
+                <div class="title">Desarrollador Full Stack</div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">5</div>
+                        <div class="stat-label">Cursos Completados</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">3</div>
+                        <div class="stat-label">Proyectos Publicados</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">85%</div>
+                        <div class="stat-label">Promedio</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Mis Cursos</h2>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <img src="/api/placeholder/300/150" alt="Desarrollo Web Full Stack" class="card-image">
+                    <div class="card-content">
+                        <h3>Desarrollo Web Full Stack</h3>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 100%"></div>
+                        </div>
+                        <span class="badge">Completado</span>
+                        <div class="completion-date">Completado: 15/12/2024</div>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <img src="https://res.cloudinary.com/dnw35uxqn/image/upload/v1734421898/clipboard-image-1734421791_ylc6ic.png" alt="Aplicaciones Móviles" class="card-image">
+                    <div class="card-content">
+                        <h3>Aplicaciones Móviles</h3>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 75%"></div>
+                        </div>
+                        <span class="badge">En Progreso</span>
+                        <div class="completion-date">Avance: 75%</div>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <img src="/api/placeholder/300/150" alt="Desarrollo de Videojuegos" class="card-image">
+                    <div class="card-content">
+                        <h3>Desarrollo de Videojuegos</h3>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 30%"></div>
+                        </div>
+                        <span class="badge">En Progreso</span>
+                        <div class="completion-date">Avance: 30%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Mis Proyectos</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="https://res.cloudinary.com/dnw35uxqn/image/upload/v1734488330/OIP_eyso5r.jpg" alt="E-commerce App" class="card-image">
+                    <div class="card-content">
+                        <h3>E-commerce App</h3>
+                        <p>Aplicación web con React y Node.js</p>
+                        <div class="badges">
+                            <span class="badge">React</span>
+                            <span class="badge">Node.js</span>
+                            <span class="badge">MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://res.cloudinary.com/dnw35uxqn/image/upload/v1734488330/R_ve4nec.jpg" alt="Juego 2D" class="card-image">
+                    <div class="card-content">
+                        <h3>Juego 2D</h3>
+                        <p>Videojuego desarrollado con Unity</p>
+                        <div class="badges">
+                            <span class="badge">Unity</span>
+                            <span class="badge">C#</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="/api/placeholder/300/150" alt="App Móvil" class="card-image">
+                    <div class="card-content">
+                        <h3>App de Fitness</h3>
+                        <p>Aplicación móvil con Flutter</p>
+                        <div class="badges">
+                            <span class="badge">Flutter</span>
+                            <span class="badge">Firebase</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Categorías de Habilidades</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">💻</div>
+                    <div class="stat-label">Desarrollador Web</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">📈</div>
+                    <div class="stat-label">Marketing Digital</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">📋</div>
+                    <div class="stat-label">Administrador</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Logros Destacados</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">12</div>
+                    <div class="stat-label">Retos Completados</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">🥇</div>
+                    <div class="stat-label">Posición más alta: #1 en Liga</div>
+                </div>
+            </div>
+        </div>        
+        </div>
+    </div>
+</body>
+</html>

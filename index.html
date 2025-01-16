@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <title>Portal de Aprendizaje Rediseñado</title>
+    <script>
+        // Guardar el título original
+        let originalTitle = document.title;
+        
+        // Cuando el usuario sale de la página
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                document.title = "¡No te vayas! 😢";
+            } else {
+                document.title = originalTitle;
+            }
+        });
+    </script>
+    <link rel="stylesheet" href="/assets/style/style-index.css">
+    <script src="/assets/js/js-index.js" defer></script>
+
+</head>
+<body>
+    <input type="checkbox" id="sidebar-toggle">
+    <div class="activate-button">
+        <label for="sidebar-toggle">≡</label>
+    </div>
+    <nav class="left-sidebar">
+        <ul class="nav-links">
+            <li><a href="perfil.html"><span class="icon">👤</span><span class="text">Perfil</span></a></li>
+            <li><a href="index.html"><span class="icon">🏠</span><span class="text">Inicio</span></a></li>
+            <li><a href="portafolio.html"><span class="icon">📂</span><span class="text">Portafolio</span></a></li>
+            <li><a href="cursos.html"><span class="icon">📚</span><span class="text">Cursos</span></a></li>
+            <li><a href="solicitud.html"><span class="icon">📝</span><span class="text">Solicitud</span></a></li>
+            <li><a href="planes.html"><span class="icon">💎</span><span class="text">Planes</span></a></li>
+            <li><a href="blog.html"><span class="icon">📰</span><span class="text">Blog</span></a></li>
+            <li><a href="nosotros.html"><span class="icon">ℹ</span><span class="text">Nosotros</span></a></li>
+            <li><a href="clasificacion.html"><span class="icon">🏆</span><span class="text">Clasificación</span></a></li>
+            <li><a href="retos1.html"><span class="icon">🎯</span><span class="text">Retos</span></a></li>
+            <li><a href="workadventure.html"><span class="icon">🎮</span><span class="text">WorkAdventure</span></a></li>
+            <li><a href="guia.html"><span class="icon">📖</span><span class="text">Guía</span></a></li>
+        </ul>
+        <hr>
+    </nav>
+
+    <div class="main-content">
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Buscar...">
+            <div class="search-icon"></div>
+        </div>
+        <div class="site-info">
+            <h1>Bienvenido al Portal de Nexus</h1>
+            <p>Revoluciona tu presencia en línea con nuestro desarrollo web. Cada sección de nuestra plataforma está diseñada para ofrecerte una experiencia de aprendizaje envolvente y llena de motivación.</p>
+            <div class="video">
+                <video autoplay muted loop class="bg-video">
+                    <source src="https://res.cloudinary.com/dnw35uxqn/video/upload/v1734311244/Max-Steel5_vqpsuo_1_rdwvwd.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+            </div>
+        </div>
+
+        <div class="feature-section">
+            <h2>Cursos Destacados</h2>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <img src="https://res.cloudinary.com/dnw35uxqn/image/upload/v1734338265/image1_zjskee.png" alt="Desarrollo_Web_Curso">
+                    <h3>Desarrollo Web Full Stack</h3>
+                    <p>Aprende a crear sitios web completos usando tecnologías frontend y backend modernas.</p>
+                    <a href="#">Inscribete YA</a>
+                </div>
+                <div class="course-card">
+                    <img src="https://res.cloudinary.com/dnw35uxqn/image/upload/v1734338266/image3_lx8zur.png" alt="Curso_Java">
+                    <h3>Aplicaciones de Escritorio</h3>
+                    <p>Diseña y programa aplicaciones de escritorio con interfaces visuales usando Java y Swing.</p>
+                    <a href="#">Inscribete YA</a>
+                </div>
+                <div class="course-card">
+                    <img src="https://res.cloudinary.com/dnw35uxqn/image/upload/v1734338266/image4_kyqqrs.png" alt="Curso_AppMóviles">
+                    <h3>Aplicaciones Móviles</h3>
+                    <p>Construye aplicaciones móviles desde cero, incluyendo diseño de interfaz y funcionalidades interactivas.</p>
+                    <a href="#">Inscribete YA</a>
+                </div>
+                <div class="course-card">
+                    <img src="https://res.cloudinary.com/dnw35uxqn/image/upload/v1734338486/desarrollo_de_un_videojuego_1_aasldd.jpg" alt="Curso_Videojuegos">
+                    <h3>Desarrollo de Videojuegos</h3>
+                    <p>Crea videojuegos desde lo básico hasta niveles avanzados, incluyendo diseño y programación.</p>
+                    <a href="#">Inscribete YA</a>
+                </div>
+                <div class="course-card">
+                    <img src="https://res.cloudinary.com/dnw35uxqn/image/upload/v1734338264/image2_c8xiqu.png" alt="Curso_BasesDatos">
+                    <h3>Gestión de Base de Datos</h3>
+                    <p>Aprende a diseñar, gestionar y optimizar bases de datos para aplicaciones y sistemas complejos.</p>
+                    <a href="#">Inscribete YA</a>
+                </div>
+             </div>
+        </div>
+        <div class="feature-section">
+            <h2>Nuestros Logros</h2>
+            <div class="achievements-grid">
+                <div class="achievement-item">
+                    <div class="achievement-icon"><div class="girador">🌟</div></div>
+                    <p>Vendedor Estrella</p>
+                </div>
+                <div class="achievement-item">
+                    <div class="achievement-icon"><div class="girador">🔍</div></div>
+                    <p>Experto en SEO</p>
+                </div>
+                <div class="achievement-item">
+                    <div class="achievement-icon"><div class="girador">🎨</div></div>
+                    <p>Gurú del Diseño</p>
+                </div>
+                <div class="achievement-item">
+                    <div class="achievement-icon"><div class="girador">💻</div></div>
+                    <p>Maestro del Código</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="feature-section">
+            <h2>Portafolio</h2>
+            <div class="portfolio-section">
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <img src="/Imagen/image15.png" alt="Portafolio 1" class="portfolio-image">
+                        <div class="portfolio-overlay">
+                            <h3>Proyecto 1</h3>
+                            <p>Descripción del proyecto 1</p>
+                            <div class="portfolio-author">Autor: John Doe</div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="/Imagen/image1.png" alt="Portafolio 2" class="portfolio-image">
+                        <div class="portfolio-overlay">
+                            <h3>Proyecto 2</h3>
+                            <p>Descripción del proyecto 2</p>
+                            <div class="portfolio-author">Autor: Jane Smith</div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="/Imagen/image2.png" alt="Portafolio 3" class="portfolio-image">
+                        <div class="portfolio-overlay">
+                            <h3>Proyecto 3</h3>
+                            <p>Descripción del proyecto 3</p>
+                            <div class="portfolio-author">Autor: Alex Johnson</div>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item" id="portfolio-item">
+                        <img src="https://res.cloudinary.com/dnw35uxqn/image/upload/v1734320013/Sin_t%C3%ADtulo22_nqq3hq_1_rkncgz.png" alt="Sube tu proyecto" class="portfolio-image">
+                        <div class="portfolio-overlay">
+                            <img src="https://res.cloudinary.com/dnw35uxqn/image/upload/v1734320014/image14_v3yow7_1_lfpx8q.png" alt="Sube tu proyecto" class="upload-project-icon">
+                            <p class="create-portfolio-text">Crea tu propio portafolio en nuestra web</p>
+                            <a href="portafolio.html" class="upload-project-link">Subir Proyecto</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="feature-section">
+            <h2>Equipo de Trabajo</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="image-container">
+                        <img src="https://res.cloudinary.com/dnw35uxqn/image/upload/v1734322627/cliente5_ijftwr_1_zjwgso.png" alt="Diseñador Gráfico">
+                        <div class="team-overlay">
+                            <div class="team-description">
+                                <p>Diseñador gráfico con experiencia en premios de diseño. <br><br><i class="team-name" style="margin-left: 150px;">John Doe</i></p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="team-role">Diseñador Gráfico</p>
+                </div>
+                <div class="team-member">
+                    <div class="image-container">
+                        <img src="https://res.cloudinary.com/dnw35uxqn/image/upload/v1734322629/cliente3_m2any0_1_ubuasl.png" alt="Desarrollador Web">
+                        <div class="team-overlay">
+                            <div class="team-description">
+                                <p>Desarrollador web full-stack con experiencia en múltiples frameworks. <br><br><i class="team-name" style="margin-left: 150px;">Jane Smith</i></p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="team-role">Desarrollador Web</p>
+                </div>
+                <div class="team-member">
+                    <div class="image-container">
+                        <img src="https://res.cloudinary.com/dnw35uxqn/image/upload/v1734322628/cliente1_nmwmsh_1_bo5yhl.png" alt="Especialista en Marketing">
+                        <div class="team-overlay">
+                            <div class="team-description">
+                                <p>Especialista en marketing digital y análisis de datos. <br><br><i class="team-name" style="margin-left: 130px;">Alex Johnson</i></p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="team-role">Especialista en Marketing</p>
+                </div>
+            </div>
+        </div>
+        <div class="feature-section pricing-section">
+            <h2>Nuestros Planes</h2>
+            <div class="pricing-container">
+                <div class="pricing-table">
+                    <div class="pricing-plan">
+                        <h3>Básico</h3>
+                        <div class="price">$299<span>/mes</span></div>
+                        <ul class="service-list">
+                            <li><i class="check-icon">✓</i> Diseño Responsivo</li>
+                            <li><i class="check-icon">✓</i> SEO Básico</li>
+                            <li><i class="check-icon">✓</i> Hosting Incluido</li>
+                            <li><i class="check-icon">✓</i> 5GB Almacenamiento</li>
+                            <li><i class="check-icon">✓</i> Dominio Gratuito</li>
+                            <li class="hidden"><i class="check-icon">✓</i> Certificado SSL</li>
+                            <li class="hidden"><i class="check-icon">✓</i> Copias de Seguridad</li>
+                            <li class="hidden disabled"><i class="check-icon">×</i> E-commerce</li>
+                            <li class="hidden disabled"><i class="check-icon">×</i> Soporte 24/7</li>
+                        </ul>
+                        <div class="button-container">
+                            <button class="ver-mas">Ver más</button>
+                            <button class="plan-button">Seleccionar Plan</button>
+                        </div>
+                    </div>
+                    
+                    <div class="pricing-plan featured">
+                        <div class="popular-bad">Más Popular</div>
+                        <h3>Profesional</h3>
+                        <div class="price">$599<span>/mes</span></div>
+                        <ul class="service-list">
+                            <li><i class="check-icon">✓</i> Diseño Responsivo Premium</li>
+                            <li><i class="check-icon">✓</i> SEO Avanzado</li>
+                            <li><i class="check-icon">✓</i> Hosting + Dominio</li>
+                            <li><i class="check-icon">✓</i> 20GB Almacenamiento</li>
+                            <li><i class="check-icon">✓</i> Dominio Personalizado</li>
+                            <li class="hidden"><i class="check-icon">✓</i> SSL Avanzado</li>
+                            <li class="hidden"><i class="check-icon">✓</i> Backups Diarios</li>
+                            <li class="hidden"><i class="check-icon">✓</i> E-commerce Básico</li>
+                            <li class="hidden"><i class="check-icon">✓</i> Soporte Prioritario</li>
+                            <li class="hidden"><i class="check-icon">✓</i> Analytics Avanzado</li>
+                            <li class="hidden"><i class="check-icon">✓</i> Email Marketing</li>
+                        </ul>
+                        <div class="button-container">
+                            <button class="ver-mas">Ver más</button>
+                            <button class="plan-button">Seleccionar Plan</button>
+                        </div>
+                    </div>
+
+                    <div class="pricing-plan">
+                        <h3>Empresarial</h3>
+                        <div class="price">$999<span>/mes</span></div>
+                        <ul class="service-list">
+                            <li><i class="check-icon">✓</i> Diseño Personalizado</li>
+                            <li><i class="check-icon">✓</i> SEO Premium</li>
+                            <li><i class="check-icon">✓</i> Hosting Empresarial</li>
+                            <li><i class="check-icon">✓</i> 50GB Almacenamiento</li>
+                            <li><i class="check-icon">✓</i> Multi-Dominio</li>
+                            <li class="hidden"><i class="check-icon">✓</i> SSL Wildcard</li>
+                            <li class="hidden"><i class="check-icon">✓</i> Backups en Tiempo Real</li>
+                            <li class="hidden"><i class="check-icon">✓</i> E-commerce Avanzado</li>
+                            <li class="hidden"><i class="check-icon">✓</i> Soporte 24/7 VIP</li>
+                            <li class="hidden"><i class="check-icon">✓</i> BI Analytics</li>
+                        </ul>
+                        <div class="button-container">
+                            <button class="ver-mas">Ver más</button>
+                            <button class="plan-button">Seleccionar Plan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="custom-plan-section">
+            <h2>¿Necesitas un Plan Personalizado?</h2>
+            <p>Cuéntanos sobre tu proyecto y crearemos una solución a medida para ti</p>
+            <div class="custom-plan-features">
+                <div class="feature-item">
+                    <span class="feature-icon">🎯</span>
+                    <p>Ajustado a tus necesidades específicas</p>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">💰</span>
+                    <p>Presupuesto flexible</p>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🤝</span>
+                    <p>Asesoría personalizada</p>
+                </div>
+            </div>
+            <a href="solicitud.html" class="custom-plan-button">
+                Solicitar Plan Personalizado
+                <span class="button-icon">→</span>
+            </a>
+        </div>
+        
+        <div class="feature-section contact-section">
+            <h2>Contáctanos 
+                <span class="contact-toggle">
+                    <img src="https://res.cloudinary.com/dnw35uxqn/image/upload/v1732912583/down-arrow-svgrepo-com_sfhymh.png" alt="Desplegar" style="height: 1em; vertical-align: middle;">
+                </span>
+            </h2>
+
+            <div class="contact-form active">
+                <form>
+                    <input type="text" placeholder="Nombre" required>
+                    <input type="email" placeholder="Correo electrónico" required>
+                    <textarea placeholder="Mensaje" required class="auto-resize"></textarea>
+                    <button type="submit">Enviar</button>
+                </form>
+                
+                
+                <div class="contact-item whatsapp" data-aos="fade-right">
+                    <a href="https://wa.me/+51990502491" target="_blank">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <h3>
+                            <img src="https://res.cloudinary.com/dnw35uxqn/image/upload/v1732912592/whatsapp-svgrepo-com_b9wdpo.png" alt="Icono de WhatsApp" class="social-icon">
+                            WhatsApp
+                        </h3>
+                        <div class="contact-preview">
+                            <img src="https://res.cloudinary.com/dnw35uxqn/image/upload/v1734337515/image8_bkutjb_jny33t.png" alt="Vista previa de WhatsApp">
+                            <p>Chatea con nosotros</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="contact-item instagram" data-aos="fade-right">
+                    <a href="https://www.instagram.com/nexuscorp_oficial/" target="_blank">
+                        <div class="contact-icon">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <h3>
+                            <img src="https://res.cloudinary.com/dnw35uxqn/image/upload/v1732912591/instagram-svgrepo-com_liggix.png" alt="Icono de Instagram" class="social-icon">
+                            Instagram
+                        </h3>
+                        <div class="contact-preview">
+                            <img src="https://res.cloudinary.com/dnw35uxqn/image/upload/v1734337515/image10_ego5uo_c1jw01.png" alt="Vista previa de Instagram">
+                            <p>Síguenos en Instagram</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="contact-item facebook" data-aos="fade-right">
+                    <a href="https://facebook.com" target="_blank">
+                        <div class="contact-icon">
+                            <i class="fab fa-facebook"></i>
+                        </div>
+                        <h3>
+                            <img src="https://res.cloudinary.com/dnw35uxqn/image/upload/v1732912590/facebook-1-svgrepo-com_nnywyd.png" alt="Icono de Facebook" class="social-icon">
+                            Facebook
+                        </h3>
+                        <div class="contact-preview">
+                            <img src="https://res.cloudinary.com/dnw35uxqn/image/upload/v1734337517/image9_zguujh_1_ub4cev.png" alt="Vista previa de Facebook">
+                            <p>Visitanos en Facebook</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="contact-grid">
+                <div class="workadventure-section">
+                    <h3 class="animated-title">
+                        <img src="https://res.cloudinary.com/dnw35uxqn/image/upload/v1732912590/icon-worlkadventure_un0gog.png" alt="Icono de WorkAdventure" class="social-icon">
+                        <span id="worka-span">¡Únete a Nuestros Eventos Virtuales! 🎮</span>
+                    </h3>
+                    <div class="event-description">
+                        <p>Regístrate y participa en nuestros emocionantes eventos mensuales donde podrás:</p>
+                        <ul>
+                            <li>🏆 Ganar premios</li>
+                            <li>🤝 Networking</li>
+                            <li>💡 Aprender</li>
+                            <li>🌍 Explorar</li>
+                        </ul>
+                    </div>
+                    <a href="https://play.workadventu.re/@/nexus/nexus-world/conference-campus#start" target="_blank" class="workadventure-preview">
+                        <img src="https://res.cloudinary.com/dnw35uxqn/image/upload/v1734416422/dd2808b0-b05b-47e0-b4c6-c80b22e03715.png" height="100%" width="100%" frameborder="0" allow="fullscreen" allowfullscreen></img>
+                    </a>
+                    <button class="register-button btn-primary">
+                        <span class="btn-text">Registrarme Ahora</span>
+                        <span class="btn-icon">→</span>
+                    </button>
+                </div>
+
+                <div class="careers-section">
+                    <h2 class="section-title">Trabaja con Nosotros 🚀</h2>
+                    <div class="careers-content">
+                        <div class="careers-info">
+                            <p>Estamos en búsqueda de talentos apasionados que quieran crecer con nosotros.</p>
+                            <ul>
+                                <li>💼 Desarrollo</li>
+                                <li>🎓 Capacitación</li>
+                                <li>🌈 Inclusión</li>
+                                <li>⏰ Flexibilidad</li>
+                                <li>🏠 Híbrido</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="cv-upload-container">
+                            <h3>Postula Aquí 📝</h3>
+                            <p>Sube tu CV en formato PDF</p>
+                            <div class="file-upload-wrapper">
+                                <label for="cv-upload" class="custom-file-upload btn-secondary">
+                                    <span class="upload-icon">📎</span>
+                                    <span class="upload-text">Seleccionar archivo</span>
+                                </label>
+                                <input type="file" id="cv-upload" accept=".pdf" class="file-input" onchange="document.getElementById('file-name').textContent = this.files[0].name;" />
+                                <span id="file-name" class="file-name-display">Ningún archivo seleccionado</span>
+                            </div>
+                            <p class="file-info">Máximo 5MB</p>
+                            <button class="submit-cv-button btn-primary">
+                                <span class="btn-text">Enviar</span>
+                                <span class="btn-icon">✓</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="reseñas-section">
+            <h2>Experiencias de Nuestros Usuarios</h2>
+            <div class="reseñas-carousel-container">
+                <div class="carousel-arrow left-arrow">&#10094;</div>
+                <div class="reseñas-carousel">
+                    <div class="reseña-card">
+                        <div class="reseña-content">
+                            <p class="reseña-texto">"Los cursos de ventas han revolucionado mi carrera. Las técnicas aprendidas me ayudaron a superar mis metas mensuales. ¡Programa increíble!"</p>
+                        </div>
+                        <div class="reseña-footer">
+                            <img src="/Imagen/vendedora1.png
+                            " alt="Foto de María" class="perfil-foto">
+                            <div class="usuario-info">
+                                <h3>María López</h3>
+                                <p class="usuario-nivel">Vendedora</p>
+                                <div class="estrellas">★★★★★★</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reseña-card">
+                        <div class="reseña-content">
+                            <p class="reseña-texto">"Contraté sus servicios de desarrollo web y quedé impresionado. El sitio que crearon para mi negocio es hermoso y funcional. Mis ventas aumentaron un 30%."</p>
+                        </div>
+                        <div class="reseña-footer">
+                            <img src="/Imagen/cliente1.png" alt="Foto de Juan" class="perfil-foto">
+                            <div class="usuario-info">
+                                <h3>Juan Pérez</h3>
+                                <p class="usuario-nivel">Empresa-Tech</p>
+                                <div class="estrellas">★★★★★</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reseña-card">
+                        <div class="reseña-content">
+                            <p class="reseña-texto">"Como vendedor nuevo, los cursos me dieron la confianza necesaria. Las estrategias de negociación son especialmente útiles en mi día a día."</p>
+                        </div>
+                        <div class="reseña-footer">
+                            <img src="/Imagen/vendedor1.png" alt="Foto de Carlos" class="perfil-foto">
+                            <div class="usuario-info">
+                                <h3>Carlos Rodríguez</h3>
+                                <p class="usuario-nivel">Vendedor</p>
+                                <div class="estrellas">★★★★☆</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reseña-card">
+                        <div class="reseña-content">
+                            <p class="reseña-texto">"El equipo de desarrollo web creó una plataforma increíble para nuestra startup. Su atención al detalle y conocimiento técnico superaron nuestras expectativas."</p>
+                        </div>
+                        <div class="reseña-footer">
+                            <img src="/Imagen/cliente2.png" alt="Foto de Ana" class="perfil-foto">
+                            <div class="usuario-info">
+                                <h3>Ana Martínez</h3>
+                                <p class="usuario-nivel">Startup-Marsupial</p>
+                                <div class="estrellas">★★★★★</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-arrow right-arrow">&#10095;</div>
+            </div>
+        </div>
+        <section class="registro-vendedor">
+            <div class="registro-container">
+                <div class="registro-header">
+                    <h2 class="titulo-registro">¡Conviértete en Vendedor Estrella!</h2>
+                    <div class="decoracion-header">
+                        <span class="linea-decorativa"></span>
+                        <i class="estrella-icon">⭐</i>
+                        <span class="linea-decorativa"></span>
+                    </div>
+                </div>
+
+                <div class="beneficios-grid">
+                    <div class="beneficio-card">
+                        <div class="beneficio-icon">💰</div>
+                        <h3>Comisiones Increíbles</h3>
+                        <p>Gana hasta 30% por cada venta realizada</p>
+                        <div class="card-hover-effect"></div>
+                    </div>
+
+                    <div class="beneficio-card">
+                        <div class="beneficio-icon">🎯</div>
+                        <h3>Sin Experiencia Requerida</h3>
+                        <p>Te capacitamos desde cero</p>
+                        <div class="card-hover-effect"></div>
+                    </div>
+
+                    <div class="beneficio-card">
+                        <div class="beneficio-icon">🏆</div>
+                        <h3>Eventos Exclusivos</h3>
+                        <p>Participa y gana premios especiales</p>
+                        <div class="card-hover-effect"></div>
+                    </div>
+
+                    <div class="beneficio-card">
+                        <div class="beneficio-icon">🎮</div>
+                        <h3>Misiones Diarias</h3>
+                        <p>Completa retos y obtén bonos</p>
+                        <div class="card-hover-effect"></div>
+                    </div>
+                </div>
+
+                <div class="registro-cta">
+                    <div class="cta-contenido">
+                        <h3>¿Listo para iniciar tu aventura?</h3>
+                        <p>Únete a nuestra comunidad de vendedores exitosos</p>
+                        <a href="login.html" class="btn-registro-animado">
+                            ¡Comienza Ahora!
+                            <span class="btn-brillo"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+           
+        </section>
+    </div>    
+</div>
+    <div class="right-top">
+        <h1>Iniciar sección</h1>
+        <a href="login.html" class="modal-trigger" >
+            <img class="right-top-img" src="https://res.cloudinary.com/dnw35uxqn/image/upload/v1734309919/avatar_1_vzruog_srba94.png" alt="user">
+        </a>
+            
+        <div class="modal">
+            <div class="modal-content">
+                <div class="modal-item">
+                    <span id="title">👤 Usuario:</span>
+                    <span>JohnDoe123</span>
+                </div>
+                <div class="modal-item">
+                    <span id="title">🏆 Posición en la liga:</span>
+                    <span>#5</span>
+                </div>
+                <div class="modal-item">
+                    <span id="title">📅 Eventos asistidos:</span>
+                    <span>12</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+   
+    <aside class="right-sidebar">
+        <h3>Últimas Entradas del Blog</h3>
+        <div class="blog-section">
+            <div class="blog-post">
+                <h4>Trabaja con Nosotros</h4>
+                <img src="/Imagen/image4.png" alt="Trabaja con Nosotros">
+                <p>Descubre las últimas oportunidades laborales en nuestro equipo.</p>
+                <span class="post-date">Publicado: 15 de mayo, 2023</span>
+            </div>
+        </div>
+        <div class="blog-section">
+            <div class="blog-post">
+                <h4>Trabaja con Nosotros</h4>
+                <img src="/Imagen/image8.png" alt="Trabaja con Nosotros">
+                <p>Descubre las últimas oportunidades laborales en nuestro equipo.</p>
+                <span class="post-date">Publicado: 15 de mayo, 2023</span>
+            </div>
+            <div class="blog-section">
+                <div class="blog-post">
+                    <h4>Trabaja con Nosotros</h4>
+                    <img src="/Imagen/image11.png" alt="Trabaja con Nosotros">
+                    <p>Descubre las últimas oportunidades laborales en nuestro equipo.</p>
+                    <span class="post-date">Publicado: 15 de mayo, 2023</span>
+                </div>
+            </div>
+            <div class="blog-section">
+                <div class="blog-post">
+                    <h4>Trabaja con Nosotros</h4>
+                    <img src="/Imagen/image2.png" alt="Trabaja con Nosotros">
+                    <p>Descubre las últimas oportunidades laborales en nuestro equipo.</p>
+                    <span class="post-date">Publicado: 15 de mayo, 2023</span>
+                </div>
+            </div>
+    </aside>
+</body>
+</body>
+</html>

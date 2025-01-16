@@ -1,0 +1,491 @@
+:root {
+    --primary-bg: #000000;
+    --neon-blue: #00f3ff;
+    --neon-purple: #8A2BE2;
+    --text-primary: #ffffff;
+    --text-secondary: #b3b3b3;
+    --glow-effect: 0 0 10px rgba(0, 243, 255, 0.5);
+    --gradient-bg: linear-gradient(45deg, rgba(0, 243, 255, 0.1), rgba(138, 43, 226, 0.1));
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--primary-bg);
+    background-image: url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ima-Rl0Ue5Ue5Ue5Ue5Ue5Ue5Ue5Ue5Ue5Ue5Ue5.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(0, 243, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(35, 0, 68, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+main {
+    width: 100%;
+    padding: 20px;
+    max-width: 850px;
+}
+
+.contenedor__todo {
+    width: 100%;
+    max-width: 800px;
+   
+    margin: auto;
+    position: relative;
+}
+
+.caja__trasera {
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 23, 46, 0.5);
+    border: 1px solid var(--neon-blue);
+    border-radius: 55px;
+}
+
+.caja__trasera div {
+    margin: 100px 40px;
+    color: white;
+    transition: all 500ms;
+}
+
+.caja__trasera div p,
+.caja__trasera button {
+    margin-top: 30px;
+}
+
+.caja__trasera div h3 {
+    font-weight: 400;
+    font-size: 26px;
+}
+
+.caja__trasera button {
+    padding: 10px 40px;
+    border: 2px solid #fff;
+    background: transparent;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    outline: none;
+    transition: all 300ms;
+    border-radius: 10px;
+}
+
+.caja__trasera button:hover {
+    background: rgba(0, 58, 116, 0.281);
+    color: #00ffdd;
+    border: 2px solid var(--neon-blue);
+}
+
+.formulario__register-cliente button {
+    position: relative; /* Cambié a posición relativa */
+    top: -20px; /* Cambié la posición hacia arriba unos cuantos px */
+}
+.contenedor__login-register {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 380px;
+    position: relative;
+    top: -220px;
+    left: 10px;
+    transition: left 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+}
+
+.contenedor__login-register form {
+    width: 100%;
+    padding: 80px 20px;
+    background: #000;
+    position: absolute;
+    border-radius: 20px;
+    border: 2px solid var(--neon-blue);
+}
+.contenedor__login-register form p{
+    margin-top: 10px;
+    position: absolute;
+    transform: translate(60%, -10%);
+    cursor: pointer;
+    text-decoration:underline;
+    margin-left: 15px;
+}
+
+.contenedor__login-register form h2 {
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--neon-blue);
+}
+
+.contenedor__login-register form input {
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    border: none;
+    background: #F2F2F2;
+    font-size: 16px;
+    outline: none;
+    border-radius: 10px;
+}
+
+.contenedor__login-register form button {
+    padding: 10px 40px;
+    margin-top: 40px;
+    border: 2px solid #fff;
+    background: transparent;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    outline: none;
+    width: 100%;
+    transition: all 300ms;
+    border-radius: 10px;
+    transform: translateY(0);
+}
+
+.contenedor__login-register form button:hover {
+    background: rgba(0, 58, 116, 0.281);
+    color: #00ffdd;
+    border: 2px solid var(--neon-blue);
+    transform: translateY(-5px);
+}
+
+.formulario__login {
+    opacity: 1;
+    display: block;
+}
+.formulario__register,
+.formulario__register-vendedor,
+.formulario__register-cliente,
+.formulario__register-empresa {
+    display: none;
+}
+
+@media screen and (max-width: 850px) {
+    main {
+        margin-top: 50px;
+    }
+
+    .caja__trasera {
+        max-width: 350px;
+        height: 300px;
+        flex-direction: column;
+        margin: auto;
+    }
+
+    .caja__trasera div {
+        margin: 0px;
+        position: absolute;
+    }
+
+    .contenedor__login-register {
+        top: -10px;
+        left: -5px;
+        margin: auto;
+    }
+
+    .contenedor__login-register form {
+        position: relative;
+    }
+}
+
+@media screen and (max-width: 849px) {
+    main {
+        padding: 10px;
+        overflow: hidden; /* Prevenimos scroll horizontal */
+    }
+    body{
+        top: -110px;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .contenedor__todo {
+        height: auto;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto;
+    }
+
+    .caja__trasera {
+        max-width: 350px;
+        margin: 20px auto;
+        padding: 20px;
+        top: 180px;
+        height: 80vh;
+        position: relative;
+    }
+
+    .caja__trasera div {
+        margin: 10px 0;
+        text-align: center;
+        width: 100%;
+        left: -200px;
+        position: relative;
+    }
+
+    .caja__trasera h3 {
+        margin: 0 auto;
+        width: 100%;
+        margin-top: 300px;
+        margin-bottom: -10px;
+        text-align: center;
+    }
+
+    .caja__trasera p {
+        margin: 10px auto;
+        width: 100%;
+        text-align: center;
+    }
+
+    #btn__registrarse-vendedor,
+    #btn__registrarse-cliente,
+    #btn__registrarse-empresa {
+        width: 100%;
+        margin: 10px auto;
+    }
+    
+    .contenedor__login-register {
+        position: relative;
+        top: -430px;
+        left: 0;
+        width: 100%;
+        max-width: 350px;
+        z-index: 100;
+        margin: 20px auto;
+        
+    }
+
+    .contenedor__login-register form {
+        padding: 40px 20px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    /* Ajustamos el tamaño del contenedor de partículas */
+    #background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: hidden;
+    }
+    .formulario__register-vendedor,
+    .formulario__register-cliente,
+    .formulario__register-empresa{
+        top: 200px;
+    }
+    .caja__trasera-login h3{
+        display: none;
+    }
+    .caja__trasera-login p{
+        display: none;
+    }
+    .caja__trasera-login button{
+        position: absolute;
+        top: -380px;
+        max-width: 300px;
+        right: -195px;
+        
+    }
+    .formulario__register-cliente button {
+        position: relative; /* Cambié a posición relativa */
+        top: 10px; /* Cambié la posición hacia arriba unos cuantos px */
+    }
+        #numero_celular{
+            position: relative;
+            max-width: 256px;
+        }
+        #estado_empresa {
+        display: block; /* Asegura que el elemento se comporte como un bloque */
+        margin-bottom: 20px; /* Utiliza un margen negativo para subir lo que está debajo */
+    }
+    .caja__trasera-login {
+        margin-top: -100px; /* Mueve la caja del login 50px hacia abajo */
+        transition: margin-top 0.5s ease; /* Agrega una transición suave */
+        height: 10px; /* Establece la altura de la caja del login a 80px */
+        position: relative; /* Mantiene la posición actual */
+        
+    }
+  
+    #btn__iniciar-sesion{
+        margin-top: -30px; /* Ajusta el margen superior a 0 para que suba */
+        position: relative;
+    }
+    #olvidar-contraseña{
+        left: -5px;
+    }
+    .left-sidebar{
+        position: absolute;    
+        z-index: 100000;
+    }
+    .nav-links{
+        list-style: none; 
+        margin-left: -160px; 
+        margin-top: -280px; 
+        font-size: 30px;
+    }
+}
+
+@keyframes rotateHorizontal {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
+}
+
+@keyframes colorChange {
+    0% { color: #ff00ff; }
+    25% { color: #00ffff; }
+    50% { color: #ffff00; }
+    75% { color: #00ff00; }
+    100% { color: #ff00ff; }
+}
+
+/* Estilo para las listas desplegables */
+select {
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    border: 2px solid var(--neon-blue);
+    background: #F2F2F2;
+    font-size: 16px;
+    outline: none;
+    border-radius: 10px;
+    transition: border-color 300ms;
+    appearance: none; /* Eliminar el estilo predeterminado del navegador */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"><polygon points="0,0 10,0 5,5" fill="blue"/></svg>'); /* Flecha personalizada */
+    background-repeat: no-repeat;
+    background-position: right 10px center; /* Posición de la flecha */
+    background-size: 10px; /* Tamaño de la flecha */
+}
+
+select:hover {
+    border-color: #00ffdd;
+}
+
+/* Estilo para las opciones del select */
+option {
+    background: #000; /* Fondo negro para las opciones */
+    color: #fff; /* Texto blanco */
+}
+
+/* Estilo para el scroll de las opciones */
+select::-webkit-scrollbar {
+    width: 8px; /* Ancho del scrollbar */
+}
+
+select::-webkit-scrollbar-thumb {
+    background: var(--neon-blue); /* Color del scrollbar */
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+select::-webkit-scrollbar-thumb:hover {
+    background: #00ffdd; /* Color del scrollbar al pasar el mouse */
+}
+#codigo-pais{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    width: 60px;
+    position: absolute;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"><polygon points="0,0 10,0 5,5" fill="blue"/></svg>');
+    border: none;
+    cursor: pointer;
+}
+.boton-modal {
+    margin-top: 30px;
+    width: 300px;
+    
+}
+.boton-modal button{
+    border-radius: 15px;
+    width: 100px;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 6px;
+}
+#enviar-correo{
+    background: rgba(21, 0, 141, 0.178);
+    color: var(--neon-blue);
+    border: 1px solid var(--neon-blue);
+    font-weight: bold;
+    transition: background-color 0.5s ease, box-shadow 0.5s ease;
+    
+}
+#enviar-correo:hover{
+    background-color: rgba(0, 68, 255, 0.3);
+    border: 1px solid white;
+    box-shadow: 0px 0px 20px 3px rgb(0, 255, 255);
+}
+#cerrar-modal{
+    background: rgba(141, 0, 59, 0.178);
+    color: red;
+    border: 1px solid red;
+    font-weight: bold;
+    transition: background-color 0.5s ease, box-shadow 0.5s ease;
+    
+}
+#cerrar-modal:hover{
+    background-color: rgba(255, 0, 0, 0.3);
+    border: 1px solid white;
+    box-shadow: 0px 0px 20px 3px rgb(255, 0, 0);
+}
+#numero_celular{
+    margin-left: 50px;
+    border-top-left-radius:0;
+    border-bottom-left-radius:0;
+    width: 288px;
+}
+#background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none!; /* Evita la interferencia con eventos del mouse */
+}
+#particles-container {
+overflow: hidden;
+background: transparent;
+}
+
+#particles-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+#estado_empresa {
+    display: block; /* Asegura que el elemento se comporte como un bloque */
+    margin-bottom: -20px; /* Utiliza un margen negativo para subir lo que está debajo */
+}

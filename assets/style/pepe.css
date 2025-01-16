@@ -1,0 +1,659 @@
+body::after{
+    display: none;
+}
+.price-filter-container {
+    width: 100%;
+    padding: 15px 0;
+    margin-bottom: 20px;
+}
+
+.price-filter-container label {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--text-secondary);
+}
+
+.price-slider-wrapper {
+    position: relative;
+    padding: 10px 0;
+}
+
+.price-slider {
+    width: 100%;
+    height: 4px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: rgba(0, 243, 255, 0.1);
+    border-radius: 2px;
+    outline: none;
+}
+
+.price-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--neon-blue);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+    transition: all 0.3s ease;
+}
+
+.price-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.7);
+}
+
+.price-tooltip {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    padding: 5px 10px;
+    background: rgba(0, 10, 20, 0.9);
+    border: 1px solid var(--neon-blue);
+    border-radius: 5px;
+    color: var(--text-primary);
+    font-size: 14px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.price-tooltip .tooltip-arrow {
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid var(--neon-blue);
+}
+
+.price-slider:hover + .price-tooltip,
+.price-slider:active + .price-tooltip {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+}
+.search-filter-container {
+    margin-bottom: 30px;
+    padding: 20px;
+    
+    background: rgba(4, 134, 255, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(0, 243, 255, 0.1);
+}
+
+.search-box {
+    width: 94%;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 40px 12px 15px;
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    border-radius: 8px;
+    background: rgba(0, 10, 20, 0.3);
+    color: var(--text-primary);
+    font-size: 16px;
+}
+
+.search-icon {
+    position: absolute;
+    right: -50px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.filters {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.filter-group {
+    flex: 1;
+    min-width: 200px;
+}
+
+.filter-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-secondary);
+}
+
+.filter-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    border-radius: 8px;
+    background: rgba(0, 10, 20, 0.3);
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+.filter-select:hover {
+    border-color: var(--neon-blue);
+}
+.reto-card {
+    background: rgba(0, 10, 20, 0.3);
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.reto-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--neon-blue);
+    box-shadow: var(--glow-effect);
+}
+
+.reto-titulo {
+    color: var(--neon-blue);
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.reto-descripcion {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.reto-detalles {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.reto-precios {
+    display: flex;
+    gap: 20px;
+}
+
+.precio-item {
+    background: rgba(0, 243, 255, 0.1);
+    padding: 8px 15px;
+    border-radius: 8px;
+    color: var(--text-primary);
+}
+
+.reto-botones {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.btn-detalles {
+    background: rgba(0, 243, 255, 0.2);
+    color: var(--neon-blue);
+}
+
+.btn-vender {
+    background: var(--neon-blue);
+    color: var(--primary-bg);
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: var(--glow-effect);
+}
+.modal-link {
+    color: var(--neon-blue);
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 4px;
+    height: 40px;
+
+}
+
+.modal-link:hover {
+    transform: translateY(-3px);
+    background: rgba(0, 243, 255, 0.1);
+    border: 1px solid rgba(0, 243, 255, 0.2);        
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+    animation: linkGlow 1.5s infinite;
+    color: white;
+    font-size: 20pzx;
+}
+
+@keyframes linkGlow {
+    0% {
+        box-shadow: 0 0 5px rgba(0, 243, 255, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(0, 243, 255, 0.3);
+    }
+}
+
+
+.modal-css {
+    display: none;
+    position: fixed;
+    z-index: 0!;
+    top: 0;
+    width: 200%;
+    height: 200%;
+    padding-left: 100px;
+    margin-left: -150px;
+    background-color: rgba(0, 0, 0, 0.9); /* Aumentar la opacidad del fondo */
+    backdrop-filter: none; /* Eliminar el desenfoque para un fondo opaco */
+}
+
+.modal-contenido-css {
+    background: rgba(0, 10, 20, 0.95);
+    border: 1px solid var(--neon-blue);
+    border-radius: 15px;
+    margin: 15% auto;
+    padding: 30px;
+    width: 90%;
+    height: 85%;
+    max-width: 800px;
+    height: 43%;
+    position: relative;
+    margin-left: 100px;
+    margin-top: 20px;
+}
+
+.cerrar-modal-css {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+.cerrar-modal-css:hover {
+    color: red;
+}
+
+#modal-toggle {
+    display: none;
+}
+#modal-toggle:checked + .modal-css {
+    display: block;
+}
+.left-sidebar,
+.right-sidebar {
+    z-index: 0; /* Un z-index bajo para que el modal esté por encima */
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    margin-left: -360px;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding-left: 100px;
+    padding-top: 20px;
+    background-color: rgba(0,0,0,0.85);
+    backdrop-filter: blur(5px);
+}
+
+.modal-contenido {
+    background: rgba(0, 10, 20, 0.95);
+    border: 1px solid var(--neon-blue);
+    border-radius: 15px;
+    margin: 15% auto;
+    padding: 30px;
+    width: 90%;
+    max-width: 800px;
+    margin-top: -0px;
+    position: relative;
+    color: var(--text-primary);
+    height: auto;
+    min-height: 550px;
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+}
+
+.cerrar-modal {
+    color: var(--neon-blue);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.cerrar-modal:hover {
+    color: red;
+}
+
+.modal-galeria {
+    margin-top: -10px;
+    float: left;
+    width: 45%;
+    position: relative;
+    height: calc(100% - 60px);
+}
+
+.contenedor-imagen {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.contenedor-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    background: rgba(0, 10, 20, 0.3);
+}
+
+.contenedor-imagen:hover .controles-imagen {
+    opacity: 1;
+}
+
+.controles-imagen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.flecha-izq, .flecha-der {
+    background: transparent;
+    border: none;
+    color: var(--neon-blue);
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 2;
+    font-size: 24px;
+    transition: all 0.3s ease;
+}
+
+.flecha-izq:hover, .flecha-der:hover {
+    transform: scale(1.2);
+    text-shadow: 0 0 10px var(--neon-blue);
+}
+
+.flecha-izq::before {
+    content: '◄';
+}
+
+.flecha-der::before {
+    content: '►';
+}
+
+.btn-ojo {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 10, 20, 0.7);
+    border: 1px solid var(--neon-blue);
+    color: var(--neon-blue);
+    padding: 8px 16px;
+    cursor: pointer;
+    z-index: 2;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.btn-ojo:hover {
+    background: rgba(0, 243, 255, 0.2);
+    transform: translateX(-50%) scale(1.1);
+}
+
+.descripcion-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90%;
+    height: 100%;
+    background: rgba(0, 10, 20, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    color: var(--text-primary);
+    font-size: 1.1em;
+    line-height: 1.6;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.descripcion-overlay.visible {
+    opacity: 1;
+}
+
+.info-precio {
+    position: relative;
+    width: 350px;
+}
+
+.precio-principal {
+    position: relative;
+    font-size: 24px;
+    color: var(--neon-blue);
+    margin-bottom: 10px;
+}
+
+.comision-animada {
+    margin-top: -35px;
+    margin-left: 230px;
+    position: absolute;
+    font-size: 18px;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    animation: bounceText 1s ease-in-out infinite;
+    transform-origin: center;
+}
+
+@keyframes bounceText {
+    0% {
+        transform: scale(1) rotate(0deg);
+    }
+    25% {
+        transform: scale(1.2) rotate(-5deg);
+    }
+    50% {
+        transform: scale(1) rotate(0deg);
+    }
+    75% {
+        transform: scale(1.2) rotate(5deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+.publico-objetivo {
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-top: -5px;
+}
+
+.lista-funciones {
+    float: right;
+    width: 45%;
+    padding-left: 5%;
+    margin-top: 0;
+    height: calc(100% - 60px);
+    display: flex;
+    flex-direction: column;
+}
+
+.lista-funciones h3 {
+    margin-bottom: 15px;
+}
+
+.lista-funciones ul {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 15px;
+    margin: 0;
+}
+
+.lista-funciones ul li {
+    margin-bottom: 12px;
+    padding: 10px;
+    background: rgba(0, 243, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(0, 243, 255, 0.1);
+}
+
+.botones-accion {
+    position: absolute;
+    top: 500px;
+    right: 110px;
+    display: flex;
+    gap: 10px;
+}
+
+.btn-misiones, .btn-vender {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.btn-misiones {
+    background: rgba(0, 243, 255, 0.2);
+    color: var(--neon-blue);
+}
+
+.btn-vender {
+    background: var(--neon-blue);
+    color: var(--primary-bg);
+}
+
+.btn-misiones:hover, .btn-vender:hover {
+    transform: scale(1.05);
+    box-shadow: var(--glow-effect);
+}
+/* Estilos para botones de retos */
+.reto-botones {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.btn-detalles {
+    background: rgba(0, 243, 255, 0.2);
+    color: var(--neon-blue);
+}
+
+.btn-vender-reto {
+    background: var(--neon-blue);
+    color: var(--primary-bg);
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: var(--glow-effect);
+}
+
+/* Estilos para botones del modal */
+.modal-botones {
+    position: absolute;
+    top: 560px;
+    right: 100px;
+    display: flex;
+    gap: 10px;
+    
+}
+
+.btn-modal {
+    font-size: 20px;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.btn-misiones {
+    background: rgba(0, 243, 255, 0.2);
+    color: var(--neon-blue);
+}
+
+.btn-vender-modal {
+    background: var(--neon-blue);
+    color: var(--primary-bg);
+}
+
+.btn-modal:hover {
+    transform: scale(1.05);
+    box-shadow: var(--glow-effect);
+}
+/* Estilo para los select */
+select {
+    appearance: none;
+    background: rgba(0, 10, 20, 0.3);
+    border: 1px solid var(--neon-blue);
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    padding: 8px 12px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+select:hover {
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 10px var(--neon-blue);
+}
+
+select:focus {
+    outline: none;
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 15px var(--neon-blue);
+}
+
+/* Estilo para las opciones del select */
+select option {
+    background-color: rgba(0, 10, 20, 0.9);
+    color: white;
+    padding: 10px;
+}
+
+select option:hover {
+    background-color: var(--neon-blue);
+    color: black;
+}
